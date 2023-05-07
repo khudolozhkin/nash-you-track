@@ -10,6 +10,7 @@ This is a project manager with shared spaces, tables and cards.
 - Prisma
 - SWR
 - Tailwind CSS
+- Redux
 
 ## Roadmap
 
