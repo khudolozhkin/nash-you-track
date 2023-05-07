@@ -13,10 +13,7 @@ This is a project manager with shared spaces, tables and cards.
 
 ## Roadmap
 
-
-- [-] ~Add MDX support for basic pages~
-
-- [ - ] Add Auth with Prisma and NextAuth
-- [-] Add protected routes
-- [-] Add theme changer
-- [-] Scheme of projects, spaces and cards
+- [ ] Add Auth with Prisma and NextAuth
+- [ ] Add protected routes
+- [ ] Add theme changer
+- [ ] Scheme of projects, spaces and cards
