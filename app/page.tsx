@@ -9,7 +9,7 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <UserAuthButton />
       <UserLogoutButton />
-      <h1 className='bg-white dark:bg-black'>{user?.name} {user?.email} {user?.image} {user?.id}</h1>
+      <h1>{user?.name} {user?.email} {user?.image} {user?.id}</h1>
       <ThemeToggle />
     </main>
   )
