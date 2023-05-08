@@ -14,7 +14,7 @@ This is a project manager with shared spaces, tables and cards.
 
 ## Roadmap
 
-- [ ] Add Auth with Prisma and NextAuth
-- [ ] Add protected routes
-- [ ] Add theme changer
+- [x] Add Auth with Prisma and NextAuth
+- [ ] Add protected routes (fix warm config)
+- [x] Add dark theme
 - [ ] Scheme of projects, spaces and cards

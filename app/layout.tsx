@@ -1,5 +1,5 @@
 import './globals.css'
-import { SessionProvider } from "next-auth/react"
+import { ThemeProvider } from '@/components/theme-provider'
 
 export const metadata = {
   title: 'Create Next App',
@@ -13,7 +13,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru">
-      <body>{children}</body>
+      <body>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   )
 }

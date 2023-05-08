@@ -1,18 +1,18 @@
 "use client"
-import { getCurrentUser } from "@/lib/session"
 import { signIn } from "next-auth/react"
 
 export default function UserAuthButton() {
   return (
     <>
       <button
+        className="dark:text-red"
         type="button"
         onClick={() => {
           signIn("google")
         }
         }
       >
-        Google
+        Войти
       </button>
     </>
   )
