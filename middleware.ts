@@ -6,6 +6,16 @@ export default withAuth(
   async function middleware(req) {
     const token = await getToken({ req })
     const isAuth = !!token
+    if (!isAuth) {
+      let from = req.nextUrl.pathname;
+      if (req.nextUrl.search) {
+        from += req.nextUrl.search;
+      }
+
+      return NextResponse.redirect(
+        new URL(`/login?from=${encodeURIComponent(from)}`, req.url)
+      );
+    }
   },
   {
     callbacks: {
@@ -17,5 +27,5 @@ export default withAuth(
 )
 
 export const config = {
-  matcher: ['/', '/dashboard']
+  matcher: ['/dashboard']
 }
