@@ -18,6 +18,3 @@ This is a project manager with shared spaces, tables and cards.
 - [x] Add protected routes
 - [x] Add dark theme
 - [ ] Scheme of projects, spaces and cards
-
-https://app.eraser.io/workspace/aZCf7kSBzbMYMUqtAWq8?origin=share
-
