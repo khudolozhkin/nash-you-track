@@ -46,6 +46,7 @@ model User {
   image    String?
   accounts Account[]
   sessions Session[]
+  spaces SpaceUser[]
 }
 
 model ApiKey {
@@ -82,4 +83,41 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Space {
+  id                String  @id @default(cuid())
+  createdAt         DateTime @default(now())
+  name String 
+
+  users SpaceUser[]
+  dashboards Dashboard[]
+}
+
+model SpaceUser {
+  permission Role @default(VIEWER)
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  
+  space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+  spaceId String
+
+  @@unique([userId, spaceId])
+}
+
+model Dashboard {
+  id                String  @id @default(cuid())
+  name String
+  createdAt         DateTime @default(now())
+
+  space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+  spaceId String
+
+}
+
+enum Role {
+  OWNER
+  ADMIN
+  VIEWER
 }
