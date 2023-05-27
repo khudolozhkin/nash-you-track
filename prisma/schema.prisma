@@ -88,22 +88,23 @@ model VerificationToken {
 model Space {
   id                String  @id @default(cuid())
   createdAt         DateTime @default(now())
-  name String 
+  name String
 
-  users SpaceUser[]
+  users  SpaceUser[]
   dashboards Dashboard[]
 }
 
 model SpaceUser {
   permission Role @default(VIEWER)
-  
-  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
   
-  space Space? @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+  space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
   spaceId String
 
   @@unique([userId, spaceId])
+  @@index([spaceId])
 }
 
 model Dashboard {
@@ -113,7 +114,6 @@ model Dashboard {
 
   space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
   spaceId String
-
 }
 
 enum Role {
