@@ -21,7 +21,7 @@ export async function GET() {
           select: {
             spaceId: true,
             userId: true,
-            permission: true,
+            accessLevel: true,
             space: {
               select: {
                 name: true
@@ -60,12 +60,12 @@ export async function POST(request: Request) {
 
     const newOwnerSpace = await db.spaceUser.create({
       data: {
-        permission: "OWNER",
+        accessLevel: 7,
         userId: `${user?.id}`,
         spaceId: newSpace?.id
       }
     })
-    
+
     return NextResponse.json({newOwnerSpace, newSpace});
 
   } catch (error) {

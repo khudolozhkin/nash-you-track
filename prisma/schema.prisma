@@ -95,7 +95,7 @@ model Space {
 }
 
 model SpaceUser {
-  permission Role @default(VIEWER)
+  accessLevel Int @default(1)
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
@@ -114,10 +114,4 @@ model Dashboard {
 
   space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
   spaceId String
-}
-
-enum Role {
-  OWNER
-  ADMIN
-  VIEWER
 }
