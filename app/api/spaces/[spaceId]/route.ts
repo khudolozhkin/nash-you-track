@@ -1,8 +1,10 @@
 import * as z from "zod"
 import { NextResponse } from 'next/server';
 import { getCurrentUser } from '@/lib/session';
-import { routeContextSchema } from '@/lib/validations/spaces';
+import { routeContextSchema, changeSpaceSchema } from '@/lib/validations/spaces';
 import { db } from "@/lib/db";
+
+
 
 export async function GET(
   request: Request,
@@ -40,6 +42,8 @@ export async function GET(
   }
 }
 
+
+
 export async function DELETE(
   request: Request,
   context: z.infer<typeof routeContextSchema>
@@ -65,6 +69,42 @@ export async function DELETE(
     }
 
     return new Response(null, { status: 500 })
+  }
+}
+
+
+
+export async function POST(
+  request: Request,
+  context: z.infer<typeof routeContextSchema>
+) {
+  try {
+    const { params } = routeContextSchema.parse(context)
+
+    if (!await userHasAccessToSpace(params.spaceId, 7)) {
+      return new Response("Unauthorized", { status: 403 })
+    }
+
+    const json = await request.json();
+    const body = changeSpaceSchema.parse(json)
+
+    const updateSpace = await db.space.update({
+      where: {
+        id: params.spaceId,
+      },
+      data: body
+    })
+    console.log(updateSpace)
+    return NextResponse.json(updateSpace);
+  
+  } catch (error) {
+
+    if (error instanceof z.ZodError) {
+      return new Response(JSON.stringify(error.issues), { status: 422 })
+    }
+
+    return new Response(null, { status: 500 })
+
   }
 }
 
