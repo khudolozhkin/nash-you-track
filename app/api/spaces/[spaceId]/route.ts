@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import { getCurrentUser } from '@/lib/session';
 import { routeContextSchema, changeSpaceSchema } from '@/lib/validations/spaces';
 import { db } from "@/lib/db";
-
+import { userHasAccessToSpace } from "@/lib/user-access";
 
 
 export async function GET(
@@ -94,7 +94,7 @@ export async function POST(
       },
       data: body
     })
-    console.log(updateSpace)
+    
     return NextResponse.json(updateSpace);
   
   } catch (error) {
@@ -106,32 +106,4 @@ export async function POST(
     return new Response(null, { status: 500 })
 
   }
-}
-
-async function userHasAccessToSpace(spaceId: string, accessLevel: number) {
-  const user = await getCurrentUser()
-
-  if (user == undefined) {
-    return false
-  }
-
-  const spaceUser = await db.spaceUser.findFirst({
-    where: {
-      userId: user.id,
-      spaceId: spaceId
-    },
-    select: {
-      accessLevel: true
-    }
-  })
-
-  if (spaceUser == undefined) {
-    return false
-  }
-
-  if (accessLevel <= spaceUser!.accessLevel) {
-    return true
-  }
-
-  return false
 }
