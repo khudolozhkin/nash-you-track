@@ -11,6 +11,6 @@ export const dashboardSchema = z.object({
   name: z.string().min(3).max(32),
 })
 
-export const putDashboardSchema = z.object({
+export const updateDashboardSchema = z.object({
   name: z.string().min(3).max(32),
 })

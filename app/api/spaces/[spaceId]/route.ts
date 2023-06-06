@@ -74,7 +74,7 @@ export async function DELETE(
 
 
 
-export async function POST(
+export async function PUT(
   request: Request,
   context: z.infer<typeof routeContextSchema>
 ) {

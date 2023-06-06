@@ -114,4 +114,43 @@ model Dashboard {
 
   space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
   spaceId String
+
+  boards Board[]
+}
+
+model Board {
+  id String @id @default(cuid())
+  name String
+  createdAt DateTime @default(now())
+  top Int
+  left Int
+
+  dashboard Dashboard @relation(fields: [dashboardId], references: [id], onDelete: Cascade)
+  dashboardId String
+
+  columns Column[]
+}
+
+model Column {
+  id String @id @default(cuid())
+  name String
+  createdAt DateTime @default(now())
+  sortOrder Decimal @default(100)
+
+  board Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  boardId String
+
+  cards Card[]
+}
+
+model Card {
+  id String @id @default(cuid())
+  createdAt DateTime @default(now())
+  name String
+  content Json?
+  sortOrder Decimal @default(100)
+
+
+  column Column @relation(fields: [columnId], references: [id], onDelete: Cascade)
+  columnId String
 }

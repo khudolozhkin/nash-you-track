@@ -27,5 +27,4 @@ export async function userHasAccessToSpace(spaceId: string, accessLevel: number)
   }
 
   return false
-
 }
