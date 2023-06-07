@@ -10,12 +10,12 @@ This is a project manager with shared spaces, tables and cards.
 - Prisma
 - SWR
 - Tailwind CSS
-- Redux
+- Zod
 
 ## Roadmap
 
-- [x] Add Auth with Prisma and NextAuth
-- [x] Add protected routes
-- [x] Add dark theme
-- [ ] Scheme of spaces and dashboards
-- [ ] API for work with spaces and dashboards
+- [x] Auth with Prisma and NextAuth
+- [x] Protected routes
+- [x] Dark theme
+- [x] Scheme of spaces and dashboards
+- [x] API for work with spaces and dashboards
