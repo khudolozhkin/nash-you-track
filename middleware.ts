@@ -13,7 +13,7 @@ export default withAuth(
       }
 
       return NextResponse.redirect(
-        new URL(`/login?from=${encodeURIComponent(from)}`, req.url)
+        new URL(`/`, req.url)
       );
     }
   },
@@ -27,5 +27,5 @@ export default withAuth(
 )
 
 export const config = {
-  matcher: ['/dashboard']
+  matcher: ['/space', '/space/:path*']
 }

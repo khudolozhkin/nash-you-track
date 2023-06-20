@@ -5,7 +5,7 @@ export default function UserAuthButton() {
   return (
     <>
       <button
-        className="dark:text-red"
+        className="text-black dark:text-white"
         type="button"
         onClick={() => {
           signIn("google")
