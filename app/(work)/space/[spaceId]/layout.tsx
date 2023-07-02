@@ -1,19 +1,10 @@
 
-
-export default async function SpaceLayout({
-  children,
-  params
-}: {
-  children: React.ReactNode,
-  params: {
-    spaceId: string
-  }
-}) {
-  
+export default function DashboardLayout(props: { children: React.ReactNode, params: {spaceId: string } }) {
   return (
     <>
-     <h2>Current space {params.spaceId}</h2>
-     {children}
+      <h2>Current space {props.params.spaceId}</h2>
+      {props.children}
     </>
   )
 }
+
