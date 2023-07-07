@@ -1,9 +1,8 @@
 
-export default function DashboardLayout(props: { children: React.ReactNode, params: {spaceId: string } }) {
+export default function DashboardLayout({children}: { children: React.ReactNode}) {
   return (
     <>
-      <h2>Current space {props.params.spaceId}</h2>
-      {props.children}
+      {children}
     </>
   )
 }

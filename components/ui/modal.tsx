@@ -9,7 +9,6 @@ export default function Modal({ children }: { children: React.ReactNode }) {
 
   const onDismiss = useCallback(() => {
     router.back()
-    router.forward()
   }, [router])
 
   const onClick: MouseEventHandler = useCallback(
