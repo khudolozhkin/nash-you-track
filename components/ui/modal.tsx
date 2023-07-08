@@ -1,6 +1,7 @@
 'use client'
 import { useCallback, useRef, useEffect, MouseEventHandler } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export default function Modal({ children }: { children: React.ReactNode }) {
   const overlay = useRef(null)
@@ -13,11 +14,11 @@ export default function Modal({ children }: { children: React.ReactNode }) {
 
   const onClick: MouseEventHandler = useCallback(
     (e) => {
-      if (e.target === overlay.current || e.target === wrapper.current) {
+      if (e.target === overlay.current) {
         if (onDismiss) onDismiss()
       }
     },
-    [onDismiss, overlay, wrapper]
+    [onDismiss, overlay]
   )
 
   const onKeyDown = useCallback(
@@ -35,12 +36,24 @@ export default function Modal({ children }: { children: React.ReactNode }) {
   return (
     <div
       ref={overlay}
-      className="fixed z-10 left-0 right-0 top-0 bottom-0 mx-auto bg-black/60"
+      className="fixed flex items-center justify-center z-1000 left-0 right-0 top-0 bottom-0 mx-auto backdrop-blur-sm bg-black/60"
       onClick={onClick}
     >
       <div
         ref={wrapper}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full sm:w-10/12 md:w-8/12 lg:w-1/2 p-6"
+        className="
+        bg-white
+        min-h-full
+        md:min-h-[calc(100%-32px-env(safe-area-inset-top)-env(safe-area-inset-bottom))]
+        overflow-hidden
+        mt-[calc(16px+env(safe-area-inset-top))]
+        mb-[calc(16px+env(safe-area-inset-bottom))]
+        max-w-[1360px]
+        w-full
+        md:w-[calc(100%-64px)]
+        rounded
+        ease-in duration-300
+        "
       >
         {children}
       </div>

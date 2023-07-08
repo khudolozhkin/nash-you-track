@@ -8,7 +8,12 @@ module.exports = {
   darkMode: ["class"],
   theme: {
     extend: {
-      
+      backdropBlur: {
+        sm: '1px',
+      },
+      maxWidth: {
+        'xl': '1360px',
+      }
     },
   },
   plugins: [],

@@ -9,7 +9,7 @@ export default function Dashboard({ params }: { params: { dashboardId: string } 
 
   return (
     <>
-     <Link href={`http://localhost:3000/space/dada/dashboard/dada/card/dada`}>CardModal</Link>
+     <Link href={`${pathname}/card/dada`}>CardModal</Link>
     </>
   )
 }
