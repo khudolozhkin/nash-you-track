@@ -1,5 +1,5 @@
 import {
-  Braces
+  Crop
 } from "lucide-react"
 
 import { LucideIcon } from "lucide-react"
@@ -7,7 +7,7 @@ import { LucideIcon } from "lucide-react"
 export type Icon = LucideIcon
 
 export const Icons = {
-  logo: Braces,
+  logo: Crop,
   gitHub: ({ ...props }: LucideIcon) => (
     <svg
       aria-hidden="true"

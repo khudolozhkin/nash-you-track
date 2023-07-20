@@ -1,9 +1,8 @@
 import { SiteConfig } from "@/types"
 
 export const siteConfig: SiteConfig = {
-  name: "NashYouTrack",
-  description:
-    "",
+  name: "НашЮТрек",
+  description: "",
   url: "",
   ogImage: "",
   links: {

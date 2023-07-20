@@ -6,15 +6,26 @@ export default withAuth(
   async function middleware(req) {
     const token = await getToken({ req })
     const isAuth = !!token
-    if (!isAuth) {
-      let from = req.nextUrl.pathname;
-      if (req.nextUrl.search) {
-        from += req.nextUrl.search;
+    
+    if (req.nextUrl.pathname == '/') {
+      if (isAuth) {
+        return NextResponse.redirect(
+          new URL(`/space`, req.url)
+        );
       }
+    } else {
+      
+      if (!isAuth) {
+        let from = req.nextUrl.pathname;
+        if (req.nextUrl.search) {
+          from += req.nextUrl.search;
+        }
+  
+        return NextResponse.redirect(
+          new URL(`/`, req.url)
+        );
 
-      return NextResponse.redirect(
-        new URL(`/`, req.url)
-      );
+      }
     }
   },
   {
@@ -27,5 +38,5 @@ export default withAuth(
 )
 
 export const config = {
-  matcher: ['/space', '/space/:path*']
+  matcher: ['/', '/space', '/space/:path*']
 }
