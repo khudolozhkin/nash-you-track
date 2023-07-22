@@ -1,5 +1,9 @@
 import {
-  Crop
+  Crop,
+  LogOut,
+  Moon,
+  Sun,
+  PcCase
 } from "lucide-react"
 
 import { LucideIcon } from "lucide-react"
@@ -7,7 +11,11 @@ import { LucideIcon } from "lucide-react"
 export type Icon = LucideIcon
 
 export const Icons = {
+  system: PcCase,
+  dark: Moon,
+  light: Sun,
   logo: Crop,
+  logout: LogOut,
   gitHub: ({ ...props }: LucideIcon) => (
     <svg
       aria-hidden="true"

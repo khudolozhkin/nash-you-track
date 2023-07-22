@@ -1,28 +1,30 @@
-import { marketingConfig } from "@/config/marketing"
+import { workConfig } from "@/config/work"
 import { MainNav } from "@/components/main-nav"
 import UserLogoutButton from "@/components/user-logout-button"
+import { UserAccountNav } from "@/components/account-nav"
+import { getCurrentUser } from "@/lib/session"
 
 
-export default function WorkspaceLayout({
+export default async function WorkspaceLayout({
   children
 }: {
   children: React.ReactNode
 }) {
-  
+  const user = await getCurrentUser()
   
   return (
-    <>
+    <main className="bg-general-background dark:bg-general-background-dark">
       <div className="flex min-h-screen flex-col">
-      <header className="w-full mr-auto ml-auto pr-8 pl-8 z-40 bg-background">
-        <div className="flex h-20 items-center justify-between py-6">
-          <MainNav items={marketingConfig.mainNav} />
+      <header className="w-full static mr-auto ml-auto pr-8 pl-8 z-40 bg-general-background dark:bg-general-background-dark">
+        <div className="flex h-14 items-center justify-between py-6">
+          <MainNav items={workConfig.mainNav} />
           <nav>
-            <UserLogoutButton />
+            <UserAccountNav name={user?.name} email={user?.email} picture={user?.image}/>
           </nav>
         </div>
       </header>
-      <main className="flex-1">{children}</main>
+      <div className="flex-1">{children}</div>
     </div>
-    </>
+    </main>
   )
 }

@@ -11,16 +11,18 @@ export default function WorkspaceLayout({
   
   
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="w-full mr-auto ml-auto pr-8 pl-8 z-40 bg-background">
-        <div className="flex h-20 items-center justify-between py-6">
-          <MainNav items={marketingConfig.mainNav} />
-          <nav>
-            <UserAuthButton />
-          </nav>
-        </div>
-      </header>
-      <main className="flex-1">{children}</main>
-    </div>
+    <main className="bg-general-background dark:bg-general-background-dark">
+      <div className="flex min-h-screen flex-col">
+        <header className="w-full sticky top-0 mr-auto ml-auto pr-8 pl-8 z-40 bg-general-background dark:bg-general-background-dark">
+          <div className="flex h-14 items-center justify-between py-6">
+            <MainNav items={marketingConfig.mainNav} />
+            <nav>
+              <UserAuthButton />
+            </nav>
+          </div>
+        </header>
+        <div className="flex-1">{children}</div>
+      </div>
+    </main>
   )
 }
