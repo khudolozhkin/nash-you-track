@@ -3,7 +3,9 @@ import {
   LogOut,
   Moon,
   Sun,
-  PcCase
+  PcCase,
+  CalendarCheck2,
+  Group
 } from "lucide-react"
 
 import { LucideIcon } from "lucide-react"
@@ -11,6 +13,8 @@ import { LucideIcon } from "lucide-react"
 export type Icon = LucideIcon
 
 export const Icons = {
+  space: Group,
+  task: CalendarCheck2,
   system: PcCase,
   dark: Moon,
   light: Sun,

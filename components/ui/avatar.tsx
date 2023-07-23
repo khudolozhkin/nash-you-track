@@ -1,14 +1,14 @@
 import Image from "next/image"
 
-export default function Avatar({ url }: { url?: string | null | undefined }) {
-  console.log(url)
+export default function Avatar({ url, w, h }: { url?: string | null | undefined, w: number, h: number }) {
+
   return (
     <Image 
       src={(url != undefined) ? url : ""}
-      width={35}
-      height={35}
+      width={w}
+      height={h}
       alt="Avatar"
-      className="object-cover rounded-full"
+      className={`object-cover object-fill rounded-full w-[${w}px] h-[${h}px] h-fit`}
     />
   )
 }

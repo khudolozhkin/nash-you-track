@@ -30,19 +30,19 @@ module.exports = {
     },
     keyframes: {
       slideDownAndFade: {
-        from: { opacity: 0, transform: 'translateY(-6px)' },
+        from: { opacity: 0, transform: 'translateY(-12px)' },
         to: { opacity: 1, transform: 'translateY(0)' },
       },
       slideLeftAndFade: {
-        from: { opacity: 0, transform: 'translateX(6px)' },
+        from: { opacity: 0, transform: 'translateX(12px)' },
         to: { opacity: 1, transform: 'translateX(0)' },
       },
       slideUpAndFade: {
-        from: { opacity: 0, transform: 'translateY(6px)' },
+        from: { opacity: 0, transform: 'translateY(12px)' },
         to: { opacity: 1, transform: 'translateY(0)' },
       },
       slideRightAndFade: {
-        from: { opacity: 0, transform: 'translateX(-6px)' },
+        from: { opacity: 0, transform: 'translateX(-12px)' },
         to: { opacity: 1, transform: 'translateX(0)' },
       },
     },

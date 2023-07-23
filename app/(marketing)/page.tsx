@@ -8,8 +8,7 @@ import { marketingConfig } from '@/config/marketing';
 export default async function Home() {
   let user = await getCurrentUser();
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-24">
-      <ThemeToggle />
-    </div>
+    <>
+    </>
   )
 }
