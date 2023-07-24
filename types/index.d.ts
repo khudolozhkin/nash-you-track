@@ -1,4 +1,6 @@
 type Routes = string;
+import { LucideIcon } from "lucide-react"
+export type Icon = LucideIcon
 
 export declare type RouteConfig = {
   routes: Routes[];

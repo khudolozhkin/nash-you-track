@@ -13,6 +13,7 @@ import Avatar from "@/components/ui/avatar"
 import { Icons } from "@/components/ui/icons"
 import { useTheme } from "next-themes"
 import Link from "next/link"
+import { workConfig } from "@/config/work"
 
 type AccountNavProps = {
   name: string | null | undefined,
@@ -22,7 +23,7 @@ type AccountNavProps = {
 
 export function UserAccountNav(user: AccountNavProps) {
   const { setTheme, theme } = useTheme()
-  
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="focus:outline-none">
@@ -62,10 +63,10 @@ export function UserAccountNav(user: AccountNavProps) {
         </div>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild={true}>
-            <Link href={'/tasks'}><Icons.task className="mr-2" size={22}/> Задачи</Link>
+          <Link href={workConfig.mainNav[0].href}><Icons.task className="mr-2" size={22}/> {workConfig.mainNav[0].title}</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild={true}>
-          <Link href={'/space'}><Icons.space className="mr-2" size={22}/> Пространства</Link>
+          <Link href={workConfig.mainNav[1].href}><Icons.space className="mr-2" size={22}/> {workConfig.mainNav[1].title}</Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onSelect={(event) => {

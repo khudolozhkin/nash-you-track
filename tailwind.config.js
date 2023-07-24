@@ -9,11 +9,11 @@ module.exports = {
   theme: {
     colors: {
       transparent: 'transparent',
-      'general-background': '#f9f9f9',
+      'general-background': '#ffffff',
       'general-background-dark': '#0f0f0f',
-      'brand-background': '#fff',  
+      'brand-background': '#f2f2f2',  
       'brand-background-dark': '#272727',
-      'hover-item': '#f9f9f9',  
+      'hover-item': '#e5e5e5',  
       'hover-item-dark': '#383838',
       'border': '',
       'border-dark': '#2E2E2E',
@@ -45,12 +45,17 @@ module.exports = {
         from: { opacity: 0, transform: 'translateX(-12px)' },
         to: { opacity: 1, transform: 'translateX(0)' },
       },
+      fadeBackground: {
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+      }
     },
     animation: {
       slideDownAndFade: 'slideDownAndFade 500ms cubic-bezier(0.16, 1, 0.3, 1)',
       slideLeftAndFade: 'slideLeftAndFade 500ms cubic-bezier(0.16, 1, 0.3, 1)',
       slideUpAndFade: 'slideUpAndFade 500ms cubic-bezier(0.16, 1, 0.3, 1)',
       slideRightAndFade: 'slideRightAndFade 500ms cubic-bezier(0.16, 1, 0.3, 1)',
+      fadeBackground: 'fadeBackground 500ms cubic-bezier(0.16, 1, 0.3, 1)'
     },
     extend: {
       backdropBlur: {

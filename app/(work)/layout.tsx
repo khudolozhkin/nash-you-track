@@ -1,6 +1,5 @@
 import { workConfig } from "@/config/work"
 import { MainNav } from "@/components/main-nav"
-import UserLogoutButton from "@/components/user-logout-button"
 import { UserAccountNav } from "@/components/account-nav"
 import { getCurrentUser } from "@/lib/session"
 
@@ -23,7 +22,7 @@ export default async function WorkspaceLayout({
           </nav>
         </div>
       </header>
-      <div className="flex-1">{children}</div>
+      <div className="flex w-full h-[calc(100vh-56px)]">{children}</div>
     </div>
     </main>
   )

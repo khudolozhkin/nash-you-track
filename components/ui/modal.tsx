@@ -2,10 +2,12 @@
 import { useCallback, useRef, useEffect, MouseEventHandler } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { Icons } from './icons'
 
 export default function Modal({ children }: { children: React.ReactNode }) {
   const overlay = useRef(null)
   const wrapper = useRef(null)
+  const close = useRef(null)
   const router = useRouter()
 
   const onDismiss = useCallback(() => {
@@ -15,15 +17,17 @@ export default function Modal({ children }: { children: React.ReactNode }) {
   const onClick: MouseEventHandler = useCallback(
     (e) => {
       if (e.target === overlay.current) {
-        if (onDismiss) onDismiss()
+         onDismiss()
       }
     },
     [onDismiss, overlay]
   )
 
   const onKeyDown = useCallback(
-    (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onDismiss()
+    (e) => {
+      if (e.key === 'Escape' || e.target === close.current) { 
+        onDismiss() 
+      }
     },
     [onDismiss]
   )
@@ -36,14 +40,33 @@ export default function Modal({ children }: { children: React.ReactNode }) {
   return (
     <div
       ref={overlay}
-      className="fixed flex items-center justify-center z-1000 left-0 right-0 top-0 bottom-0 mx-auto backdrop-blur-sm bg-black/60"
+      className="
+      fixed
+      z-50
+      flex
+      items-center
+      justify-center
+      left-0
+      right-0
+      top-0
+      bottom-0
+      mx-auto
+      backdrop-blur-sm
+      bg-general-background-dark/60
+      dark:bg-general-background-dark/60
+      will-change-[opacity,transform]
+      animate-fadeBackground
+      "
       onClick={onClick}
     >
       <div
         ref={wrapper}
         className="
-        bg-white
+        bg-brand-background
+        dark:bg-brand-background-dark
         min-h-full
+        rounded-sm
+        ease-in duration-300
         md:min-h-[calc(100%-32px-env(safe-area-inset-top)-env(safe-area-inset-bottom))]
         overflow-hidden
         mt-[calc(16px+env(safe-area-inset-top))]
@@ -51,10 +74,17 @@ export default function Modal({ children }: { children: React.ReactNode }) {
         max-w-[1360px]
         w-full
         md:w-[calc(100%-64px)]
-        rounded
-        ease-in duration-300
+        will-change-[opacity,transform]
+        animate-slideUpAndFade
         "
       >
+        <Icons.close onClick={onKeyDown} ref={close} className="
+          relative
+          left-[calc(100%-30px)]
+          top-[5px]
+          cursor-pointer
+        "
+        />
         {children}
       </div>
     </div>

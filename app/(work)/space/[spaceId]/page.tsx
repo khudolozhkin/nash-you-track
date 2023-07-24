@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 
-export default async function Dashboard({ params }: { params: { spaceId: string } }) {
+export default async function Space({ params }: { params: { spaceId: string } }) {
   
   return (
     <>

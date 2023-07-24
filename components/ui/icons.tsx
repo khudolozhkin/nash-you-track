@@ -5,7 +5,8 @@ import {
   Sun,
   PcCase,
   CalendarCheck2,
-  Group
+  Group,
+  X
 } from "lucide-react"
 
 import { LucideIcon } from "lucide-react"
@@ -20,6 +21,7 @@ export const Icons = {
   light: Sun,
   logo: Crop,
   logout: LogOut,
+  close: X,
   gitHub: ({ ...props }: LucideIcon) => (
     <svg
       aria-hidden="true"
