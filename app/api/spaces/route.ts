@@ -54,7 +54,8 @@ export async function POST(request: Request) {
 
     const newSpace = await db.space.create({
       data: {
-        name: body.name
+        name: body.name,
+        description: body.description
       }
     })
 

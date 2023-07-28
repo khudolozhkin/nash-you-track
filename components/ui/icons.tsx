@@ -6,7 +6,9 @@ import {
   PcCase,
   CalendarCheck2,
   Group,
-  X
+  X,
+  Plus,
+  Loader2
 } from "lucide-react"
 
 import { LucideIcon } from "lucide-react"
@@ -14,6 +16,8 @@ import { LucideIcon } from "lucide-react"
 export type Icon = LucideIcon
 
 export const Icons = {
+  loader: Loader2,
+  add: Plus,
   space: Group,
   task: CalendarCheck2,
   system: PcCase,

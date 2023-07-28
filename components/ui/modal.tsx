@@ -25,7 +25,10 @@ export default function Modal({ children }: { children: React.ReactNode }) {
 
   const onKeyDown = useCallback(
     (e) => {
-      if (e.key === 'Escape' || e.target === close.current) { 
+      if (e.target === close.current) {
+        onDismiss() 
+      }
+      if (e.key === 'Escape') { 
         onDismiss() 
       }
     },
@@ -79,9 +82,15 @@ export default function Modal({ children }: { children: React.ReactNode }) {
         "
       >
         <Icons.close onClick={onKeyDown} ref={close} className="
-          relative
-          left-[calc(100%-30px)]
-          top-[5px]
+          absolute
+          top-[10px]
+          right-[10px]
+          inline-flex
+          h-[25px] w-[25px]
+          appearance-none
+          items-center
+          justify-center
+          pointer-events-auto
           cursor-pointer
         "
         />

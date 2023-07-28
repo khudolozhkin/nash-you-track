@@ -14,6 +14,7 @@ import { Icons } from "@/components/ui/icons"
 import { useTheme } from "next-themes"
 import Link from "next/link"
 import { workConfig } from "@/config/work"
+import { useState } from "react"
 
 type AccountNavProps = {
   name: string | null | undefined,
@@ -22,7 +23,8 @@ type AccountNavProps = {
 }
 
 export function UserAccountNav(user: AccountNavProps) {
-  const { setTheme, theme } = useTheme()
+  const { setTheme, theme } = useTheme();
+  const [ logout, setLogout ] = useState<boolean>(false)
 
   return (
     <DropdownMenu>
@@ -34,9 +36,9 @@ export function UserAccountNav(user: AccountNavProps) {
       <DropdownMenuContent>
         <div className="px-2 pt-1.5 pb-4 flex">
           <Avatar url={user!.picture} w={50} h={50}/>
-          <div className="flex flex-col px-2">
-            <div className="font-bold">{user.name}</div>
-            <div className="font-normal">{user.email}</div>
+          <div className="flex flex-col px-2 max-w-[calc(100%-50px)]">
+            <div className="font-bold whitespace-nowrap truncate">{user.name}</div>
+            <div className="font-normal whitespace-nowrap truncate">{user.email}</div>
             <Link className="pt-1 text-call-to-action hover:text-themed-color transition-colors" href={'/setting'}>Настройки профиля</Link>
           </div>
         </div>
@@ -71,11 +73,12 @@ export function UserAccountNav(user: AccountNavProps) {
         <DropdownMenuSeparator />
         <DropdownMenuItem onSelect={(event) => {
             event.preventDefault()
+            setLogout(true)
             signOut({
               callbackUrl: `${window.location.origin}/login`,
             })
           }}>
-          <Icons.logout className="mr-2" size={22}/>
+          {(logout) ? <Icons.loader className="animate-spin mr-2" size={22}/> : <Icons.logout className="mr-2" size={22}/>}
           Выйти
         </DropdownMenuItem>
       </DropdownMenuContent>

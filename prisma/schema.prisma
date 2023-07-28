@@ -89,6 +89,7 @@ model Space {
   id                String  @id @default(cuid())
   createdAt         DateTime @default(now())
   name String
+  description String?
 
   users  SpaceUser[]
   dashboards Dashboard[]

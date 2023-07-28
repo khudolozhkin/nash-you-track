@@ -48,6 +48,10 @@ module.exports = {
       fadeBackground: {
         from: { opacity: 0 },
         to: { opacity: 1 },
+      },
+      spin: {
+        from: { rotate: '0deg'},
+        to: { rotate: '360deg'},
       }
     },
     animation: {
@@ -55,7 +59,8 @@ module.exports = {
       slideLeftAndFade: 'slideLeftAndFade 500ms cubic-bezier(0.16, 1, 0.3, 1)',
       slideUpAndFade: 'slideUpAndFade 500ms cubic-bezier(0.16, 1, 0.3, 1)',
       slideRightAndFade: 'slideRightAndFade 500ms cubic-bezier(0.16, 1, 0.3, 1)',
-      fadeBackground: 'fadeBackground 500ms cubic-bezier(0.16, 1, 0.3, 1)'
+      fadeBackground: 'fadeBackground 500ms cubic-bezier(0.16, 1, 0.3, 1)',
+      spin: 'spin 1s linear infinite',
     },
     extend: {
       backdropBlur: {
@@ -64,6 +69,9 @@ module.exports = {
       maxWidth: {
         'xl': '1360px',
       }
+    },
+    container: {
+      padding: '2rem',
     },
   },
   plugins: [],
