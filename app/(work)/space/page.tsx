@@ -4,6 +4,8 @@ import SpaceCreateButton from "@/components/space-create-button"
 import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
 import { redirect } from "next/navigation"
+import SpaceItem from "@/components/space-item"
+import { space } from "postcss/lib/list"
 
 export default async function DashboardSpace() {
   const user = await getCurrentUser()
@@ -24,7 +26,8 @@ export default async function DashboardSpace() {
           accessLevel: true,
           space: {
             select: {
-              name: true
+              name: true,
+              description: true
             }
           }
         }
@@ -33,7 +36,7 @@ export default async function DashboardSpace() {
   })
 
   return (
-    <div className="pt-4 container max-w-5xl flex flex-col flex-1 gap-4">
+    <div className="pt-4 container max-w-5xl flex flex-col flex-1 gap-4 mt-4">
      <div className="flex items-center justify-between w-full md:px-2">
       <div className="flex-col">
         <h1 className="font-semibold text-3xl md:text-4xl text-primary dark:text-primary-dark">Пространства</h1>
@@ -41,7 +44,9 @@ export default async function DashboardSpace() {
       </div>
       <SpaceCreateButton />
      </div>
-     {userSpaces[0].spaces.map((item, index) => <h1 key={index}>{item.space.name}</h1>)}
+      <div className="divide-y divide-border rounded-md border border-border dark:border-border-dark">
+        {(userSpaces.length) ? (userSpaces[0].spaces.map((item, index) => <SpaceItem key={index} spaceItem={item}/>)) : (<></>)}
+      </div>
     </div>
   )
 }

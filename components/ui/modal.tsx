@@ -68,7 +68,7 @@ export default function Modal({ children }: { children: React.ReactNode }) {
         bg-brand-background
         dark:bg-brand-background-dark
         min-h-full
-        rounded-sm
+        rounded-md
         ease-in duration-300
         md:min-h-[calc(100%-32px-env(safe-area-inset-top)-env(safe-area-inset-bottom))]
         overflow-hidden

@@ -8,7 +8,9 @@ import {
   Group,
   X,
   Plus,
-  Loader2
+  Loader2,
+  AlignCenter,
+  AlignJustify
 } from "lucide-react"
 
 import { LucideIcon } from "lucide-react"
@@ -16,6 +18,8 @@ import { LucideIcon } from "lucide-react"
 export type Icon = LucideIcon
 
 export const Icons = {
+  burger: AlignJustify,
+  burgerActive: AlignCenter,
   loader: Loader2,
   add: Plus,
   space: Group,
