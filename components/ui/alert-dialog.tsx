@@ -1,18 +1,8 @@
-'use client'
+import * as AlertDialog from '@radix-ui/react-alert-dialog';
 
-import * as Dialog from '@radix-ui/react-dialog';
-
-export function DialogTrigger({ children }: { children: React.ReactNode }) {
+export function AlertOverlay({ children }: { children?: React.ReactNode }) {
   return (
-    <Dialog.Trigger asChild>
-      {children}
-    </Dialog.Trigger>
-  )
-}
-
-export function DialogOverlay({ children }: { children?: React.ReactNode }) {
-  return (
-    <Dialog.Overlay className="
+    <AlertDialog.Overlay className="
     fixed
     z-50
     flex
@@ -30,23 +20,17 @@ export function DialogOverlay({ children }: { children?: React.ReactNode }) {
     flex
     items-center   
     justify-center
-    "> {children} </Dialog.Overlay>
+    "> {children} </AlertDialog.Overlay>
   )
 }
 
-export function DialogClose({ children }: { children: React.ReactNode }) {
+export function AlertContent({ children }: { children: React.ReactNode }) {
   return (
-    <Dialog.Close asChild>
-      {children}
-    </Dialog.Close>
-  )
-}
-
-export function DialogContent({ children }: { children: React.ReactNode }) {
-  return (
-    <Dialog.Content className="data-[state=open]:animate-slideUpAndFade 
+    <AlertDialog.Content className="data-[state=open]:animate-scale
     max-h-[85vh]
     max-w-[550px]
+    scale-[90%]
+    md:scale-[100%]
     rounded-md
     bg-brand-background
     dark:bg-brand-background-dark
@@ -61,6 +45,6 @@ export function DialogContent({ children }: { children: React.ReactNode }) {
     dark:border-border-dark
     ">
       {children}
-    </Dialog.Content>
+    </AlertDialog.Content>
   )
 }

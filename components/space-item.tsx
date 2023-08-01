@@ -17,7 +17,7 @@ export default function SpaceItem({ spaceItem }: SpaceItem) {
   
   return (
     <>
-      <div className="flex items-center justify-between p-4 dark:!border-border-dark">
+      <div className="flex items-center justify-between px-4 py-2 dark:!border-border-dark">
         <div className="grid gap-1">
           <Link
             href={`/space/${spaceItem.spaceId}`}
@@ -26,12 +26,12 @@ export default function SpaceItem({ spaceItem }: SpaceItem) {
             {spaceItem.space.name}
           </Link>
           <div>
-            <p className="md:text-lg min-h-[28px] font-light text-secondary dark:text-secondary-dark">
+            <p className="min-h-[20px] font-light text-secondary dark:text-secondary-dark">
               {spaceItem.space.description}
             </p>
           </div>
         </div>
-        <SpaceOperations />
+        <SpaceOperations spaceItem={spaceItem}/>
       </div>
     </>
   )

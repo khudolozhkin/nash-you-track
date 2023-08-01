@@ -33,7 +33,7 @@ export function UserAccountNav(user: AccountNavProps) {
           <Avatar url={user!.picture} w={35} h={35}/>
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent align="end">
         <div className="px-2 pt-1.5 pb-4 flex">
           <Avatar url={user!.picture} w={50} h={50}/>
           <div className="flex flex-col px-2 max-w-[calc(100%-50px)]">

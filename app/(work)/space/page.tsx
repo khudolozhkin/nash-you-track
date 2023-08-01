@@ -45,7 +45,18 @@ export default async function DashboardSpace() {
       <SpaceCreateButton />
      </div>
       <div className="divide-y divide-border rounded-md border border-border dark:border-border-dark">
-        {(userSpaces.length) ? (userSpaces[0].spaces.map((item, index) => <SpaceItem key={index} spaceItem={item}/>)) : (<></>)}
+        {(userSpaces[0].spaces.length > 0) ?
+          (userSpaces[0].spaces.map((item, index) => <SpaceItem key={index} spaceItem={item}/>))
+          :
+          <div className="flex min-h-[400px] flex-col items-center justify-center rounded-md border border-border dark:border-border-dark p-8 text-center animate-in fade-in-50">
+            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-background dark:bg-brand-background-dark">
+              <Icons.space size={50} />
+            </div>
+            <h1 className="font-semibold text-xl md:text-2xl text-primary dark:text-primary-dark">У вас нет пространств</h1>
+            <p className="mb-4 text-lg font-light text-secondary dark:text-secondary-dark">Создайте их чтобы начать работу</p>
+            <SpaceCreateButton />
+          </div>
+        }
       </div>
     </div>
   )

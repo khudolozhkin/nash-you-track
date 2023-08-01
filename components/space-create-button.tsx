@@ -49,6 +49,7 @@ export default function SpaceCreateButton() {
     if (response.status == 200) {
       let responseBody = await response.json()
       router.push(`${pathname}/${responseBody.newSpace.id}`)
+      router.refresh()
     }
 
     setLoading(false)

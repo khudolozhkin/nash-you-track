@@ -79,6 +79,9 @@ export default function Modal({ children }: { children: React.ReactNode }) {
         md:w-[calc(100%-64px)]
         will-change-[opacity,transform]
         animate-slideUpAndFade
+        border
+        border-border
+        dark:border-border-dark
         "
       >
         <Icons.close onClick={onKeyDown} ref={close} className="

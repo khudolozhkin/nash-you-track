@@ -10,7 +10,12 @@ import {
   Plus,
   Loader2,
   AlignCenter,
-  AlignJustify
+  AlignJustify,
+  Settings,
+  Trash2,
+  DoorOpen,
+  Pin,
+  PinOff
 } from "lucide-react"
 
 import { LucideIcon } from "lucide-react"
@@ -18,6 +23,11 @@ import { LucideIcon } from "lucide-react"
 export type Icon = LucideIcon
 
 export const Icons = {
+  pin: Pin,
+  pinOff: PinOff,
+  leave: DoorOpen,
+  delete: Trash2, 
+  settings: Settings,
   burger: AlignJustify,
   burgerActive: AlignCenter,
   loader: Loader2,

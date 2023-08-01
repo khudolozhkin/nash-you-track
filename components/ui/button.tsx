@@ -23,3 +23,15 @@ export function AlternativeButton({ children, onClick, className }: { children: 
     </button>
   )
 }
+
+export function DeleteButton({ children, onClick, className }: { children: React.ReactNode, onClick?: any, className?: any }) {
+  return (
+    <button
+        className={`flex items-center hover:bg-primary-dark hover:text-primary dark:hover:bg-primary-dark dark:hover:text-primary leading-9 font-normal rounded-lg px-4 bg-delete text-primary-dark dark:text-primary-dark dark:bg-delete-dark transition-colors ${className}`}
+        type="button"
+        onClick={onClick}
+    >
+      {children}
+    </button>
+  )
+}

@@ -27,6 +27,8 @@ module.exports = {
       'call-to-action-dark': '#7858A6',
       'themed-color': '#632dc1',
       'themed-color-dark': '#632dc1',
+      'delete': '#dc2626',
+      'delete-dark': '#b31f1f',
     },
     keyframes: {
       slideDownAndFade: {
@@ -52,6 +54,10 @@ module.exports = {
       spin: {
         from: { rotate: '0deg'},
         to: { rotate: '360deg'},
+      },
+      scale: {
+        from: { scale: '0%', opacity: '0%' },
+        to: { scale: '100%', opacity: '100%' },
       }
     },
     animation: {
@@ -61,6 +67,7 @@ module.exports = {
       slideRightAndFade: 'slideRightAndFade 500ms cubic-bezier(0.16, 1, 0.3, 1)',
       fadeBackground: 'fadeBackground 500ms cubic-bezier(0.16, 1, 0.3, 1)',
       spin: 'spin 1s linear infinite',
+      scale: 'scale 500ms cubic-bezier(0.16, 1, 0.3, 1)'
     },
     extend: {
       backdropBlur: {
