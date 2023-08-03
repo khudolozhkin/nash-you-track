@@ -34,8 +34,8 @@ export default function SpaceOperations({ spaceItem }: SpaceItem) {
         {(!active) ? <Icons.burger size={22} /> : <Icons.burgerActive size={22}/>}
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem>
-          <SpacePinOperation spaceItem={spaceItem}/>
+        <DropdownMenuItem asChild>
+          <SpacePinOperation userId={spaceItem.userId} space={spaceItem.space} spaceId={spaceItem.spaceId}/>
         </DropdownMenuItem>
         <DropdownMenuItem>
           {(spaceItem.accessLevel > 1) ? <div className="flex"><Icons.settings size={20} className="mr-2"/><Link href={`/space/${spaceItem.spaceId}/settings`}>Настройки</Link></div> : (<></>)}

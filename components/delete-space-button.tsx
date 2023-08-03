@@ -19,7 +19,7 @@ export default function DeleteSpace({ spaceId }: {spaceId: string}) {
 
     const response = await fetch(`/api/spaces/${spaceId}`, { method: "DELETE"})
 
-    if (!response?.ok) {
+    if (response.status != 200) {
       // error catch
       router.refresh();
     }
