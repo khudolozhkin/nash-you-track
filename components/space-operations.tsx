@@ -41,7 +41,7 @@ export default function SpaceOperations({ spaceItem }: SpaceItem) {
           {(spaceItem.accessLevel > 1) ? <div className="flex"><Icons.settings size={20} className="mr-2"/><Link href={`/space/${spaceItem.spaceId}/settings`}>Настройки</Link></div> : (<></>)}
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          {(spaceItem.accessLevel == 7) ? <><DeleteSpace spaceId={spaceItem.spaceId} /></> : <div className="flex"><Icons.leave size={20} className="mr-2"/>Покинуть</div>}
+          {(spaceItem.accessLevel == 7) ? <><DeleteSpace userId={spaceItem.userId} spaceId={spaceItem.spaceId} /></> : <div className="flex"><Icons.leave size={20} className="mr-2"/>Покинуть</div>}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

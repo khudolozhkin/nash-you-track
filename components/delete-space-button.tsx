@@ -5,14 +5,29 @@ import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import { Icons } from './ui/icons';
 import { AlertContent, AlertOverlay } from './ui/alert-dialog';
 import { AlternativeButton, DeleteButton } from './ui/button';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 
-export default function DeleteSpace({ spaceId }: {spaceId: string}) {
+export default function DeleteSpace({ spaceId, userId }: {spaceId: string, userId: string}) {
   const [loading, setLoading] = useState<boolean>(false)
   const [showDeleteAlert, setShowDeleteAlert] = useState<boolean>(false)
+  const [spaces, setSpaces] = useState(JSON.parse(localStorage.getItem(`${userId}spaces`) || "[]"))
+  const [isPinned, setIsPinned] = useState<boolean>(false)
   const router = useRouter()
   const pathname = usePathname()
+
+  useEffect(() => {
+    localStorage.setItem(`${userId}spaces`, JSON.stringify(spaces))
+
+    const filter = spaces.filter((item) => item.id == spaceId)
+    if (filter.length > 0) setIsPinned(true)
+  }, [spaces])
+
+  const removeSpace = (id: string) => {
+    const newSpaces = spaces.filter((item) => item.id != id)
+    setSpaces(newSpaces)
+    setIsPinned(false)
+  }
   
   async function deleteSpace(spaceId: string) {
     setLoading(true)
@@ -30,6 +45,7 @@ export default function DeleteSpace({ spaceId }: {spaceId: string}) {
     }
     setShowDeleteAlert(false)
     setLoading(false)
+    removeSpace(spaceId)
   }
 
   return (

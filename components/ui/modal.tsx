@@ -60,7 +60,7 @@ export default function Modal({ children }: { children: React.ReactNode }) {
       will-change-[opacity,transform]
       animate-fadeBackground
       "
-      onClick={onClick}
+      onMouseDown={onClick}
     >
       <div
         ref={wrapper}
