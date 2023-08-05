@@ -58,7 +58,11 @@ module.exports = {
       scale: {
         from: { scale: '0%', opacity: '0%' },
         to: { scale: '100%', opacity: '100%' },
-      }
+      },
+      scaleIn: {
+        from: { opacity: 0, transform: 'scale(0.8) translateX(-50%) translateY(-20%)', left: `20%` },
+        to: { opacity: 1, transform: 'scale(1) translateX(-50%) translateY(0%)', left: `50%` },
+      },
     },
     animation: {
       slideDownAndFade: 'slideDownAndFade 500ms cubic-bezier(0.16, 1, 0.3, 1)',
@@ -67,7 +71,8 @@ module.exports = {
       slideRightAndFade: 'slideRightAndFade 500ms cubic-bezier(0.16, 1, 0.3, 1)',
       fadeBackground: 'fadeBackground 500ms cubic-bezier(0.16, 1, 0.3, 1)',
       spin: 'spin 1s linear infinite',
-      scale: 'scale 500ms cubic-bezier(0.16, 1, 0.3, 1)'
+      scale: 'scale 500ms cubic-bezier(0.16, 1, 0.3, 1)',
+      scaleIn: 'scaleIn 300ms cubic-bezier(0.16, 1, 0.3, 1)',
     },
     extend: {
       backdropBlur: {

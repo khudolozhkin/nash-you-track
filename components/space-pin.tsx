@@ -18,7 +18,6 @@ export default function SpacePinOperation({ spaceId, space, userId }: SpaceItem)
 
   useEffect(() => {
     localStorage.setItem(`${userId}spaces`, JSON.stringify(spaces))
-
     const filter = spaces.filter((item) => item.id == spaceId)
     if (filter.length > 0) setIsPinned(true)
   }, [spaces])
@@ -31,6 +30,7 @@ export default function SpacePinOperation({ spaceId, space, userId }: SpaceItem)
   const removeSpace = (id: string) => {
     const newSpaces = spaces.filter((item) => item.id != id)
     setSpaces(newSpaces)
+    localStorage.setItem(`${userId}spaces`, JSON.stringify(spaces))
     setIsPinned(false)
   }
 

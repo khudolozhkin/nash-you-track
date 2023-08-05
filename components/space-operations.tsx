@@ -10,7 +10,7 @@ import {
 import { Icons } from "./ui/icons"
 import { useState } from "react"
 import Link from "next/link"
-import DeleteSpace from "./delete-space-button"
+import DeleteSpace from "./space-delete-button"
 import SpacePinOperation from "./space-pin"
 
 type SpaceItem = {

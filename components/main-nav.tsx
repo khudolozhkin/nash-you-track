@@ -18,16 +18,7 @@ interface MainNavProps {
 
 export function MainNav({items, userId, children}: MainNavProps) {
   const segment = useSelectedLayoutSegment()
-  const [spaces, setSpaces] = useState(JSON.parse(localStorage.getItem(`${userId}spaces`) || "[]"))
-
-  useEffect(() => {
-    localStorage.setItem(`${userId}spaces`, JSON.stringify(spaces))
-  }, [spaces])
-
-  const checkPinnedSpaces = () => {
-    setSpaces(JSON.parse(localStorage.getItem(`${userId}spaces`) || "[]"))
-  }
-
+  
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href='/' className="hidden items-center space-x-2 md:flex">
@@ -39,12 +30,13 @@ export function MainNav({items, userId, children}: MainNavProps) {
       {(items?.length != 0) ? (
         <nav className="hidden gap-6 md:flex">
           {items?.map((item, index) => (
-            <>
-              {(item.href == '/space') ? <>
-                <PinNavigate userId={userId} index={index} href={item.href} segment={segment} title={item.title}/>
-              </>
+            // eslint-disable-next-line react/jsx-key
+            <div key={index}>
+              {(item.href == '/space') ? <div>
+                <PinNavigate userId={userId} index={index} key={index} href={item.href} segment={segment} title={item.title}/>
+              </div>
               : 
-              <>
+              <div>
                 <Link
                   key={index}
                   href={item.disabled ? '#' : item.href}
@@ -52,8 +44,8 @@ export function MainNav({items, userId, children}: MainNavProps) {
                 >
                   {item.title}
                 </Link>
-              </>}
-            </>
+              </div>}
+            </div>
           ))}
         </nav>
       ) : null}
