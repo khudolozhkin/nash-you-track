@@ -15,7 +15,8 @@ import {
   Trash2,
   DoorOpen,
   Pin,
-  PinOff
+  PinOff,
+  ChevronDown
 } from "lucide-react"
 
 import { LucideIcon } from "lucide-react"
@@ -23,6 +24,7 @@ import { LucideIcon } from "lucide-react"
 export type Icon = LucideIcon
 
 export const Icons = {
+  arrow: ChevronDown,
   pin: Pin,
   pinOff: PinOff,
   leave: DoorOpen,

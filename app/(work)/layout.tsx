@@ -22,7 +22,8 @@ export default async function WorkspaceLayout({
           </nav>
         </div>
       </header>
-      <div className="flex justify-center">{children}</div>
+      {/* <div className="flex justify-center">{children}</div> */}
+      {children}
     </div>
     </main>
   )

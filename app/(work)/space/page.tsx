@@ -27,15 +27,21 @@ export default async function DashboardSpace() {
           space: {
             select: {
               name: true,
-              description: true
+              description: true,
+              dashboards: {
+                select: {
+                  id: true
+                }
+              }
             }
           }
         }
       }
     }
   })
-
+  
   return (
+    <div className="flex justify-center">
     <div className="pt-4 container max-w-5xl flex flex-col flex-1 gap-4 mt-4">
      <div className="flex items-center justify-between w-full md:px-2">
       <div className="flex-col">
@@ -46,7 +52,7 @@ export default async function DashboardSpace() {
      </div>
       <div className="divide-y divide-border rounded-md border border-border dark:border-border-dark">
         {(userSpaces[0].spaces.length > 0) ?
-          (userSpaces[0].spaces.map((item, index) => <SpaceItem key={index} spaceItem={item}/>))
+          (userSpaces[0].spaces.map((item, index) => <SpaceItem dashboards={userSpaces[0].spaces[0].space.dashboards} key={index} spaceItem={item}/>))
           :
           <div className="flex min-h-[400px] flex-col items-center justify-center rounded-md border border-border dark:border-border-dark p-8 text-center animate-in fade-in-50">
             <div className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-background dark:bg-brand-background-dark">
@@ -58,6 +64,7 @@ export default async function DashboardSpace() {
           </div>
         }
       </div>
+    </div>
     </div>
   )
 }

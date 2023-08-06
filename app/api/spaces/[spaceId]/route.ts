@@ -1,6 +1,5 @@
 import * as z from "zod"
 import { NextResponse } from 'next/server';
-import { getCurrentUser } from '@/lib/session';
 import { routeContextSchema, changeSpaceSchema } from '@/lib/validations/spaces';
 import { db } from "@/lib/db";
 import { userHasAccessToSpace } from "@/lib/user-access";
@@ -18,7 +17,7 @@ export async function GET(
       return new Response("Unauthorized", { status: 403 })
     }
 
-    const spaceInfo = await db.space.findUnique({
+    const spaceInfo = await db.space.findFirst({
       where: {
         id: params.spaceId
       },
@@ -26,7 +25,6 @@ export async function GET(
         name: true,
         createdAt: true,
         dashboards: true,
-        users: true
       }
     })
 

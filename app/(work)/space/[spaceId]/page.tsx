@@ -5,7 +5,7 @@ export default async function Space({ params }: { params: { spaceId: string } })
   
   return (
     <>
-     
+      
     </>
   )
 }
