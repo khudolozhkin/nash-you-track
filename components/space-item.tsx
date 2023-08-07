@@ -2,23 +2,26 @@ import Link from "next/link"
 import SpaceOperations from "./space-operations"
 
 type SpaceItem = {
-    spaceId: string;
+  spaceId: string;
     userId: string;
     accessLevel: number;
     space: {
+        dashboards: {
+            id: string;
+        }[];
         name: string;
         description: string | null;
     }
 }
 
-export default function SpaceItem({ spaceItem, dashboards }: {spaceItem: SpaceItem, dashboards: {id: string}[]}) {
+export default function SpaceItem({ spaceItem }: { spaceItem: SpaceItem }) {
   
   return (
     <>
       <div className="flex items-center justify-between px-4 py-2 dark:!border-border-dark">
         <div className="grid">
           <Link
-            href={`/space/${spaceItem.spaceId}${(dashboards.length > 0 ) ? `/dashboard/${dashboards[0].id}` : ""}`}
+            href={`/space/${spaceItem.spaceId}${(spaceItem.space.dashboards.length > 0 ) ? `/dashboard/${spaceItem.space.dashboards[0].id}` : ""}`}
             className="font-semibold text-lg md:text-xl text-primary decoration-1 dark:text-primary-dark hover:underline underline-offset-4 transition"
           >
             {spaceItem.space.name}
@@ -29,7 +32,7 @@ export default function SpaceItem({ spaceItem, dashboards }: {spaceItem: SpaceIt
             </p>
           </div>
         </div>
-        <SpaceOperations spaceItem={spaceItem}/>
+        <SpaceOperations dashboards={spaceItem.space.dashboards} spaceItem={spaceItem}/>
       </div>
     </>
   )

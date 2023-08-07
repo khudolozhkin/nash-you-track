@@ -14,18 +14,16 @@ import DeleteSpace from "./space-delete-button"
 import SpacePinOperation from "./space-pin"
 
 type SpaceItem = {
-  spaceItem: {
-    spaceId: string;
-    userId: string;
-    accessLevel: number;
-    space: {
+  spaceId: string;
+  userId: string;
+  accessLevel: number;
+  space: {
         name: string;
         description: string | null;
-    }
   }
 }
 
-export default function SpaceOperations({ spaceItem }: SpaceItem) {
+export default function SpaceOperations({ spaceItem, dashboards }: { spaceItem: SpaceItem, dashboards: {id: string}[]}) {
   const [active, setActive] = useState<boolean>(false)
   
   return (
@@ -35,7 +33,7 @@ export default function SpaceOperations({ spaceItem }: SpaceItem) {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem asChild>
-          <SpacePinOperation userId={spaceItem.userId} space={spaceItem.space} spaceId={spaceItem.spaceId}/>
+          <SpacePinOperation dashboards={dashboards} spaceItem={spaceItem}/>
         </DropdownMenuItem>
         <DropdownMenuItem>
           {(spaceItem.accessLevel > 1) ? <div className="flex"><Icons.settings size={20} className="mr-2"/><Link href={`/space/${spaceItem.spaceId}/settings`}>Настройки</Link></div> : (<></>)}

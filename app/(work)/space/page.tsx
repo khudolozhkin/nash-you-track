@@ -7,6 +7,19 @@ import { redirect } from "next/navigation"
 import SpaceItem from "@/components/space-item"
 import { space } from "postcss/lib/list"
 
+type SpaceItem = {
+  spaceId: string;
+    userId: string;
+    accessLevel: number;
+    space: {
+        dashboards: {
+            id: string;
+        }[];
+        name: string;
+        description: string | null;
+    }
+}
+
 export default async function DashboardSpace() {
   const user = await getCurrentUser()
 
@@ -52,7 +65,7 @@ export default async function DashboardSpace() {
      </div>
       <div className="divide-y divide-border rounded-md border border-border dark:border-border-dark">
         {(userSpaces[0].spaces.length > 0) ?
-          (userSpaces[0].spaces.map((item, index) => <SpaceItem dashboards={userSpaces[0].spaces[0].space.dashboards} key={index} spaceItem={item}/>))
+          (userSpaces[0].spaces.map((item: SpaceItem, index) => <SpaceItem key={index} spaceItem={item}/>))
           :
           <div className="flex min-h-[400px] flex-col items-center justify-center rounded-md border border-border dark:border-border-dark p-8 text-center animate-in fade-in-50">
             <div className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-background dark:bg-brand-background-dark">

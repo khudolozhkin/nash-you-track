@@ -42,9 +42,9 @@ export function PinNavigate({ userId, index, href, segment, title }: {userId: st
                       </Link>
                     </NavigationMenu.Trigger>
                     <NavigationMenuContent>
-                      {spaces?.map((item: {name: string, id: string, description: string}, index) => (
+                      {spaces?.map((item: {name: string, id: string, description: string, dashboards: {id: string}[]}, index) => (
                         <div className="items-center cursor-pointer w-[250px] h-[50px] hover:bg-hover-item dark:hover:bg-hover-item-dark rounded-md flex justify-between px-1 py-1 dark:!border-border-dark" key={index}>
-                          <div onClick={() => {router.push(`/space/${item!.id}`)}} className="flex group w-[200px] flex-col">
+                          <div onClick={() => {router.push(`/space/${item!.id}${(item.dashboards.length > 0 ) ? `/dashboard/${item.dashboards[0].id}` : ""}`)}} className="flex group w-[200px] flex-col">
                             <h1 className="leading-snug whitespace-nowrap truncate font-semibold text-lg md:text-xl text-primary decoration-1 dark:text-primary-dark group-hover:underline underline-offset-4 transition">
                               {item!.name}
                             </h1>
