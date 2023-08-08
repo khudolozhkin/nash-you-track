@@ -28,7 +28,6 @@ export function DashboardCreate({spaceId} : {spaceId: string}) {
 
     if (response.status == 200) {
       let responseBody = await response.json()
-      console.log(responseBody)
       setIsLoading(false)
       router.push(`/space/${spaceId}/dashboard/${responseBody.id}`)
       router.refresh()

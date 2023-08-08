@@ -54,7 +54,9 @@ export default async function SpaceLayout({ children, params }: { children: Reac
           <DashboardList accessLevel={accessLevel!.accessLevel} spaceId={params.spaceId} dashboards={space?.dashboards} />
           {(accessLevel!.accessLevel > 1) ? <SpaceSetting spaceId={params.spaceId}/> : <></>}
         </div>
-        {children}
+        <div className="w-full h-full overflow-auto">
+          {children}
+        </div>
       </div>
     </>
   )

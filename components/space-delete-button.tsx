@@ -8,7 +8,7 @@ import { AlternativeButton, DeleteButton } from './ui/button';
 import { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 
-export default function DeleteSpace({ spaceId, userId }: {spaceId: string, userId: string}) {
+export default function DeleteSpace({ spaceId, userId, setActive }: {spaceId: string, userId: string, setActive: Function}) {
   const [loading, setLoading] = useState<boolean>(false)
   const [showDeleteAlert, setShowDeleteAlert] = useState<boolean>(false)
   const [spaces, setSpaces] = useState(JSON.parse(localStorage.getItem(`${userId}spaces`) || "[]"))
@@ -46,6 +46,7 @@ export default function DeleteSpace({ spaceId, userId }: {spaceId: string, userI
     setShowDeleteAlert(false)
     setLoading(false)
     removeSpace(spaceId)
+    setActive(false)
   }
 
   return (
@@ -65,7 +66,7 @@ export default function DeleteSpace({ spaceId, userId }: {spaceId: string, userI
               <AlertDialog.Cancel>
                 <AlternativeButton>Назад</AlternativeButton>
               </AlertDialog.Cancel>
-              <DeleteButton onClick={() => {deleteSpace(spaceId)}} className="ml-2">{loading ? <Icons.loader className="animate-spin mr-2" size={20}/> : <Icons.delete size={20} className='mr-2'/>}Удалить</DeleteButton>
+              <DeleteButton onClick={() => {deleteSpace(spaceId)}} className="ml-2">{loading ? <Icons.delete className="animate-spin mr-2" size={20}/> : <Icons.delete size={20} className='mr-2'/>}Удалить</DeleteButton>
             </div>
           </AlertContent>
         </AlertOverlay>

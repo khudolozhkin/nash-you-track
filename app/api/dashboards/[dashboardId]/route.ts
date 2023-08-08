@@ -126,7 +126,7 @@ export async function DELETE(
       return new Response("Unauthorized", { status: 403 })
     }
 
-    const deleteBoard = await db.board.deleteMany({
+    const deleteBoard = await db.dashboard.deleteMany({
       where: {
         id: params.dashboardId
       }

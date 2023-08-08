@@ -46,7 +46,7 @@ export function DialogContent({ children }: { children: React.ReactNode }) {
   return (
     <Dialog.Content className="data-[state=open]:animate-slideUpAndFade 
     max-h-[85vh]
-    max-w-[550px]
+    max-w-[85vw]
     rounded-md
     bg-brand-background
     dark:bg-brand-background-dark

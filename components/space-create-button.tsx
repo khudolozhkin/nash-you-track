@@ -11,7 +11,7 @@ import { useRouter, usePathname } from 'next/navigation'
 
 
 export default function SpaceCreateButton() {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const name = useRef<HTMLInputElement>(null);
   const description = useRef<HTMLTextAreaElement>(null);
@@ -19,7 +19,7 @@ export default function SpaceCreateButton() {
   const pathname = usePathname();
 
   async function onSubmit() {
-    setLoading(true)
+    setIsLoading(true)
 
     let data: string
     if (description.current!.value.length > 3) {
@@ -52,7 +52,7 @@ export default function SpaceCreateButton() {
       router.refresh()
     }
 
-    setLoading(false)
+    setIsLoading(false)
   }
 
   return (
@@ -67,16 +67,16 @@ export default function SpaceCreateButton() {
               <h2 className="font-semibold text-lg md:text-xl text-primary dark:text-primary-dark">Создание пространства</h2>
               <div className="pt-2 flex flex-col">
                 <label className="font-light pb-1">Название</label>
-                <input ref={name} maxLength={32} minLength={3} name="name" className="w-[300px]"/>
+                <input ref={name} maxLength={32} minLength={3} name="name" className="h-[30px] pl-2 rounded-md w-[300px]"/>
               </div>
               <div className="pt-2 flex flex-col">
                 <label className="font-light pb-1">Описание</label>
-                <textarea ref={description} maxLength={92} name="description" className="w-[300px] !h-[100px] resize-none"/>
+                <textarea ref={description} maxLength={92} name="description" className="w-[300px] pl-2 rounded-md !h-[100px] resize-none"/>
               </div>
                 
               </div>
               {(error.length > 0) ? <p className="w-[300px] animate-slideLeftAndFade text-[red]">{error}</p> : <></>}
-            <AlternativeButton onClick={onSubmit} className="mt-4">{(loading) ? <Icons.loader className="animate-spin mr-2" size={20}/> : <></>} Создать</AlternativeButton>
+            <AlternativeButton onClick={onSubmit} className="mt-4">{(isLoading) ? <Icons.loader className="animate-spin mr-2" size={20}/> : <></>} Создать</AlternativeButton>
           </DialogContent>
         </DialogOverlay>
       </Dialog.Portal>

@@ -16,7 +16,8 @@ import {
   DoorOpen,
   Pin,
   PinOff,
-  ChevronDown
+  ChevronDown,
+  CaseSensitive
 } from "lucide-react"
 
 import { LucideIcon } from "lucide-react"
@@ -24,6 +25,7 @@ import { LucideIcon } from "lucide-react"
 export type Icon = LucideIcon
 
 export const Icons = {
+  properties: CaseSensitive,
   arrow: ChevronDown,
   pin: Pin,
   pinOff: PinOff,
