@@ -47,6 +47,7 @@ model User {
   accounts Account[]
   sessions Session[]
   spaces SpaceUser[]
+  invites Invite[]
 }
 
 model ApiKey {
@@ -93,6 +94,7 @@ model Space {
 
   users  SpaceUser[]
   dashboards Dashboard[]
+  invites Invite[]
 }
 
 model SpaceUser {
@@ -106,6 +108,20 @@ model SpaceUser {
 
   @@unique([userId, spaceId])
   @@index([spaceId])
+}
+
+model Invite {
+  id  String  @id @default(cuid())
+
+  accessLevel Int
+  active Boolean @default(true)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+  spaceId String
+
+  @@unique([userId, spaceId])
 }
 
 model Dashboard {

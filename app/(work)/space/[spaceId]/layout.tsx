@@ -33,7 +33,12 @@ async function getAccessLevel(spaceId: string, userId: string) {
       spaceId: spaceId
     },
     select: {
-      accessLevel: true
+      accessLevel: true,
+      space: {
+        select: {
+          name: true
+        }
+      }
     }
   })
   return accessLevel
@@ -52,7 +57,7 @@ export default async function SpaceLayout({ children, params }: { children: Reac
             <h1 className="whitespace-nowrap truncate font-bold text-xl md:text-2xl text-primary dark:text-primary-dark">{space?.name}</h1>
           </div>
           <DashboardList accessLevel={accessLevel!.accessLevel} spaceId={params.spaceId} dashboards={space?.dashboards} />
-          {(accessLevel!.accessLevel > 1) ? <SpaceSetting spaceId={params.spaceId}/> : <></>}
+          {(accessLevel!.accessLevel >= 7) ? <SpaceSetting spaceId={params.spaceId}/> : <></>}
         </div>
         <div className="w-full h-full overflow-auto">
           {children}
