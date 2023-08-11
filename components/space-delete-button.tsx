@@ -8,7 +8,7 @@ import { AlternativeButton, DeleteButton } from './ui/button';
 import { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 
-export default function DeleteSpace({ spaceId, userId, setActive }: {spaceId: string, userId: string, setActive: Function}) {
+export default function DeleteSpace({ spaceId, userId, setActive, name }: {name: string, spaceId: string, userId: string, setActive: Function}) {
   const [loading, setLoading] = useState<boolean>(false)
   const [showDeleteAlert, setShowDeleteAlert] = useState<boolean>(false)
   const [spaces, setSpaces] = useState(JSON.parse(localStorage.getItem(`${userId}spaces`) || "[]"))
@@ -40,7 +40,7 @@ export default function DeleteSpace({ spaceId, userId, setActive }: {spaceId: st
     }
 
     if (response.status == 200) {
-      router.push(`${pathname}`)
+      router.push(`/space`)
       router.refresh();
     }
     setShowDeleteAlert(false)
@@ -54,7 +54,7 @@ export default function DeleteSpace({ spaceId, userId, setActive }: {spaceId: st
       <AlertDialog.Trigger asChild>
         <div className="cursor-pointer text-delete-dark hover:!text-delete relative flex cursor-default select-none items-center rounded-md px-2 py-1.5 text-sm outline-none transition-colors hover:bg-hover-item dark:hover:bg-hover-item-dark data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
           <Icons.delete size={20} className="mr-2"/>
-          Удалить
+          {name}
         </div>
       </AlertDialog.Trigger>
       <AlertDialog.Portal>

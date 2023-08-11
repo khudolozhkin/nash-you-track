@@ -1,5 +1,6 @@
 import Link from "next/link"
 import SpaceOperations from "./space-operations"
+import UserRole from "./user-role";
 
 type SpaceItem = {
   spaceId: string;
@@ -22,7 +23,7 @@ export default function SpaceItem({ spaceItem }: { spaceItem: SpaceItem }) {
         <div className="grid">
           <Link
             href={`/space/${spaceItem.spaceId}${(spaceItem.space.dashboards.length > 0 ) ? `/dashboard/${spaceItem.space.dashboards[0].id}` : ""}`}
-            className="font-semibold text-lg md:text-xl text-primary decoration-1 dark:text-primary-dark hover:underline underline-offset-4 transition"
+            className="font-semibold md:flex text-lg md:text-xl text-primary decoration-1 dark:text-primary-dark hover:underline underline-offset-4 transition"
           >
             {spaceItem.space.name}
           </Link>

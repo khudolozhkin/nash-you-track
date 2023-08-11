@@ -47,7 +47,7 @@ export async function POST(request: Request) {
     const json = await request.json();
     const body = inviteSchema.parse(json)
 
-    if (!await userHasAccessToSpace(body.spaceId, 7)) {
+    if (!await userHasAccessToSpace(body.spaceId, 7) || body.accessLevel > 4) {
       return new Response("Unauthorized", { status: 403 })
     }
 

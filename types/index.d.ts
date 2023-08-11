@@ -28,3 +28,10 @@ export type SiteConfig = {
     tg: string
   }
 }
+
+export type UserRoles = {
+  accessToken: number,
+  name: string,
+  textColor: string,
+  color: string
+}[]
