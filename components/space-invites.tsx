@@ -4,7 +4,6 @@ import SpaceInviteItem from "./space-invite-item"
 import SpaceCreateInviteButton from "./space-create-invite-button"
 
 export default async function SpaceInvites({spaceId}: {spaceId: string}) {
-
   
   if (!await userHasAccessToSpace(spaceId, 7)) {
     return []
@@ -18,6 +17,7 @@ export default async function SpaceInvites({spaceId}: {spaceId: string}) {
       id: true,
       userId: true,
       accessLevel: true,
+      active: true,
       user: {
         select: {
           name: true,

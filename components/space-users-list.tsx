@@ -29,7 +29,7 @@ export default async function SpaceUsers({spaceId}: {spaceId: string}) {
 
   return (
     <>
-      <div className="w-full flex justify-between mt-4">
+      <div className="w-full flex justify-between mt-10">
         <h1 className="font-bold text-xl">Пользователи</h1>
         <SpaceCreateInviteButton spaceId={spaceId}/>
       </div>

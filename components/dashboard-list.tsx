@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Dashboard } from "@prisma/client"
 import { Icons } from "./ui/icons"
 import { DashboardCreate } from "./dashboard-create"
@@ -12,6 +12,10 @@ export default function DashboardList({dashboards, accessLevel, spaceId}: {dashb
   const router = useRouter()
   const pathname = usePathname()
   const height = (dashboards!.length * 28) + 40
+  
+  useEffect(() => {
+    const interval = setInterval(router.refresh, 10000)
+  }, [])
   
   return (
     <>

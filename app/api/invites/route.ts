@@ -15,7 +15,8 @@ export async function GET() {
     
     const invites = await db.invite.findMany({
       where: {
-        userId: user.id
+        userId: user.id,
+        active: true
       },
       select: {
         id: true,
@@ -59,6 +60,17 @@ export async function POST(request: Request) {
         id: true
       }
     })
+
+    const checkSpaceUser = await db.spaceUser.findMany({
+      where: {
+        userId: user?.id,
+        spaceId: body.spaceId
+      }
+    })
+
+    if (checkSpaceUser.length > 0) {
+      return new Response("Unauthorized", { status: 403 })
+    }
 
     const newInvite = await db.invite.create({
       data: {

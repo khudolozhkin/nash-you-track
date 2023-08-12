@@ -4,6 +4,8 @@ import SpaceName from "@/components/space-name"
 import SpaceUsers from "@/components/space-users-list"
 import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
+import { notFound } from "next/navigation"
+import { userHasAccessToSpace } from "@/lib/user-access"
 
 async function getSpaceInfo(spaceId: string) {
   const spaceInfo = await db.space.findFirst({
@@ -22,6 +24,9 @@ async function getSpaceInfo(spaceId: string) {
 export default async function Dashboard({ params }: { params: { spaceId: string } }) {
   const spaceInfo = await getSpaceInfo(params.spaceId)
   const user = await getCurrentUser() 
+  if (!await userHasAccessToSpace(params.spaceId, 7)) {
+    notFound()
+  }
 
   return (
     <div className="flex justify-center w-full">

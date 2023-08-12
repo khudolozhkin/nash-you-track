@@ -2,7 +2,7 @@
 
 import { AlternativeButton } from "./ui/button"
 import { Icons } from "./ui/icons"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import * as Dialog from '@radix-ui/react-dialog';
 import { DialogTrigger, DialogOverlay, DialogContent } from "@/components/ui/dialog"
 import Button from "./ui/button";
@@ -17,6 +17,10 @@ export default function SpaceCreateButton() {
   const description = useRef<HTMLTextAreaElement>(null);
   const router = useRouter()
   const pathname = usePathname();
+
+  useEffect(() => {
+    const interval = setInterval(router.refresh, 30000)
+  }, [])
 
   async function onSubmit() {
     setIsLoading(true)
