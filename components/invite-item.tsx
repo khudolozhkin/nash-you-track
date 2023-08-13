@@ -3,6 +3,8 @@ import { AlternativeButton, DeleteButton } from "./ui/button"
 import { Icons } from "./ui/icons"
 import { useRouter } from 'next/navigation'
 import { mutate } from 'swr'
+import { toast } from "react-hot-toast"
+import { ErrorToast, SuccessToast } from "./ui/toast"
 
 export default function InviteItem({name, inviteId}: {name: string, inviteId: string}) {
   const [isLoadingAccept, setIsLoadingAccept] = useState<boolean>(false)
@@ -30,7 +32,9 @@ export default function InviteItem({name, inviteId}: {name: string, inviteId: st
     })
 
     if (response.status != 200) {
-
+      toast.custom((t) => (
+        <ErrorToast t={t} header={`Что-то пошло не так`}/>
+      ))
     }
 
     if (response.status == 200) {
@@ -38,6 +42,13 @@ export default function InviteItem({name, inviteId}: {name: string, inviteId: st
         let responseBody = await response.json()
         router.push(`/space/${responseBody.spaceId}`)
         router.refresh()
+        toast.custom((t) => (
+          <SuccessToast t={t} header={`Вы приняли приглашение в ${name}`}/>
+        ))
+      } else {
+        toast.custom((t) => (
+          <SuccessToast t={t} header={`Вы отклонили приглашение в ${name}`}/>
+        ))
       }
       mutate('/api/invites')
     }

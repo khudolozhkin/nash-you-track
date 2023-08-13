@@ -2,6 +2,8 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Icons } from "./ui/icons"
+import { toast } from "react-hot-toast"
+import { ErrorToast, SuccessToast } from "./ui/toast"
 
 export function DashboardCreate({spaceId} : {spaceId: string}) {
   const router = useRouter()
@@ -23,7 +25,9 @@ export function DashboardCreate({spaceId} : {spaceId: string}) {
     })
 
     if (response.status != 200) {
-      // catch error
+      toast.custom((t) => (
+        <ErrorToast t={t} header="Что-то пошло не так"/>
+      ))
     }
 
     if (response.status == 200) {
@@ -31,6 +35,9 @@ export function DashboardCreate({spaceId} : {spaceId: string}) {
       setIsLoading(false)
       router.push(`/space/${spaceId}/dashboard/${responseBody.id}`)
       router.refresh()
+      toast.custom((t) => (
+        <SuccessToast t={t} header="Новая доска успешно создана"/>
+      ))
     }
 
     setIsLoading(false)

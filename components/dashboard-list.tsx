@@ -15,6 +15,8 @@ export default function DashboardList({dashboards, accessLevel, spaceId}: {dashb
   
   useEffect(() => {
     const interval = setInterval(router.refresh, 10000)
+
+    return () => clearInterval(interval);
   }, [])
   
   return (

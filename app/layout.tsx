@@ -1,6 +1,7 @@
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import { siteConfig } from '@/config/site'
+import { Toaster } from 'react-hot-toast'
 
 export const metadata = {
   title: siteConfig.name,
@@ -28,6 +29,10 @@ export default function RootLayout({
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
+          <Toaster
+            position="bottom-right"
+            toastOptions={{duration: 3000}}
+          />
         </ThemeProvider>
       </body>
     </html>

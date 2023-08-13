@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from "react"
 import { AlternativeButton } from "./ui/button"
 import { Icons } from "./ui/icons"
 import { useRouter } from "next/navigation"
+import { toast } from "react-hot-toast"
+import { ErrorToast, SuccessToast } from "./ui/toast"
 
 export default function DashboardName({name, id}: {name: string, id: string}) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -30,13 +32,24 @@ export default function DashboardName({name, id}: {name: string, id: string}) {
     })
 
     if (response.status != 200) {
-      // catch error
+      toast.custom((t) => (
+        <ErrorToast t={t} header={`Что-то пошло не так`}/>
+      ))
+    }
+
+    if (response.status == 422) {
+      toast.custom((t) => (
+        <ErrorToast t={t} header={`Не удалось изменить название`} p={'Оно должно быть от 3 до 32 символов'}/>
+      ))
     }
 
     if (response.status == 200) {
       let responseBody = await response.json()
       nameInput.current!.value = responseBody.name
       router.refresh()
+      toast.custom((t) => (
+        <SuccessToast t={t} header={`Название изменено на ${nameInput.current?.value}`}/>
+      ))
     }
 
     setIsLoading(false)

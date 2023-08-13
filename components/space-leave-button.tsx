@@ -7,6 +7,8 @@ import { AlertContent, AlertOverlay } from './ui/alert-dialog';
 import { AlternativeButton, DeleteButton } from './ui/button';
 import { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
+import { toast } from "react-hot-toast"
+import { ErrorToast, SuccessToast } from "./ui/toast"
 
 export default function LeaveSpace({ spaceId, userId }: {spaceId: string, userId: string}) {
   const [loading, setLoading] = useState<boolean>(false)
@@ -34,12 +36,17 @@ export default function LeaveSpace({ spaceId, userId }: {spaceId: string, userId
     const response = await fetch(`/api/spaces/${spaceId}/members/${userId}`, { method: "DELETE"})
 
     if (response.status != 200) {
-      // error catch
-      router.refresh();
+      router.refresh()
+      toast.custom((t) => (
+        <ErrorToast t={t} header={`Что-то пошло не так`}/>
+      ))
     }
 
     if (response.status == 200) {
       router.refresh();
+      toast.custom((t) => (
+        <SuccessToast t={t} header={`Вы покинули пространство`}/>
+      ))
     }
     
     setLoading(false)

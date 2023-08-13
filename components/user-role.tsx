@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/dropdown"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { toast } from "react-hot-toast"
+import { ErrorToast, SuccessToast } from "./ui/toast"
 
 
 export default function UserRole({accessLevel, changeable, userId, spaceId}: {accessLevel: number, changeable: boolean, userId: string, spaceId: string}) {
@@ -35,7 +37,9 @@ export default function UserRole({accessLevel, changeable, userId, spaceId}: {ac
     })
 
     if (response.status != 200) {
-      // catch error
+      toast.custom((t) => (
+        <ErrorToast t={t} header={`Что-то пошло не так`}/>
+      ))
     }
 
     if (response.status == 200) {

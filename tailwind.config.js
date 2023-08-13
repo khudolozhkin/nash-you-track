@@ -63,6 +63,14 @@ module.exports = {
         from: { opacity: 0, transform: 'scale(0.8) translateX(-50%) translateY(-20%)', left: `20%` },
         to: { opacity: 1, transform: 'scale(1) translateX(-50%) translateY(0%)', left: `50%` },
       },
+      toasterIn: {
+        '0%': { opacity: 0, transform: 'scale(0.8) translateY(200px)' },
+        '100%': { opacity: 1, transform: 'scale(1) translateY(0px)' },
+      },
+      toasterOut: {
+        '0%': { opacity: 1, transform: 'scale(1) translateY(0px)' },
+        '100%': { opacity: 0, transform: 'scale(0.8) translateY(200px)' },
+      }
     },
     animation: {
       slideDownAndFade: 'slideDownAndFade 500ms cubic-bezier(0.16, 1, 0.3, 1)',
@@ -73,6 +81,8 @@ module.exports = {
       spin: 'spin 1s linear infinite',
       scale: 'scale 500ms cubic-bezier(0.16, 1, 0.3, 1)',
       scaleIn: 'scaleIn 300ms cubic-bezier(0.16, 1, 0.3, 1)',
+      toasterIn: 'toasterIn 500ms cubic-bezier(0.16, 1, 0.3, 1)',
+      toasterOut: 'toasterOut 500ms cubic-bezier(0.16, 1, 0.3, 1)',
     },
     extend: {
       backdropBlur: {

@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Icons } from "./ui/icons"
+import { toast } from "react-hot-toast"
+import { ErrorToast, SuccessToast } from "./ui/toast"
 
 export default function InviteDelete({accessLevel, userId, inviteId}: {accessLevel: number, userId: string, inviteId: string}) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -19,11 +21,16 @@ export default function InviteDelete({accessLevel, userId, inviteId}: {accessLev
     })
 
     if (response.status != 200) {
-      // catch error
+      toast.custom((t) => (
+        <ErrorToast t={t} header={`Что-то пошло не так`}/>
+      ))
     }
 
     if (response.status == 200) {
       router.refresh()
+      toast.custom((t) => (
+        <SuccessToast t={t} header={`Приглашение удалено`}/>
+      ))
     }
 
     setIsLoading(false)

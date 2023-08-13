@@ -8,6 +8,8 @@ import { DialogTrigger, DialogOverlay, DialogContent } from "@/components/ui/dia
 import Button from "./ui/button";
 import { error } from "console";
 import { useRouter, usePathname } from 'next/navigation'
+import toast from 'react-hot-toast'
+import { SuccessToast } from "./ui/toast";
 
 
 export default function SpaceCreateButton() {
@@ -20,6 +22,8 @@ export default function SpaceCreateButton() {
 
   useEffect(() => {
     const interval = setInterval(router.refresh, 30000)
+
+    return () => clearInterval(interval);
   }, [])
 
   async function onSubmit() {
@@ -54,6 +58,9 @@ export default function SpaceCreateButton() {
       let responseBody = await response.json()
       router.push(`${pathname}/${responseBody.newSpace.id}`)
       router.refresh()
+      toast.custom((t) => (
+        <SuccessToast t={t} header={`Создано новое пространство ${responseBody.newSpace.name}`}/>
+      ))
     }
 
     setIsLoading(false)

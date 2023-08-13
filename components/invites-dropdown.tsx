@@ -20,7 +20,7 @@ export default function InvitesDropdown() {
   
   if (isLoading || data?.length == 0 || data == undefined) {
     return <>
-    <HoverCard.Root openDelay={200}>
+    <HoverCard.Root openDelay={0} closeDelay={0}>
       <HoverCard.Trigger asChild className="focus:outline-none opacity-50">
         <div className="h-12 flex select-none items-center mr-2">
           <div className="flex transition-all justify-center items-center hover:bg-brand-background dark:hover:bg-brand-background-dark rounded-full w-[35px] h-[35px]">

@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from "react"
 import Button from "./ui/button"
 import { Icons } from "./ui/icons"
 import { useRouter } from "next/navigation"
+import { toast } from "react-hot-toast"
+import { ErrorToast, SuccessToast } from "./ui/toast"
 
 export default function SpaceName({name, description, spaceId} : {name: string, description: string | null, spaceId: string}) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -46,7 +48,9 @@ export default function SpaceName({name, description, spaceId} : {name: string, 
       if (description != null) {
         descriptionRef.current!.value = description
       }
-      // catch error
+      toast.custom((t) => (
+        <ErrorToast t={t} header={`Что-то пошло не так`}/>
+      ))
     }
 
     if (response.status == 200) {
@@ -54,6 +58,9 @@ export default function SpaceName({name, description, spaceId} : {name: string, 
       nameInput.current!.value = responseBody.name
       descriptionRef.current!.value = responseBody!.description
       router.refresh()
+      toast.custom((t) => (
+        <SuccessToast t={t} header={`Пространство изменено`}/>
+      ))
     }
 
     setIsLoading(false)

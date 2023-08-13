@@ -8,7 +8,9 @@ import { DialogTrigger, DialogOverlay, DialogContent } from "@/components/ui/dia
 import Button from "./ui/button";
 import { error } from "console";
 import { useRouter, usePathname } from 'next/navigation'
-import { userRoles } from "@/config/user-roles";
+import { userRoles } from "@/config/user-roles"
+import { toast } from "react-hot-toast"
+import { ErrorToast, SuccessToast } from "./ui/toast"
 
 
 export default function SpaceCreateInviteButton({spaceId}: {spaceId: string}) {
@@ -37,7 +39,9 @@ export default function SpaceCreateInviteButton({spaceId}: {spaceId: string}) {
     })
 
     if (response.status != 200) {
-      // catch error
+      toast.custom((t) => (
+        <ErrorToast t={t} header={`Что-то пошло не так`} p="Такой пользователь не найден"/>
+      ))
     }
 
     if (response.status == 200) {
@@ -45,6 +49,9 @@ export default function SpaceCreateInviteButton({spaceId}: {spaceId: string}) {
       console.log(responseBody)
       router.refresh()
       setOpen(false)
+      toast.custom((t) => (
+        <SuccessToast t={t} header={`Приглашение отправлено`}/>
+      ))
     }
 
     setIsLoading(false)

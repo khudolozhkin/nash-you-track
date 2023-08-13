@@ -18,7 +18,9 @@ import {
   PinOff,
   ChevronDown,
   CaseSensitive,
-  Mail
+  Mail,
+  Check,
+  XCircle
 } from "lucide-react"
 
 import { LucideIcon } from "lucide-react"
@@ -26,6 +28,8 @@ import { LucideIcon } from "lucide-react"
 export type Icon = LucideIcon
 
 export const Icons = {
+  error: XCircle,
+  success: Check,
   mail: Mail,
   properties: CaseSensitive,
   arrow: ChevronDown,
