@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import { getCurrentUser } from '@/lib/session';
 import { db } from "@/lib/db";
 import { userHasAccessToSpace } from "@/lib/user-access";
-import { routeContextSchema, updateBoardSchema } from "@/lib/validations/boards";
+import { routeContextSchema, updateTableSchema } from "@/lib/validations/table";
 
 export async function PUT(
   request: Request,
@@ -12,7 +12,7 @@ export async function PUT(
   try {
     const { params } = routeContextSchema.parse(context)
 
-    const board = await db.board.findFirst({
+    const table = await db.table.findFirst({
       where: {
         id: params.boardId
       },
@@ -25,21 +25,21 @@ export async function PUT(
       }
     })
 
-    if (!await userHasAccessToSpace(board!.dashboard.spaceId, 4)) {
+    if (!await userHasAccessToSpace(table!.dashboard.spaceId, 4)) {
       return new Response("Unauthorized", { status: 403 })
     }
 
     const json = await request.json();
-    const body = updateBoardSchema.parse(json)
+    const body = updateTableSchema.parse(json)
 
-    const updateBoard = await db.board.update({
+    const updateTable = await db.table.update({
       where: {
         id: params.boardId,
       },
       data: body
     })
     
-    return NextResponse.json(updateBoard);
+    return NextResponse.json(updateTable);
   
   } catch (error) {
 
@@ -59,7 +59,7 @@ export async function DELETE(
     const { params } = routeContextSchema.parse(context)
 
     
-    const board = await db.board.findFirst({
+    const board = await db.table.findFirst({
       where: {
         id: params.boardId
       },
@@ -76,7 +76,7 @@ export async function DELETE(
       return new Response("Unauthorized", { status: 403 })
     }
 
-    const deleteBoard = await db.board.deleteMany({
+    const deleteTable = await db.table.deleteMany({
       where: {
         id: params.boardId
       }

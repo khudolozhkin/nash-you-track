@@ -20,7 +20,7 @@ export async function GET(
       select: {
         spaceId: true,
         name: true,
-        boards: {
+        tables: {
           select: {
             name: true,
             top: true,

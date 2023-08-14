@@ -20,7 +20,8 @@ import {
   CaseSensitive,
   Mail,
   Check,
-  XCircle
+  XCircle,
+  Sheet
 } from "lucide-react"
 
 import { LucideIcon } from "lucide-react"
@@ -28,6 +29,7 @@ import { LucideIcon } from "lucide-react"
 export type Icon = LucideIcon
 
 export const Icons = {
+  table: Sheet,
   error: XCircle,
   success: Check,
   mail: Mail,

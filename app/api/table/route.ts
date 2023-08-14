@@ -1,14 +1,14 @@
 import * as z from "zod"
 import { NextResponse } from 'next/server';
 import { getCurrentUser } from '@/lib/session';
-import { createBoardSchema } from "@/lib/validations/boards";
+import { createTableSchema } from "@/lib/validations/table";
 import { db } from "@/lib/db";
 import { userHasAccessToSpace } from "@/lib/user-access";
 
 export async function POST(request: Request) {
   try {
     const json = await request.json();
-    const body = createBoardSchema.parse(json)
+    const body = createTableSchema.parse(json)
 
     const dashboard = await db.dashboard.findFirst({
       where: {
@@ -29,14 +29,14 @@ export async function POST(request: Request) {
       return new Response("Unauthorized", { status: 403 })
     }
 
-    const newBoard = await db.board.create({
+    const newTable = await db.table.create({
       data: body
     })
 
     const newColumn = await db.column.create({
       data: {
         name: "Первая колонка",
-        boardId: newBoard!.id
+        boardId: newTable!.id
       }
     })
 
@@ -47,7 +47,7 @@ export async function POST(request: Request) {
       }
     })
 
-    return NextResponse.json(newBoard);
+    return NextResponse.json(newTable);
 
   } catch (error) {
     if (error instanceof z.ZodError) {

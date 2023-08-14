@@ -132,10 +132,10 @@ model Dashboard {
   space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
   spaceId String
 
-  boards Board[]
+  tables Table[]
 }
 
-model Board {
+model Table {
   id String @id @default(cuid())
   name String
   createdAt DateTime @default(now())
@@ -154,7 +154,7 @@ model Column {
   createdAt DateTime @default(now())
   sortOrder Decimal @default(100)
 
-  board Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  board Table @relation(fields: [boardId], references: [id], onDelete: Cascade)
   boardId String
 
   cards Card[]
