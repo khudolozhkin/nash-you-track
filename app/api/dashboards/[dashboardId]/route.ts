@@ -22,6 +22,7 @@ export async function GET(
         name: true,
         tables: {
           select: {
+            id: true,
             name: true,
             top: true,
             left: true,

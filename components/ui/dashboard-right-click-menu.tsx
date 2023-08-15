@@ -23,7 +23,9 @@ export default function DashboardRightClick({children, dashboardId} : {children:
    <>
     <ContextMenu.Root modal={false}>
       <ContextMenu.Trigger onAuxClick={(e) => {defineContext(e)}} id='dashboard' className="w-full h-full box-border overflow-auto">
-        {children}
+        <div className=''>
+          {children}
+        </div>
       </ContextMenu.Trigger>
 
       {isDashboard ? <>
@@ -39,11 +41,11 @@ export default function DashboardRightClick({children, dashboardId} : {children:
       </> : <></>}
     </ContextMenu.Root>
     <Dialog.Root onOpenChange={() => setOpen(!open)} open={open}>
-        <DialogTrigger>d</DialogTrigger>
+        
     <Dialog.Portal>
       <DialogOverlay>
         <DialogContent>
-          <TableCreate x={x} y={y} dashboardId={dashboardId}/>
+          <TableCreate setOpen={setOpen} x={x} y={y} dashboardId={dashboardId}/>
         </DialogContent>
       </DialogOverlay>
       </Dialog.Portal>

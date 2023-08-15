@@ -12,7 +12,7 @@ export async function POST(request: Request) {
 
     const dashboard = await db.dashboard.findFirst({
       where: {
-        id: body.dashboardId
+        id: body.data.dashboardId
       },
       select: {
         name: true,
@@ -25,12 +25,12 @@ export async function POST(request: Request) {
       return new Response("Unauthorized", { status: 403 })
     }
 
-    if (!await userHasAccessToSpace(dashboard.id, 4)) {
+    if (!await userHasAccessToSpace(dashboard.spaceId, 4)) {
       return new Response("Unauthorized", { status: 403 })
     }
 
     const newTable = await db.table.create({
-      data: body
+      data: body.data
     })
 
     const newColumn = await db.column.create({

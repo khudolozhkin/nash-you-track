@@ -14,7 +14,7 @@ export async function PUT(
 
     const table = await db.table.findFirst({
       where: {
-        id: params.boardId
+        id: params.tableId
       },
       select: {
         dashboard: {
@@ -34,7 +34,7 @@ export async function PUT(
 
     const updateTable = await db.table.update({
       where: {
-        id: params.boardId,
+        id: params.tableId,
       },
       data: body
     })
@@ -61,7 +61,7 @@ export async function DELETE(
     
     const board = await db.table.findFirst({
       where: {
-        id: params.boardId
+        id: params.tableId
       },
       select: {
         dashboard: {
@@ -78,7 +78,7 @@ export async function DELETE(
 
     const deleteTable = await db.table.deleteMany({
       where: {
-        id: params.boardId
+        id: params.tableId
       }
     })
 
