@@ -1,74 +1,39 @@
-'use client'
-
-import Draggable from 'react-draggable'
-import { toast } from "react-hot-toast"
-import { ErrorToast, SuccessToast } from "./ui/toast"
-import { mutate } from 'swr'
-import { useRouter } from 'next/navigation'
+import { Icons } from "./ui/icons"
+import TableName from "./table-name"
 
 type Table = {
-    name: string,
-    top: number,
-    left: number,
-    id: string,
-    columns: {
-        name: string;
-        sortOrder: Number;
-        cards: {
-            id: string;
-            name: string;
-            sortOrder: Number;
-            columnId: string;
-        }[];
-    }[];
+  name: string,
+  id: string,
+  top: number,
+  left: number,
+  columns: {
+      name: string;
+      sortOrder: Number;
+      cards: {
+          id: string;
+          name: string;
+          sortOrder: Number;
+          columnId: string;
+      }[];
+  }[];
 }
 
-export default function Table({table, dashboardId} : {table: Table, dashboardId: string,}) {
-  const router = useRouter()
-
-  const onChangePosition = (e, ui) => {
-    updatePosition(ui.x, ui.y)
-  }
-
-  async function updatePosition(x, y) {
-    
-    let data = JSON.stringify({
-      left: x,
-      top: y
-    })
-    
-    const response = await fetch(`/api/tables/${table.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: data
-    })
-
-    if (response.status != 200) {
-      toast.custom((t) => (
-        <ErrorToast t={t} header="Что-то пошло не так"/>
-      ))
-    }
-
-    if (response.status == 200) {
-      
-    }
-  }
+export default function Table({table} : {table: Table}) {
+  
 
   return (
-    <Draggable
-      axis="both"
-      defaultClassName=''
-      defaultPosition={{x: table.left, y: table.top}}
-      grid={[1, 1]}
-      scale={1}
-      bounds={{left: 0, top: 0}}
-      onStop={onChangePosition}
-    >
-      <div className='w-[1px] h-[1px]'>
-        <div className='h-[100px] w-[100px] bg-brand-background-dark'></div>
+    <div className='group/table rounded-md w-fit py-1 px-2 bg-brand-background dark:bg-brand-background-dark'>
+      <div className=" justify-between leading-[initial] items-center flex">
+        <div className="flex items-center">
+          <Icons.drag className="handle mr-2 cursor-grab active:cursor-grabbing" size={18}/>
+          <TableName table={table}/>
+        </div>
+
+        <div className="group/burger flex items-center">
+          <Icons.burger className="cursor-pointer group-hover/table:opacity-50 opacity-0 transition-all ml-2 group-hover/burger:opacity-100" size={18}/>
+        </div>
       </div>
-    </Draggable>
+      <div className="w-[400px] h-[100px]"></div>
+    </div>
   )
 }

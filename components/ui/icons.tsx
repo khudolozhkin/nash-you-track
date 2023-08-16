@@ -21,7 +21,9 @@ import {
   Mail,
   Check,
   XCircle,
-  Sheet
+  Sheet,
+  HelpCircle,
+  GripVertical
 } from "lucide-react"
 
 import { LucideIcon } from "lucide-react"
@@ -29,6 +31,8 @@ import { LucideIcon } from "lucide-react"
 export type Icon = LucideIcon
 
 export const Icons = {
+  drag: GripVertical,
+  help: HelpCircle,
   table: Sheet,
   error: XCircle,
   success: Check,

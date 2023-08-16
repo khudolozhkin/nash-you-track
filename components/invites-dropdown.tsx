@@ -16,7 +16,7 @@ import * as HoverCard from '@radix-ui/react-hover-card'
 const fetcher = (url) => fetch(url).then(res => res.json())
 
 export default function InvitesDropdown() {
-  const { data, error, isLoading } = useSWRImmutable('/api/invites', fetcher)
+  const { data, error, isLoading } = useSWRImmutable('/api/invites', fetcher, { refreshInterval: 30000 })
   
   if (isLoading || data?.length == 0 || data == undefined) {
     return <>
