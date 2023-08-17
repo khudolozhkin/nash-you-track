@@ -1,5 +1,6 @@
 import { Icons } from "./ui/icons"
 import TableName from "./table-name"
+import TableOperations from "./table-operations";
 
 type Table = {
   name: string,
@@ -29,8 +30,8 @@ export default function Table({table} : {table: Table}) {
           <TableName table={table}/>
         </div>
 
-        <div className="group/burger flex items-center">
-          <Icons.burger className="cursor-pointer group-hover/table:opacity-50 opacity-0 transition-all ml-2 group-hover/burger:opacity-100" size={18}/>
+        <div className="group/burger ml-2 flex items-center">
+          <TableOperations />
         </div>
       </div>
       <div className="w-[400px] h-[100px]"></div>
