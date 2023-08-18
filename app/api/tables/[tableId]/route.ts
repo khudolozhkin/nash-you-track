@@ -59,20 +59,21 @@ export async function DELETE(
     const { params } = routeContextSchema.parse(context)
 
     
-    const board = await db.table.findFirst({
+    const table = await db.table.findFirst({
       where: {
         id: params.tableId
       },
       select: {
         dashboard: {
           select: {
-            spaceId: true
+            spaceId: true,
+            id: true
           }
         }
       }
     })
 
-    if (!await userHasAccessToSpace(board!.dashboard.spaceId, 4)) {
+    if (!await userHasAccessToSpace(table!.dashboard.spaceId, 4)) {
       return new Response("Unauthorized", { status: 403 })
     }
 
@@ -82,7 +83,7 @@ export async function DELETE(
       }
     })
 
-    return NextResponse.json(true, { status: 200 });
+    return NextResponse.json({dashboardId: table?.dashboard.id}, { status: 200 });
   } catch (error) {
 
     if (error instanceof z.ZodError) {

@@ -36,7 +36,7 @@ export async function POST(request: Request) {
     const newColumn = await db.column.create({
       data: {
         name: "Первая колонка",
-        boardId: newTable!.id
+        tableId: newTable!.id
       }
     })
 

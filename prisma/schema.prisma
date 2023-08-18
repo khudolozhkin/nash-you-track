@@ -154,8 +154,8 @@ model Column {
   createdAt DateTime @default(now())
   sortOrder Decimal @default(100)
 
-  board Table @relation(fields: [boardId], references: [id], onDelete: Cascade)
-  boardId String
+  table Table @relation(fields: [tableId], references: [id], onDelete: Cascade)
+  tableId String
 
   cards Card[]
 }

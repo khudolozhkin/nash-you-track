@@ -15,5 +15,5 @@ export const updateColumnSchema = z.object({
 export const createColumnSchema = z.object({
   name: z.string().min(3).max(32),
   sortOrder: z.number(),
-  boardId: z.string()
+  tableId: z.string()
 })

@@ -45,6 +45,7 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "postcss-nesting": "^12.0.1",
     "prisma": "^4.13.0"
   }
 }

@@ -31,7 +31,7 @@ export default function Table({table} : {table: Table}) {
         </div>
 
         <div className="group/burger ml-2 flex items-center">
-          <TableOperations />
+          <TableOperations tableId={table.id}/>
         </div>
       </div>
       <div className="w-[400px] h-[100px]"></div>

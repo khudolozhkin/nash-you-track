@@ -10,20 +10,20 @@ export async function POST(request: Request) {
     const json = await request.json();
     const body = createColumnSchema.parse(json)
 
-    const board = await db.board.findFirst({
+    const table = await db.table.findFirst({
       where: {
-        id: body.boardId
+        id: body.tableId
       },
       select: {
         dashboardId: true
       }
     })
 
-    if (board == undefined) {
+    if (table == undefined) {
       return new Response("Unauthorized", { status: 403 })
     }
 
-    if (!await userHasAccessToSpace(board.dashboardId, 4)) {
+    if (!await userHasAccessToSpace(table.dashboardId, 4)) {
       return new Response("Unauthorized", { status: 403 })
     }
 
