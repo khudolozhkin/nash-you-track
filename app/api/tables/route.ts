@@ -33,19 +33,27 @@ export async function POST(request: Request) {
       data: body.data
     })
 
-    const newColumn = await db.column.create({
-      data: {
-        name: "Первая колонка",
-        tableId: newTable!.id
+    let columnArray: {name: string, tableId: string, sortOrder: number}[] = []
+
+    for (let i = 0; i < body.tableCount; i++) {
+      if (i == 0) {
+        columnArray.push({name: 'Новая колонка', tableId: newTable.id, sortOrder: 100})
+      } else {
+      columnArray.push({name: 'Новая колонка', tableId: newTable.id, sortOrder: columnArray[i-1].sortOrder + 200})
       }
+    }
+
+    
+    const newColumn = await db.column.createMany({
+      data: columnArray
     })
 
-    const newCard = await db.card.create({
-      data: {
-        name: "Первая карточка",
-        columnId: newColumn!.id
-      }
-    })
+    // const newCard = await db.card.create({
+    //   data: {
+    //     name: "Первая карточка",
+    //     columnId: newColumn!.id
+    //   }
+    // })
 
     return NextResponse.json(newTable);
 

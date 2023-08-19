@@ -4,6 +4,7 @@ import Draggable from 'react-draggable'
 import { toast } from "react-hot-toast"
 import { ErrorToast, SuccessToast } from "./ui/toast"
 import Table from './table'
+import { useState } from 'react'
 
 type Table = {
     name: string,
@@ -23,9 +24,13 @@ type Table = {
 }
 
 export default function TableDraggable({table, dashboardId} : {table: Table, dashboardId: string,}) {
+  const [leftState, setLeftState] = useState<number>(table.left)
+  const [topState, setTopState] = useState<number>(table.top)
 
   const onChangePosition = (e, ui) => {
     updatePosition(ui.x, ui.y)
+    setLeftState(ui.x)
+    setTopState(ui.y)
   }
 
   async function updatePosition(x, y) {
@@ -50,14 +55,15 @@ export default function TableDraggable({table, dashboardId} : {table: Table, das
     }
 
     if (response.status == 200) {
-      
+      setLeftState(x)
+      setTopState(y)
     }
   }
 
   return (
     <Draggable
       axis="both"
-      defaultPosition={{x: table.left, y: table.top}}
+      defaultPosition={{x: leftState, y: topState}}
       grid={[1, 1]}
       scale={1}
       bounds={{left: 0, top: 0}}
@@ -65,7 +71,7 @@ export default function TableDraggable({table, dashboardId} : {table: Table, das
       handle=".handle"
     >
       <div className='w-[1px] h-[1px]'>
-        <Table table={table}/>
+        <Table x={leftState} y={topState} table={table}/>
       </div>
     </Draggable>
   )

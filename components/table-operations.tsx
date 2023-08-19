@@ -10,21 +10,26 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown"
 import TableDelete from "./table-delete"
+import { DropdownMenuPortal } from "@radix-ui/react-dropdown-menu"
 
 export default function TableOperations({tableId} : {tableId: string}) {
   const [active, setActive] = useState<boolean>(false)
   
   return (
-    <DropdownMenu open={active} onOpenChange={() => {setActive(!active)}}>
-      <DropdownMenuTrigger className="focus:outline-none">
-        {(!active) ? <Icons.burger size={18} /> : <Icons.burgerActive size={18}/>}
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="start">
-        <DropdownMenuItem>
-          <div className="flex items-center"><Icons.add size={18} className="mr-2"/>Столбец</div>
-        </DropdownMenuItem>
-        <TableDelete tableId={tableId}/>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <div className="ml-2 transition-opacity flex items-center sticky right-0">
+      <DropdownMenu modal={false} open={active} onOpenChange={() => {setActive(!active)}}>
+        <DropdownMenuTrigger className={`${active ? '!opacity-100' : ''} group-hover/table:opacity-100 opacity-0 transition-opacity focus:outline-none`}>
+          {(!active) ? <Icons.burger size={18} /> : <Icons.burgerActive size={18}/>}
+        </DropdownMenuTrigger>
+        <DropdownMenuPortal>
+          <DropdownMenuContent className={'!opacity-100'} align="end">
+            <DropdownMenuItem>
+              <div className="flex items-center"><Icons.add size={18} className="mr-2"/>Столбец</div>
+            </DropdownMenuItem>
+            <TableDelete tableId={tableId}/>
+          </DropdownMenuContent>
+        </DropdownMenuPortal>
+      </DropdownMenu>
+    </div>
   )
 }

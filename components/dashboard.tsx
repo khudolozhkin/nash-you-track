@@ -49,7 +49,7 @@ type Table = {
 const fetcher = (url) => fetch(url).then(res => res.json())
 
 export default function Dashboard({dashboardId, accessLevel}: {dashboardId: string, accessLevel: number}) {
-  const { data, error, isValidating,  } = useSWRImmutable(`/api/dashboards/${dashboardId}`, fetcher , { refreshInterval: 20000, revalidateOnMount: true,  keepPreviousData: true })
+  const { data, error, isValidating,  } = useSWRImmutable(`/api/dashboards/${dashboardId}`, fetcher , { refreshInterval: 20000,  keepPreviousData: true })
 
 
   if (data) {
@@ -64,24 +64,13 @@ export default function Dashboard({dashboardId, accessLevel}: {dashboardId: stri
     //   )
     // }
 
-    if (isValidating) {
-      return (
-        <div>
-        <DashboardRightClick dashboardId={dashboardId}>
-            {data.tables.map((table: Table, index) => (
-                <TableDraggable dashboardId={dashboardId} table={table} key={index}/> 
-            ))}
-        </DashboardRightClick>
-      </div> 
-      )
-    }
     
     
     return (
       <>
         <DashboardRightClick dashboardId={dashboardId}>
             {data.tables.map((table: Table, index) => (
-                <TableDraggable dashboardId={dashboardId} table={table} key={index}/> 
+                <TableDraggable dashboardId={dashboardId} table={table} key={table.id}/> 
             ))}
         </DashboardRightClick>
       </>
