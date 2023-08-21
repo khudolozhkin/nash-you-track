@@ -19,7 +19,7 @@ export async function PUT(
       select: {
         column: {
           select: {
-            board: {
+            table: {
               select: {
                 dashboard: {
                   select: {
@@ -33,7 +33,7 @@ export async function PUT(
       }
     })
 
-    if (!await userHasAccessToSpace(card!.column.board.dashboard.spaceId, 4)) {
+    if (!await userHasAccessToSpace(card!.column.table.dashboard.spaceId, 4)) {
       return new Response("Unauthorized", { status: 403 })
     }
 
@@ -73,7 +73,7 @@ export async function DELETE(
       select: {
         column: {
           select: {
-            board: {
+            table: {
               select: {
                 dashboard: {
                   select: {
@@ -87,7 +87,7 @@ export async function DELETE(
       }
     })
 
-    if (!await userHasAccessToSpace(card!.column.board.dashboard.spaceId, 4)) {
+    if (!await userHasAccessToSpace(card!.column.table.dashboard.spaceId, 4)) {
       return new Response("Unauthorized", { status: 403 })
     }
 

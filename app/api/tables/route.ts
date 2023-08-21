@@ -37,9 +37,9 @@ export async function POST(request: Request) {
 
     for (let i = 0; i < body.tableCount; i++) {
       if (i == 0) {
-        columnArray.push({name: 'Новая колонка', tableId: newTable.id, sortOrder: 100})
+        columnArray.push({name: `Новая колонка ${i+1}`, tableId: newTable.id, sortOrder: 100})
       } else {
-      columnArray.push({name: 'Новая колонка', tableId: newTable.id, sortOrder: columnArray[i-1].sortOrder + 200})
+      columnArray.push({name: `Новая колонка ${i+1}`, tableId: newTable.id, sortOrder: columnArray[i-1].sortOrder + 200})
       }
     }
 

@@ -28,6 +28,7 @@ export async function GET(
             left: true,
             columns: {
               select: {
+                id: true,
                 name: true,
                 sortOrder: true,
                 cards: {

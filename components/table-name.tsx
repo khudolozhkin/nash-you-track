@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, Key } from "react"
 import { toast } from "react-hot-toast"
 import { ErrorToast, SuccessToast } from "./ui/toast"
 import { mutate } from "swr"
@@ -12,7 +12,7 @@ type Table = {
   left: number,
   columns: {
       name: string;
-      sortOrder: Number;
+      sortOrder: Key;
       cards: {
           id: string;
           name: string;
@@ -41,6 +41,9 @@ export default function TableName({table} : {table: Table}) {
   }
 
   async function handleKeyDown(event) {
+    if (event.key === 'Escape') {
+      input.current?.blur()
+    }
     if (event.key === 'Enter') {
       let data = JSON.stringify({
         name: value
@@ -66,14 +69,14 @@ export default function TableName({table} : {table: Table}) {
         toast.custom((t) => (
           <SuccessToast t={t} header={`Название изменено`}/>
         ))
-        input.current!.value = responseBody.name
+        input.current!.value = responseBody.updateTable.name
       }
     }
   };
 
   return (
     <>
-      <input ref={input} onBlur={onBlur} onKeyDown={(e) => {handleKeyDown(e)}} onChange={onChange} maxLength={32} className="mb-[2px] text-lg h-[18px] outline-none bg-brand-background dark:bg-brand-background-dark" size={value.length}/>
+      <input ref={input} onBlur={onBlur} onKeyDown={(e) => {handleKeyDown(e)}} onChange={onChange} maxLength={32} className="mb-[2px] text-lg h-[22px] outline-none bg-brand-background dark:bg-brand-background-dark" size={value.length}/>
     </>
   )
 }

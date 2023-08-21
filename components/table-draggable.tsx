@@ -4,7 +4,7 @@ import Draggable from 'react-draggable'
 import { toast } from "react-hot-toast"
 import { ErrorToast, SuccessToast } from "./ui/toast"
 import Table from './table'
-import { useState } from 'react'
+import { useState, Key } from 'react'
 
 type Table = {
     name: string,
@@ -12,8 +12,9 @@ type Table = {
     left: number,
     id: string,
     columns: {
+        id: string  
         name: string;
-        sortOrder: Number;
+        sortOrder: Key;
         cards: {
             id: string;
             name: string;
@@ -23,7 +24,7 @@ type Table = {
     }[];
 }
 
-export default function TableDraggable({table, dashboardId} : {table: Table, dashboardId: string,}) {
+export default function TableDraggable({table, dashboardId, swrData} : {swrData: any, table: Table, dashboardId: string,}) {
   const [leftState, setLeftState] = useState<number>(table.left)
   const [topState, setTopState] = useState<number>(table.top)
 
@@ -71,7 +72,7 @@ export default function TableDraggable({table, dashboardId} : {table: Table, das
       handle=".handle"
     >
       <div className='w-[1px] h-[1px]'>
-        <Table x={leftState} y={topState} table={table}/>
+        <Table swrData={swrData} x={leftState} y={topState} table={table}/>
       </div>
     </Draggable>
   )

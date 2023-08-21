@@ -7,7 +7,8 @@ import TableNonDraggable from './table-not-draggable'
 import toast from 'react-hot-toast'
 import { HelpToast } from "./ui/toast";
 import TableDraggable from '@/components/table-draggable'
-import { useState } from 'react'
+import { Key, useState } from 'react'
+
 
 type Tables = {
   spaceId: string;
@@ -31,26 +32,26 @@ type Tables = {
 
 type Table = {
   name: string,
-  id: string,
-  top: number,
-  left: number,
-  columns: {
-      name: string;
-      sortOrder: Number;
-      cards: {
-          id: string;
-          name: string;
-          sortOrder: Number;
-          columnId: string;
-      }[];
-  }[];
+    top: number,
+    left: number,
+    id: string,
+    columns: {
+        id: string  
+        name: string;
+        sortOrder: Key;
+        cards: {
+            id: string;
+            name: string;
+            sortOrder: Number;
+            columnId: string;
+        }[];
+    }[];
 }
 
 const fetcher = (url) => fetch(url).then(res => res.json())
 
 export default function Dashboard({dashboardId, accessLevel}: {dashboardId: string, accessLevel: number}) {
   const { data, error, isValidating,  } = useSWRImmutable(`/api/dashboards/${dashboardId}`, fetcher , { refreshInterval: 20000,  keepPreviousData: true })
-
 
   if (data) {
     
@@ -63,17 +64,23 @@ export default function Dashboard({dashboardId, accessLevel}: {dashboardId: stri
     //     </div>
     //   )
     // }
-
     
-    
-    return (
-      <>
+    if (data.swrData != undefined) {
+      return (
         <DashboardRightClick dashboardId={dashboardId}>
-            {data.tables.map((table: Table, index) => (
-                <TableDraggable dashboardId={dashboardId} table={table} key={table.id}/> 
+            {data.swrData.tables.map((table: Table, index) => (
+                <TableDraggable swrData={data} dashboardId={dashboardId} table={table} key={table.id}/> 
             ))}
         </DashboardRightClick>
-      </>
+      )
+    }
+    
+    return (
+        <DashboardRightClick dashboardId={dashboardId}>
+            {data.tables.map((table: Table, index) => (
+                <TableDraggable swrData={data} dashboardId={dashboardId} table={table} key={table.id}/> 
+            ))}
+        </DashboardRightClick>
     )
   }
 }

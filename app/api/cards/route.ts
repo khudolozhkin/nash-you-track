@@ -14,7 +14,7 @@ export async function POST(request: Request) {
         id: body.columnId
       },
       select: {
-        board: {
+        table: {
           select: {
             dashboard: {
               select: {
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
       return new Response("Unauthorized", { status: 403 })
     }
 
-    if (!await userHasAccessToSpace(column.board.dashboard.spaceId, 4)) {
+    if (!await userHasAccessToSpace(column.table.dashboard.spaceId, 4)) {
       return new Response("Unauthorized", { status: 403 })
     }
 

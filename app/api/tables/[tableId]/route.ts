@@ -19,6 +19,7 @@ export async function PUT(
       select: {
         dashboard: {
           select: {
+            id: true,
             spaceId: true
           }
         }
@@ -39,7 +40,7 @@ export async function PUT(
       data: body
     })
     
-    return NextResponse.json(updateTable);
+    return NextResponse.json({updateTable, dashboardId: table?.dashboard.id});
   
   } catch (error) {
 
