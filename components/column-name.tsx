@@ -5,25 +5,8 @@ import { toast } from "react-hot-toast"
 import { ErrorToast, SuccessToast } from "./ui/toast"
 import { mutate } from "swr"
 
-type Table = {
-  name: string,
-  id: string,
-  top: number,
-  left: number,
-  columns: {
-      name: string;
-      sortOrder: Key;
-      cards: {
-          id: string;
-          name: string;
-          sortOrder: Number;
-          columnId: string;
-      }[];
-  }[];
-}
-
-export default function TableName({table} : {table: Table}) {
-  const [value, setValue] = useState<string>(table.name)
+export default function ColumnName({item} : {item: any}) {
+  const [value, setValue] = useState<string>(item.name)
   const input = useRef<HTMLInputElement>(null)
   
   useEffect(() => {
@@ -35,9 +18,8 @@ export default function TableName({table} : {table: Table}) {
   }
 
   const onBlur = () => {
-    input.current!.value = table.name
-    input.current!.size = table.name.length
-    setValue(table.name)
+    input.current!.value = value
+    input.current!.size = value.length
   }
 
   async function handleKeyDown(event) {
@@ -49,7 +31,7 @@ export default function TableName({table} : {table: Table}) {
         name: value
       })  
   
-      const response = await fetch(`/api/tables/${table.id}`, {
+      const response = await fetch(`/api/columns/${item.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -69,14 +51,15 @@ export default function TableName({table} : {table: Table}) {
         toast.custom((t) => (
           <SuccessToast t={t} header={`Название изменено`}/>
         ))
-        input.current!.value = responseBody.updateTable.name
+        input.current!.value = responseBody.name
+        setValue(responseBody.name)
       }
     }
   };
 
   return (
     <>
-      <input ref={input} onBlur={onBlur} onKeyDown={(e) => {handleKeyDown(e)}} onChange={onChange} maxLength={32} className="mb-[2px] text-lg h-[22px] outline-none bg-brand-background dark:bg-brand-background-dark" size={value.length}/>
+      <input ref={input} onBlur={onBlur} onKeyDown={(e) => {handleKeyDown(e)}} onChange={onChange} maxLength={32} className="mb-[2px] max-w-[200px] h-[18px] outline-none bg-brand-background dark:bg-brand-background-dark" size={value.length}/>
     </>
   )
 }

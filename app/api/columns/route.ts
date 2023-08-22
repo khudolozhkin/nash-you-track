@@ -15,20 +15,22 @@ export async function POST(request: Request) {
         id: body.tableId
       },
       select: {
-        dashboardId: true
+        dashboard: true,
+        columns: true,
       }
     })
 
     if (table == undefined) {
       return new Response("Unauthorized", { status: 403 })
     }
-
-    if (!await userHasAccessToSpace(table.dashboardId, 4)) {
+    if (!await userHasAccessToSpace(table.dashboard.spaceId, 4)) {
       return new Response("Unauthorized", { status: 403 })
     }
 
+    let sortOrder = Number(table.columns[table.columns.length - 1].sortOrder) + 200
+
     const newColumn = await db.column.create({
-      data: body
+      data: {sortOrder: sortOrder, tableId: body.tableId, name: 'Новая колонка'}
     })
 
     return NextResponse.json(newColumn);

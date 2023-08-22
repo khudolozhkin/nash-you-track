@@ -11,8 +11,9 @@ import {
 } from "@/components/ui/dropdown"
 import TableDelete from "./table-delete"
 import { DropdownMenuPortal } from "@radix-ui/react-dropdown-menu"
+import ColumnCreate from "./column-create"
 
-export default function TableOperations({tableId} : {tableId: string}) {
+export default function TableOperations({tableId, swrData} : {tableId: string, swrData: any}) {
   const [active, setActive] = useState<boolean>(false)
   
   return (
@@ -24,7 +25,7 @@ export default function TableOperations({tableId} : {tableId: string}) {
         <DropdownMenuPortal>
           <DropdownMenuContent className={'!opacity-100'} align="end">
             <DropdownMenuItem>
-              <div className="flex items-center"><Icons.add size={18} className="mr-2"/>Столбец</div>
+              <ColumnCreate swrData={swrData} tableId={tableId}/>
             </DropdownMenuItem>
             <TableDelete tableId={tableId}/>
           </DropdownMenuContent>

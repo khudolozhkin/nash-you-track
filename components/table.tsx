@@ -16,7 +16,8 @@ import {
   sortableKeyboardCoordinates,
   arrayMove,
   SortableContext,
-  horizontalListSortingStrategy
+  horizontalListSortingStrategy,
+  rectSortingStrategy
 } from '@dnd-kit/sortable'
 import { mutate } from 'swr'
 import { usePathname } from "next/navigation";
@@ -72,21 +73,18 @@ export default function Table({table, x, y, swrData} : {table: Table, x: number,
     if (oldIndex != newIndex) {
       if (newIndex == 0) {
         newSortOrder = (Number(table.columns[0].sortOrder) + 1) / 2
-        console.log(1, newSortOrder)
       }
       if (newIndex == table.columns.length - 1) {
         newSortOrder = Number(table.columns[newIndex].sortOrder) + 200
-        console.log(2, newSortOrder)
       }
       if (newIndex != 0 && newIndex != table.columns.length - 1) {
         if (Math.abs(newIndex - oldIndex) != 1) {
           newSortOrder = (Number(table.columns[newIndex].sortOrder) + Number(table.columns[newIndex - ((newIndex - oldIndex) > 0 ? -1 : 1)].sortOrder)) / 2
-          console.log(3, newSortOrder)
         } else {
           newSortOrder = (Number(table.columns[newIndex + (newIndex - oldIndex)].sortOrder) + Number(table.columns[newIndex].sortOrder)) / 2
-          console.log(4, newSortOrder)
         }
       }
+      console.log(newSortOrder)
 
       let data = JSON.stringify({
         sortOrder: newSortOrder
@@ -130,12 +128,12 @@ export default function Table({table, x, y, swrData} : {table: Table, x: number,
 
         <div className="w-full justify-end overflow-visible ml-2 transition-opacity flex items-center">
           <div className="">
-            <TableOperations tableId={table.id}/>
+            <TableOperations swrData={swrData} tableId={table.id}/>
           </div>
         </div>
       </div>
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={(e) => {onDragHandler(e)}}> 
-        <SortableContext strategy={horizontalListSortingStrategy} items={localOrder}>
+        <SortableContext strategy={rectSortingStrategy} items={localOrder}>
           <div className="flex pt-1 divide-x divide-border">
                 {table.columns.map((item, index) =>
                   <SortableColumn y={y} item={item} key={item.id}/>
