@@ -14,11 +14,12 @@ export async function POST(request: Request) {
         id: body.columnId
       },
       select: {
+        cards: true,
         table: {
           select: {
             dashboard: {
               select: {
-                spaceId: true
+                spaceId: true,
               }
             }
           }
@@ -34,8 +35,15 @@ export async function POST(request: Request) {
       return new Response("Unauthorized", { status: 403 })
     }
 
+    let sortOrder
+    if (column.cards.length > 0) {
+      sortOrder = Number(column.cards[column.cards.length - 1].sortOrder) + 200
+    } else {
+      sortOrder = 200
+    }
+    
     const newCard = await db.card.create({
-      data: body
+      data: {name: body.name, columnId: body.columnId, sortOrder: sortOrder}
     })
 
     return NextResponse.json(newCard);

@@ -27,7 +27,12 @@ export async function POST(request: Request) {
       return new Response("Unauthorized", { status: 403 })
     }
 
-    let sortOrder = Number(table.columns[table.columns.length - 1].sortOrder) + 200
+    let sortOrder
+    if (table.columns.length > 0) {
+      sortOrder = Number(table.columns[table.columns.length - 1].sortOrder) + 200
+    } else {
+      sortOrder = 200
+    }
 
     const newColumn = await db.column.create({
       data: {sortOrder: sortOrder, tableId: body.tableId, name: 'Новая колонка'}

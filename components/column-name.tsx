@@ -8,13 +8,15 @@ import { mutate } from "swr"
 export default function ColumnName({item} : {item: any}) {
   const [value, setValue] = useState<string>(item.name)
   const input = useRef<HTMLInputElement>(null)
-  
+
   useEffect(() => {
     input.current!.value = value
   }, [])
 
   const onChange = () => {
-    setValue(input.current!.value)
+    if (input.current!.value.length > 0) {
+      input.current!.size = input.current!.value.length
+    }
   }
 
   const onBlur = () => {
@@ -27,9 +29,10 @@ export default function ColumnName({item} : {item: any}) {
       input.current?.blur()
     }
     if (event.key === 'Enter') {
+      setValue(input.current!.value)
       let data = JSON.stringify({
-        name: value
-      })  
+        name: input.current!.value
+      })
   
       const response = await fetch(`/api/columns/${item.id}`, {
         method: "PUT",
@@ -51,15 +54,13 @@ export default function ColumnName({item} : {item: any}) {
         toast.custom((t) => (
           <SuccessToast t={t} header={`Название изменено`}/>
         ))
-        input.current!.value = responseBody.name
-        setValue(responseBody.name)
       }
     }
   };
 
   return (
     <>
-      <input ref={input} onBlur={onBlur} onKeyDown={(e) => {handleKeyDown(e)}} onChange={onChange} maxLength={32} className="mb-[2px] max-w-[200px] h-[18px] outline-none bg-brand-background dark:bg-brand-background-dark" size={value.length}/>
+      <input ref={input} onBlur={onBlur} onChange={onChange} onKeyUp={(e) => {handleKeyDown(e)}} maxLength={32} className="mb-[2px] max-w-[200px] h-[18px] outline-none bg-brand-background dark:bg-brand-background-dark" size={value.length}/>
     </>
   )
 }

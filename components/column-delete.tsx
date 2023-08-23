@@ -43,7 +43,7 @@ export default function ColumnDelete({columnId}: {columnId: string}) {
     <>
       <AlertDialog.Root open={showDeleteAlert} onOpenChange={setShowDeleteAlert}>
       <AlertDialog.Trigger asChild>
-        <div className='transition-opacity group-hover/column:opacity-100 opacity-0 group/delete cursor-pointer'>
+        <div className='transition-opacity duration-300 group-hover/column:opacity-100 opacity-0 group/delete cursor-pointer'>
           <Icons.delete size={18} className='transition-opacity text-delete dark:text-delete-dark mr-2 opacity-50 group-hover/delete:opacity-100'/>
         </div>
       </AlertDialog.Trigger>

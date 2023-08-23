@@ -19,4 +19,6 @@ This is a project manager with shared spaces, tables and cards.
 - [x] Dark theme
 - [x] Scheme of spaces and dashboards
 - [x] API for work with spaces and dashboards
-- [ ] Page for spaces
+- [x] Page for spaces
+- [x] Space settings and user invite
+- [ ] Dashboard

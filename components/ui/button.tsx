@@ -12,6 +12,18 @@ export default function Button({ children, onClick, className }: { children: Rea
   )
 }
 
+export function HoverButton({ children, onClick, className }: { children: React.ReactNode, onClick?: any, className?: any }) {
+  return (
+    <button
+        className={`flex items-center hover:bg-brand-background dark:hover:bg-brand-background-dark leading-9 font-normal rounded-lg px-4 bg-hover-item text-primary dark:text-primary-dark dark:bg-hover-item-dark transition-colors ${className}`}
+        type="button"
+        onClick={onClick}
+    >
+      {children}
+    </button>
+  )
+}
+
 export function AlternativeButton({ children, onClick, className }: { children: React.ReactNode, onClick?: any, className?: any }) {
   return (
     <button

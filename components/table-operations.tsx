@@ -17,7 +17,7 @@ export default function TableOperations({tableId, swrData} : {tableId: string, s
   const [active, setActive] = useState<boolean>(false)
   
   return (
-    <div className="ml-2 transition-opacity flex items-center sticky right-0">
+    <div className="ml-2 transition-opacity duration-500 flex items-center sticky right-0">
       <DropdownMenu modal={false} open={active} onOpenChange={() => {setActive(!active)}}>
         <DropdownMenuTrigger className={`${active ? '!opacity-100' : ''} group-hover/table:opacity-100 opacity-0 transition-opacity focus:outline-none`}>
           {(!active) ? <Icons.burger size={18} /> : <Icons.burgerActive size={18}/>}

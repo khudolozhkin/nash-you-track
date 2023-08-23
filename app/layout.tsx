@@ -6,10 +6,6 @@ import { Toaster } from 'react-hot-toast'
 export const metadata = {
   title: siteConfig.name,
   description: siteConfig.description,
-  keywords: [
-    "нашютрек",
-    "nashyoutrack"
-  ],
   authors: [
     {
       name: "Alexander Khudolozhkin",

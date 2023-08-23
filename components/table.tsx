@@ -1,7 +1,7 @@
 import { Icons } from "./ui/icons"
 import TableName from "./table-name"
 import TableOperations from "./table-operations"
-import { SortableColumn } from "./sortable-column";
+import { SortableColumn } from "./column-sortable";
 import { useState, Key } from "react";
 import {
   DndContext, 
@@ -136,7 +136,7 @@ export default function Table({table, x, y, swrData} : {table: Table, x: number,
         <SortableContext strategy={rectSortingStrategy} items={localOrder}>
           <div className="flex pt-1 divide-x divide-border">
                 {table.columns.map((item, index) =>
-                  <SortableColumn y={y} item={item} key={item.id}/>
+                  <SortableColumn y={y} column={item} key={item.id}/>
                 )}
           </div>
         </SortableContext>
