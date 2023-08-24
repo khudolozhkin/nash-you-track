@@ -71,6 +71,7 @@ export default function Modal({ children }: { children: React.ReactNode }) {
         rounded-md
         ease-in duration-300
         md:min-h-[calc(100%-32px-env(safe-area-inset-top)-env(safe-area-inset-bottom))]
+        max-h-[calc(100%-31px-env(safe-area-inset-top)-env(safe-area-inset-bottom))]
         overflow-hidden
         mt-[calc(16px+env(safe-area-inset-top))]
         mb-[calc(16px+env(safe-area-inset-bottom))]
@@ -82,9 +83,10 @@ export default function Modal({ children }: { children: React.ReactNode }) {
         border
         border-border
         dark:border-border-dark
+        overflow-y-auto
         "
       >
-        <Icons.close onClick={onKeyDown} ref={close} className="
+        <Icons.close onClick={onDismiss} ref={close} className="
           absolute
           top-[10px]
           right-[10px]
