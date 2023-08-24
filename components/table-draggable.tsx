@@ -15,6 +15,7 @@ type Table = {
         id: string  
         name: string;
         sortOrder: Key;
+        tableId: string;
         cards: {
             id: string;
             name: string;

@@ -31,6 +31,7 @@ export async function GET(
                 id: true,
                 name: true,
                 sortOrder: true,
+                tableId: true,
                 cards: {
                   select: {
                     id: true,

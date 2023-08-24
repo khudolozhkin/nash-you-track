@@ -31,6 +31,7 @@ type Table = {
       id: string
       name: string;
       sortOrder: Key;
+      tableId: string;
       cards: {
           id: string;
           name: string;
@@ -84,7 +85,6 @@ export default function Table({table, x, y, swrData} : {table: Table, x: number,
           newSortOrder = (Number(table.columns[newIndex + (newIndex - oldIndex)].sortOrder) + Number(table.columns[newIndex].sortOrder)) / 2
         }
       }
-      console.log(newSortOrder)
 
       let data = JSON.stringify({
         sortOrder: newSortOrder
@@ -120,7 +120,7 @@ export default function Table({table, x, y, swrData} : {table: Table, x: number,
   
   return (
     <div className='group/table overflow-clip rounded-md w-fit py-1 px-2 bg-brand-background dark:bg-brand-background-dark'>
-      <div style={{top: `-${y + 1}px`}} className={`sticky py-1 bg-brand-background dark:bg-brand-background-dark justify-between leading-[initial] items-center flex`}>
+      <div style={{top: `-${y + 1}px`}} className={`sticky z-[1000] py-1 bg-brand-background dark:bg-brand-background-dark justify-between leading-[initial] items-center flex`}>
         <div className="flex items-center">
           <Icons.drag className="handle mr-2 cursor-grab active:cursor-grabbing" size={18}/>
           <TableName table={table}/>
@@ -136,7 +136,7 @@ export default function Table({table, x, y, swrData} : {table: Table, x: number,
         <SortableContext strategy={rectSortingStrategy} items={localOrder}>
           <div className="flex pt-1 divide-x divide-border">
                 {table.columns.map((item, index) =>
-                  <SortableColumn y={y} column={item} key={item.id}/>
+                  <SortableColumn data={swrData} y={y} column={item} key={item.id}/>
                 )}
           </div>
         </SortableContext>

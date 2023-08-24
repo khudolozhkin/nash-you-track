@@ -8,7 +8,7 @@ import toast from 'react-hot-toast'
 import { HelpToast } from "./ui/toast";
 import TableDraggable from '@/components/table-draggable'
 import { Key, useState } from 'react'
-
+import TransferCardProvider from '@/context/transferCard'
 
 type Tables = {
   spaceId: string;
@@ -39,6 +39,7 @@ type Table = {
         id: string  
         name: string;
         sortOrder: Key;
+        tableId: string;
         cards: {
             id: string;
             name: string;
@@ -51,7 +52,7 @@ type Table = {
 const fetcher = (url) => fetch(url).then(res => res.json())
 
 export default function Dashboard({dashboardId, accessLevel}: {dashboardId: string, accessLevel: number}) {
-  const { data, error, isValidating,  } = useSWRImmutable(`/api/dashboards/${dashboardId}`, fetcher , { refreshInterval: 20000,  keepPreviousData: true })
+  const { data, error, isValidating} = useSWRImmutable(`/api/dashboards/${dashboardId}`, fetcher , { refreshInterval: 20000,  keepPreviousData: true })
 
   if (data) {
     
@@ -76,11 +77,13 @@ export default function Dashboard({dashboardId, accessLevel}: {dashboardId: stri
     }
     
     return (
+      <TransferCardProvider>
         <DashboardRightClick dashboardId={dashboardId}>
             {data.tables.map((table: Table, index) => (
                 <TableDraggable swrData={data} dashboardId={dashboardId} table={table} key={table.id}/> 
             ))}
         </DashboardRightClick>
+      </TransferCardProvider>  
     )
   }
 }
