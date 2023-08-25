@@ -11,6 +11,7 @@ This is a project manager with shared spaces, tables and cards.
 - SWR
 - Tailwind CSS
 - Zod
+- EditorJs
 
 ## Roadmap
 
@@ -21,4 +22,5 @@ This is a project manager with shared spaces, tables and cards.
 - [x] API for work with spaces and dashboards
 - [x] Page for spaces
 - [x] Space settings and user invite
-- [ ] Dashboard
+- [x] Dashboard
+- [ ] Card

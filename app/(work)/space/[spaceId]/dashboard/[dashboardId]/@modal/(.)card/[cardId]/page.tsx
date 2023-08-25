@@ -49,7 +49,9 @@ export default async function CardModal({ params }: { params: { cardId: string }
     <Modal>
      <div className="flex justify-center">
       <div className="pt-4 container max-w-3xl flex flex-col flex-1 gap-4 mt-4">
-        <CardName card={card} cardId={params.cardId}/>
+        <div className="px-[26px]">
+          <CardName card={card} cardId={params.cardId}/>
+        </div>
         <Editor card={card}/>
       </div>
      </div>

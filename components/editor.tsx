@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import EditorJS from "@editorjs/editorjs"
 import { Prisma } from "@prisma/client"
 
-// import "@/styles/editor.css"
+import "@/styles/editor.css"
 
 type EditorProps = {
   name: string;
@@ -78,8 +78,8 @@ export function Editor({ card }: {card: EditorProps}) {
 
   return (
       <div className="w-full">
-        <div className="prose prose-stone dark:prose-invert">
-          <div id="editor" className="min-h-[300px] !max-w-[768px]" />
+        <div className="prose prose-stone dark:prose-invert max-w-[768px]">
+          <div id="editor" onKeyUp={(e) => {console.log(e)}} className="" />
           <p className="text-sm text-gray-500">
             Используйте{" "}
             <kbd className="rounded-md border bg-muted px-1 text-xs uppercase">

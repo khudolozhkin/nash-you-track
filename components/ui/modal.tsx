@@ -65,7 +65,7 @@ export default function Modal({ children }: { children: React.ReactNode }) {
       <div
         ref={wrapper}
         className="
-        bg-brand-background
+        bg-general-background
         dark:bg-brand-background-dark
         min-h-full
         rounded-md

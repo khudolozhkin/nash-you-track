@@ -77,7 +77,7 @@ export default function CardName({card, cardId}: {card: Card, cardId: string}) {
   
   return (
     <>
-      <input ref={input} onBlur={onBlur} onKeyDown={(e) => {handleKeyDown(e)}} onChange={onChange} maxLength={32} className="mb-[2px] font-bold text-3xl h-[42px] outline-none bg-brand-background dark:bg-brand-background-dark" size={value.length}/>
+      <input ref={input} onBlur={onBlur} onKeyDown={(e) => {handleKeyDown(e)}} onChange={onChange} maxLength={32} className="mb-[2px] font-bold text-3xl h-[42px] outline-none bg-general-background dark:bg-brand-background-dark" size={value.length}/>
     </>
   )
 }

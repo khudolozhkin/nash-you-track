@@ -46,9 +46,11 @@ export default async function CardPage({ params }: { params: { cardId: string } 
   }
 
   return (
-    <div className="flex justify-center w-full">
-      <div className="pt-4 container max-w-3xl flex flex-col flex-1 gap-4 mt-4">
-        <CardName card={card} cardId={params.cardId}/>
+    <div className="flex overflow-y-scroll justify-center w-full dark:bg-general-background-dark bg-general-background">
+      <div className="py-4 container rounded-md h-fit max-w-3xl dark:bg-brand-background-dark bg-general-background flex flex-col flex-1 gap-4 mt-4">
+        <div className="px-[26px]">
+          <CardName card={card} cardId={params.cardId}/>
+        </div>
         <Editor card={card}/>
       </div>
     </div>

@@ -1,4 +1,4 @@
-/* .dark .ce-block--selected .ce-block__content,
+.dark .ce-block--selected .ce-block__content,
 .dark .ce-inline-toolbar,
 .dark .codex-editor--narrow .ce-toolbox,
 .dark .ce-conversion-toolbar,
@@ -8,9 +8,9 @@
 .dark .cdx-button,
 .dark .ce-popover,
 .dark .ce-toolbar__plus:hover {
-  background: theme('colors.popover.DEFAULT');
+  background: #0f0f0f;
   color: inherit;
-	border-color: theme('colors.border');
+	border-color: #333333;
 }
 
 .dark .ce-inline-tool,
@@ -23,18 +23,30 @@
 
 .dark .ce-popover__item-icon,
 .dark .ce-conversion-tool__icon {
-	background-color: theme('colors.muted.DEFAULT');
+	background-color: #383838;
 	box-shadow: none;
 }
 
 .dark .cdx-search-field {
-	border-color: theme('colors.border');
-	background: theme('colors.input');
+	border-color: #333333;
+	background: #0f0f0f;
 	color: inherit;
 }
 
 .dark ::selection {
-  background: theme('colors.accent.DEFAULT');
+  background: #3a3a3a;
+}
+
+::selection {
+  background: #d7d7d7;
+}
+
+.dark .ce-popover-item:hover {
+  background-color: #d2d2d24a;
+}
+
+.dark .ce-popover-item__title {
+  color: #fff !important;
 }
 
 .dark .cdx-settings-button:hover,
@@ -47,15 +59,15 @@
 .dark .ce-popover__item:hover,
 .dark .ce-conversion-tool:hover,
 .dark .ce-toolbar__settings-btn:hover {
-  background-color:theme('colors.accent.DEFAULT');
-  color: theme('colors.accent.foreground');;
+  background-color: #0f0f0f;
+  color: #fff;
 }
 
 .dark .cdx-notify--error {
-  background: theme('colors.destructive.DEFAULT') !important;
+  background: #b31f1f !important;
 }
 
 .dark .cdx-notify__cross::after,
 .dark .cdx-notify__cross::before {
   background: white;
-} */
+}
