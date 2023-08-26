@@ -52,7 +52,7 @@ export default async function CardModal({ params }: { params: { cardId: string }
         <div className="px-[26px]">
           <CardName card={card} cardId={params.cardId}/>
         </div>
-        <Editor card={card}/>
+        <Editor card={card} cardId={params.cardId}/>
       </div>
      </div>
     </Modal>

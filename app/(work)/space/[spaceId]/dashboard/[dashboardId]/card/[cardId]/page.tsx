@@ -4,7 +4,7 @@ import Modal from "@/components/ui/modal"
 import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
 import { userHasAccessToSpace } from "@/lib/user-access"
-import { usePathname } from "next/navigation"
+import { notFound, usePathname } from "next/navigation"
 import { redirect } from "next/navigation"
 
 async function getCardForUser(cardId: string) {
@@ -34,7 +34,7 @@ async function getCardForUser(cardId: string) {
   if (await userHasAccessToSpace(card!.column.table.dashboard.spaceId, 4)) {
     return card
   } else {
-    redirect('/')
+    notFound()
   }
 }
 
@@ -46,12 +46,12 @@ export default async function CardPage({ params }: { params: { cardId: string } 
   }
 
   return (
-    <div className="flex overflow-y-scroll justify-center w-full dark:bg-general-background-dark bg-general-background">
+    <div className="flex overflow-y-auto justify-center w-full dark:bg-general-background-dark bg-general-background">
       <div className="py-4 container rounded-md h-fit max-w-3xl dark:bg-brand-background-dark bg-general-background flex flex-col flex-1 gap-4 mt-4">
         <div className="px-[26px]">
           <CardName card={card} cardId={params.cardId}/>
         </div>
-        <Editor card={card}/>
+        <Editor card={card} cardId={params.cardId}/>
       </div>
     </div>
   )

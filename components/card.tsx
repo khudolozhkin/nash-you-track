@@ -143,7 +143,7 @@ export default function Card({card, column, data} : {card: Card, column: Column,
       <div
         className='mt-[3px] group/card h-[60px] w-full opacity-100 dark:bg-hover-item-dark bg-hover-item transition-opacity duration-300 cursor-pointer'
       >
-        <a draggable={false} className="card relative z-[100] top-[-6px] left-0 bottom-0 right-0 block h-[calc(100%+9px)] w-full"></a>
+        <a draggable={false} className="card relative z-[5] top-[-6px] left-0 bottom-0 right-0 block h-[calc(100%+9px)] w-full"></a>
         <div className='relative z-[1] top-[-69px] pl-2 flex flex-col'>
             <div className="h-[1px] group-hover/card:h-[4px] transition-all w-[40px] rounded-b bg-themed-color"></div>
             <p className="mt-1">{card.name}</p>
