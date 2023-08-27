@@ -23,7 +23,8 @@ import {
   XCircle,
   Sheet,
   HelpCircle,
-  GripVertical
+  GripVertical,
+  MoreVertical
 } from "lucide-react"
 
 import { LucideIcon } from "lucide-react"
@@ -31,6 +32,7 @@ import { LucideIcon } from "lucide-react"
 export type Icon = LucideIcon
 
 export const Icons = {
+  options: MoreVertical,
   drag: GripVertical,
   help: HelpCircle,
   table: Sheet,
