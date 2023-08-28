@@ -5,14 +5,16 @@ import Link from 'next/link'
 import { Icons } from './icons'
 
 export default function Modal({ children }: { children: React.ReactNode }) {
-  const overlay = useRef(null)
+  const overlay = useRef<HTMLDivElement>(null)
   const wrapper = useRef(null)
   const close = useRef(null)
   const router = useRouter()
 
   const onDismiss = useCallback(() => {
     router.back()
+    overlay.current!.style.display = 'none'
   }, [router])
+
 
   const onClick: MouseEventHandler = useCallback(
     (e) => {
