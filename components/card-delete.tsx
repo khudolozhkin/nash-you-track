@@ -23,6 +23,7 @@ export default function CardDelete({cardId}: {cardId: string}) {
 
     if (response.status == 200) {
       router.back()
+      router.refresh()
       mutate(`/api/dashboards/${pathname.split('/')[4]}`)
     }
 
