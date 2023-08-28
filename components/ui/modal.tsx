@@ -12,6 +12,7 @@ export default function Modal({ children }: { children: React.ReactNode }) {
 
   const onDismiss = useCallback(() => {
     router.back()
+    router.refresh()
     overlay.current!.style.display = 'none'
   }, [router])
 
