@@ -66,7 +66,7 @@ export default function SpaceCreateInviteButton({spaceId}: {spaceId: string}) {
         <DialogOverlay>
           <DialogContent>
             <div>
-              <h2 className="font-semibold text-lg md:text-xl text-primary dark:text-primary-dark">Отправить приглашение</h2>
+              <h2 className="font-semibold text-lg md:text-xl text-primary dark:text-primary-dark">Приглашение</h2>
               <div className="pt-2 flex flex-col">
                 <label className="font-light pb-1">Почта пользователя</label>
                 <input ref={email} maxLength={32} minLength={3} name="name" className="h-[30px] pl-2 rounded-md w-[300px]"/>
@@ -85,7 +85,7 @@ export default function SpaceCreateInviteButton({spaceId}: {spaceId: string}) {
                   </>))}
                 </div>
               </div>
-            <AlternativeButton onClick={onSubmit} className="mt-4">{(isLoading) ? <Icons.loader className="animate-spin mr-2" size={20}/> : <></>} Отправить приглашение</AlternativeButton>
+            <AlternativeButton onClick={onSubmit} className="mt-4">{(isLoading) ? <Icons.loader className="animate-spin mr-2" size={20}/> : <></>} Отправить</AlternativeButton>
           </DialogContent>
         </DialogOverlay>
       </Dialog.Portal>

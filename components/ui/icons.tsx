@@ -24,7 +24,8 @@ import {
   Sheet,
   HelpCircle,
   GripVertical,
-  MoreVertical
+  MoreVertical,
+  ArrowBigLeft
 } from "lucide-react"
 
 import { LucideIcon } from "lucide-react"
@@ -32,6 +33,7 @@ import { LucideIcon } from "lucide-react"
 export type Icon = LucideIcon
 
 export const Icons = {
+  arrowLeft: ArrowBigLeft,
   options: MoreVertical,
   drag: GripVertical,
   help: HelpCircle,
