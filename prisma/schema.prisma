@@ -48,6 +48,7 @@ model User {
   sessions Session[]
   spaces SpaceUser[]
   invites Invite[]
+
 }
 
 model ApiKey {
@@ -95,9 +96,11 @@ model Space {
   users  SpaceUser[]
   dashboards Dashboard[]
   invites Invite[]
+  cardTypes CardType[]
 }
 
 model SpaceUser {
+  id  String  @id @default(cuid())
   accessLevel Int @default(1)
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -105,6 +108,8 @@ model SpaceUser {
   
   space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
   spaceId String
+
+  responsibility ResponsibleUserForCard[]
 
   @@unique([userId, spaceId])
   @@index([spaceId])
@@ -167,7 +172,32 @@ model Card {
   content Json?
   sortOrder Decimal @default(100)
 
+  Type CardType? @relation(fields: [typeId], references: [id])
+  typeId String?
 
   column Column @relation(fields: [columnId], references: [id], onDelete: Cascade)
   columnId String
+
+  responsibleUsers ResponsibleUserForCard[]
+}
+
+model CardType {
+  id String @id @default(cuid())
+  name String
+  color String
+
+  space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+  spaceId String
+
+  cards Card[]
+}
+
+model ResponsibleUserForCard {
+  user SpaceUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  card Card @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  cardId String
+
+  @@unique([userId, cardId])
 }

@@ -6,6 +6,7 @@ import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
 import { notFound } from "next/navigation"
 import { userHasAccessToSpace } from "@/lib/user-access"
+import SpaceTypes from "@/components/space-types"
 
 async function getSpaceInfo(spaceId: string) {
   const spaceInfo = await db.space.findFirst({
@@ -34,6 +35,7 @@ export default async function Dashboard({ params }: { params: { spaceId: string 
       <SpaceName name={spaceInfo!.name} description={spaceInfo!.description} spaceId={params.spaceId}/>
       <SpaceUsers spaceId={params.spaceId} />
       <SpaceInvites spaceId={params.spaceId} />
+      <SpaceTypes spaceId={params.spaceId} />
       <SpaceDelete userId={user!.id} spaceId={params.spaceId}/>
      </div>
     </div>

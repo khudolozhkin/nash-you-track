@@ -1,7 +1,7 @@
 import { userHasAccessToSpace } from "@/lib/user-access"
 import { db } from "@/lib/db"
 import SpaceUserItem from "./space-user-item"
-import SpaceCreateInviteButton from "./space-create-invite-button"
+import SpaceCreateInviteButton from "./space-invite-create"
 
 export default async function SpaceUsers({spaceId}: {spaceId: string}) {
 

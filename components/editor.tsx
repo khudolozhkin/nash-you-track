@@ -87,9 +87,7 @@ export function Editor({ card, cardId }: {card: EditorProps, cardId: string}) {
               }
             },
     
-            /**
-             * Section for translation Tool Names: both block and inline tools
-             */
+
             "toolNames": {
               "Text": "Параграф",
               "Heading": "Заголовок",
@@ -222,7 +220,7 @@ export function Editor({ card, cardId }: {card: EditorProps, cardId: string}) {
   return (
       <div className="w-full">
         <div className="prose prose-stone dark:prose-invert max-w-[768px]">
-          <div id="editor" onClick={(e) => {saveCardTimer(4000)}} onKeyUp={(e) => {saveCardTimer(1500)}} className="" />
+          <div id="editor" onClick={(e) => {saveCardTimer(4000)}} onKeyUp={(e) => {saveCardTimer(1000)}} className="" />
           <p className="text-sm text-gray-500">
             Используйте{" "}
             <kbd className="rounded-md border bg-muted px-1 text-xs uppercase">

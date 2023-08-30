@@ -52,7 +52,7 @@ type Table = {
 const fetcher = (url) => fetch(url).then(res => res.json())
 
 export default function Dashboard({dashboardId, accessLevel}: {dashboardId: string, accessLevel: number}) {
-  const { data, error, isValidating} = useSWRImmutable(`/api/dashboards/${dashboardId}`, fetcher , { refreshInterval: 20000,  keepPreviousData: true })
+  const { data, error, isValidating} = useSWRImmutable(`/api/dashboards/${dashboardId}`, fetcher , { refreshInterval: 60000,  keepPreviousData: true })
 
   if (data) {
     

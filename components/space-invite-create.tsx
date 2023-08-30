@@ -3,10 +3,9 @@
 import { AlternativeButton } from "./ui/button"
 import { Icons } from "./ui/icons"
 import { useState, useRef } from "react"
-import * as Dialog from '@radix-ui/react-dialog';
+import * as Dialog from '@radix-ui/react-dialog'
 import { DialogTrigger, DialogOverlay, DialogContent } from "@/components/ui/dialog"
-import Button from "./ui/button";
-import { error } from "console";
+import Button from "./ui/button"
 import { useRouter, usePathname } from 'next/navigation'
 import { userRoles } from "@/config/user-roles"
 import { toast } from "react-hot-toast"

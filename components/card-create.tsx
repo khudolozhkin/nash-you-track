@@ -72,7 +72,7 @@ export default function CardCreate({columnId}: {columnId: string}) {
     return (
       <div className="mt-2 mb-12 group/createCard opacity-0 group-hover/column:opacity-100 transition-opacity">
         <div onClick={() => {setIsActive(true)}} className='min-h-[50px] flex items-center opacity-50 group-hover/createCard:opacity-80 dark:bg-hover-item-dark bg-hover-item transition-opacity cursor-pointer'>
-          <div className="flex items-center"><Icons.add className="mx-1 mt-[3px]" size={18}/> Создать карточку</div>
+          <div className="flex items-center"><Icons.add className="mx-1" size={18}/> Создать карточку</div>
         </div>
       </div>
     )
