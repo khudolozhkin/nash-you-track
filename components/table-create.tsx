@@ -68,7 +68,7 @@ export default function TableCreate({x, y, dashboardId, setOpen} : {x: number, y
           <input ref={tableName} maxLength={32} minLength={3} name="name" className="h-[30px] pl-2 rounded-md w-[200px] md:w-[300px]"/>
         </div>
         <div className='flex mt-2'>
-          <label className="font-light pb-1">Количество таблиц</label>
+          <label className="font-light pb-1">Количество столбцов</label>
           <select ref={tableCount} name="select" className='ml-2 rounded-md cursor-pointer'>
             <option value="1">1</option>
             <option value="2">2</option>

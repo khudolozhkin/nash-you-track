@@ -45,6 +45,11 @@ type Table = {
             name: string;
             sortOrder: Number;
             columnId: string;
+            type?: {
+              name?: string,
+              color?: string,
+              id?: string
+            }
         }[];
     }[];
 }

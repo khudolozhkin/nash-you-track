@@ -37,7 +37,14 @@ export async function GET(
                     id: true,
                     name: true,
                     sortOrder: true,
-                    columnId: true
+                    columnId: true,
+                    Type: {
+                      select: {
+                        id: true,
+                        name: true,
+                        color: true
+                      }
+                    }
                   }
                 }
               } 

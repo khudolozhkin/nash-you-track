@@ -25,7 +25,8 @@ import {
   HelpCircle,
   GripVertical,
   MoreVertical,
-  ArrowBigLeft
+  ArrowBigLeft,
+  PlusSquare
 } from "lucide-react"
 
 import { LucideIcon } from "lucide-react"
@@ -52,6 +53,7 @@ export const Icons = {
   burgerActive: AlignCenter,
   loader: Loader2,
   add: Plus,
+  add2: PlusSquare,
   space: Group,
   task: CalendarCheck2,
   system: PcCase,

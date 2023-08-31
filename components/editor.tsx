@@ -3,7 +3,6 @@
 import * as React from "react"
 import { useRouter } from "next/navigation"
 import EditorJS from "@editorjs/editorjs"
-import { Prisma } from "@prisma/client"
 import { toast } from "react-hot-toast"
 import { ErrorToast, SuccessToast } from "./ui/toast"
 
@@ -11,7 +10,7 @@ import "@/styles/editor.css"
 
 type EditorProps = {
   name: string;
-  content: Prisma.JsonValue;
+  content: JSON;
   column: {
       table: {
           dashboard: {

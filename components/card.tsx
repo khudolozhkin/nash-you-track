@@ -30,6 +30,11 @@ type Card = {
   name: string;
   sortOrder: Number;
   columnId: string;
+  Type?: {
+    name?: string,
+    color?: string,
+    id?: string
+  }
 }
 
 type Column = {
@@ -42,6 +47,11 @@ type Column = {
       name: string;
       sortOrder: Number;
       columnId: string;
+      Type?: {
+        name?: string,
+        color?: string,
+        id?: string
+      }
   }[];
 }
 
@@ -127,7 +137,7 @@ export default function Card({card, column, data} : {card: Card, column: Column,
       mutate(`/api/dashboards/${pathname.split('/')[4]}`)
     }
   }
-
+  
   return (
     <div
     style={{touchAction: 'auto'}} draggable={true}
@@ -145,7 +155,7 @@ export default function Card({card, column, data} : {card: Card, column: Column,
       >
         <a draggable={false} className="card relative z-[5] top-[-6px] left-0 bottom-0 right-0 block h-[calc(100%+9px)] w-full"></a>
         <div className='relative z-[1] top-[-69px] pl-2 flex flex-col'>
-            <div className="h-[1px] group-hover/card:h-[4px] transition-all w-[40px] rounded-b bg-themed-color"></div>
+            <div style={{backgroundColor: (card!.Type?.color) ? card!.Type!.color : 'transparent'}} className="h-[1px] group-hover/card:h-[4px] transition-all w-[40px] rounded-b"></div>
             <p className="mt-1">{card.name}</p>
         </div>
       </div>
