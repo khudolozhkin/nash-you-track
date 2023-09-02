@@ -4,6 +4,7 @@ import { getCurrentUser } from '@/lib/session';
 import { routeContextSchema, updateCardSchema } from "@/lib/validations/cards";
 import { db } from "@/lib/db";
 import { userHasAccessToSpace } from "@/lib/user-access";
+import { Prisma } from "@prisma/client";
 
 export async function GET(
   request: Request,
@@ -75,8 +76,10 @@ export async function PUT(
         id: params.cardId
       },
       select: {
+        sortOrder: true,
         column: {
           select: {
+            cards: true,
             table: {
               select: {
                 dashboard: {
@@ -97,6 +100,32 @@ export async function PUT(
 
     const json = await request.json();
     const body = updateCardSchema.parse(json)
+
+    if (body?.sortOrder == card?.sortOrder) {
+      for (let i = 0; i < card!.column.cards.length; i++) {
+        if (i == 0) {
+          let tempOrder = new Prisma.Decimal(100)
+          const updateCard = await db.card.update({
+            where: {
+              id: card!.column.cards[i].id
+            },
+            data: {
+              sortOrder: tempOrder  
+            }
+          })
+        } else {
+          let tempOrder = Number(card!.column.cards[i-1].sortOrder) + 200
+          const updateCard = await db.card.update({
+            where: {
+              id: card!.column.cards[i].id
+            },
+            data: {
+              sortOrder: tempOrder
+            }
+          })
+        }
+      }
+    }
 
     const updateCard = await db.card.update({
       where: {

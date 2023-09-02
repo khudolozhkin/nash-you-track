@@ -130,6 +130,7 @@ export default function Card({card, column, data} : {card: Card, column: Column,
         }
       }
     }
+    console.log(newSortOrder)
     const dataBody = JSON.stringify({
       columnId: cardInfo.targetColumn,
       sortOrder: newSortOrder
