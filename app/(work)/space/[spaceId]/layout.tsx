@@ -4,6 +4,33 @@ import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session";
 import { userHasAccessToSpace } from "@/lib/user-access";
 import { notFound, redirect } from "next/navigation"
+import type { Metadata, ResolvingMetadata } from 'next'
+
+type Props = {
+  params: { spaceId: string }
+}
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const spaceInfo = await db.space.findFirst({
+    where: {
+      id: params.spaceId
+    },
+    select: {
+      name: true,
+      description: true,
+      createdAt: true,
+      dashboards: true,
+    }
+  })
+ 
+  return {
+    title: spaceInfo?.name,
+    description: spaceInfo?.description
+  }
+}
 
 async function getDashboardsForSpace(spaceId: string) {
   

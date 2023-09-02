@@ -42,7 +42,6 @@ export function UserAccountNav(user: AccountNavProps) {
             <div className="flex flex-col px-2 max-w-[calc(100%-50px)]">
               <div className="font-bold whitespace-nowrap truncate">{user.name}</div>
               <div className="font-normal whitespace-nowrap truncate">{user.email}</div>
-              <Link className="pt-1 text-call-to-action hover:text-themed-color transition-colors" href={'/setting'}>Настройки профиля</Link>
             </div>
           </div>
           

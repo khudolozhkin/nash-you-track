@@ -3,6 +3,7 @@ import { MainNav } from "@/components/main-nav"
 import Link from "next/link"
 import UserAuthButton from "@/components/user-auth-button"
 import { getCurrentUser } from "@/lib/session"
+import type { Metadata } from 'next'
 
 export default async function WorkspaceLayout({
   children

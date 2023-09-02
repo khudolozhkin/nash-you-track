@@ -3,7 +3,12 @@ import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
 import Link from "next/link"
 import { redirect } from "next/navigation"
+import { Metadata } from "next"
 
+export const metadata: Metadata = {
+  title: 'Задачи',
+  description: 'Менеджер проектов с общими пространствами, таблицами и карточками.',
+}
 
 export default async function MyTasks() {
   const user = await getCurrentUser()

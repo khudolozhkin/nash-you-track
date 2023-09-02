@@ -9,10 +9,9 @@ export const metadata = {
   authors: [
     {
       name: "Alexander Khudolozhkin",
-      url: "https://homepage-xp.vercel.app/",
+      url: "https://github.com/Halatnbly",
     },
   ],
-  creator: "Alexander Khudolozhkin",
 }
 
 export default function RootLayout({

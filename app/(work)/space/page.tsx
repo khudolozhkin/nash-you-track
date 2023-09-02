@@ -6,6 +6,12 @@ import { getCurrentUser } from "@/lib/session"
 import { redirect } from "next/navigation"
 import SpaceItem from "@/components/space-item"
 import { space } from "postcss/lib/list"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: 'Пространства',
+  description: 'Менеджер проектов с общими пространствами, таблицами и карточками.',
+}
 
 type SpaceItem = {
   spaceId: string;

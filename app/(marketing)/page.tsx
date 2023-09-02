@@ -4,7 +4,7 @@ import { getCurrentUser } from '@/lib/session'
 import { marketingConfig } from '@/config/marketing';
 
 export default async function Home() {
-  let user = await getCurrentUser();
+  
   return (
     <>
     </>
