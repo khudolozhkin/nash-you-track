@@ -26,7 +26,8 @@ import {
   GripVertical,
   MoreVertical,
   ArrowBigLeft,
-  PlusSquare
+  PlusSquare,
+  ClipboardX
 } from "lucide-react"
 
 import { LucideIcon } from "lucide-react"
@@ -34,6 +35,7 @@ import { LucideIcon } from "lucide-react"
 export type Icon = LucideIcon
 
 export const Icons = {
+  noTasks: ClipboardX,
   arrowLeft: ArrowBigLeft,
   options: MoreVertical,
   drag: GripVertical,

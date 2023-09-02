@@ -23,4 +23,6 @@ This is a project manager with shared spaces, tables and cards.
 - [x] Page for spaces
 - [x] Space settings and user invites
 - [x] Dashboard
-- [ ] Card
+- [x] Card
+- [x] Tasks page
+- [ ] Marketing page

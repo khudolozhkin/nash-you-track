@@ -49,7 +49,7 @@ export default function CardUsers({cardId, card, spaceId}: {cardId: string, spac
   }
 
   if (data) {
-    console.log(card)
+    
     return (
       <div className="w-full mt-1 flex items-center flex-wrap">
           <div className="text-lg font-medium flex items-center mr-2">
