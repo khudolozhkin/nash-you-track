@@ -9,6 +9,7 @@ import CardOperations from "@/components/card-operations"
 import { notFound } from "next/navigation"
 import CardType from "@/components/card-type"
 import useSWRImmutable, { mutate } from 'swr'
+import CardUsers from "@/components/card-users"
 
 
 const fetcher = (url) => fetch(url).then(res => res.json())
@@ -27,6 +28,7 @@ export default function CardModal({ params }: { params: { cardId: string, spaceI
               <CardOperations cardId={params.cardId}/>
             </div>
             <CardType cardId={params.cardId} spaceId={params.spaceId} card={data}/>
+            <CardUsers cardId={params.cardId} spaceId={params.spaceId} card={data}/>
           </div>
           <Editor card={data} cardId={params.cardId}/>
         </div>

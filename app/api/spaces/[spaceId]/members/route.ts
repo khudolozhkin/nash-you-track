@@ -12,7 +12,7 @@ export async function GET(
   try {
     const { params } = routeContextSchema.parse(context)
 
-    if (!await userHasAccessToSpace (params.spaceId, 7)) {
+    if (!await userHasAccessToSpace (params.spaceId, 4)) {
       return new Response("Unauthorized", { status: 403 })
     }
     
@@ -26,7 +26,8 @@ export async function GET(
           select: {
             id: true,
             name: true,
-            email: true
+            email: true,
+            image: true
           }
         }
       }

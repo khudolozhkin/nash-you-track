@@ -23,6 +23,7 @@ type Column = {
       name: string;
       sortOrder: Number;
       columnId: string;
+      responsibleUsers: []
   }[];
 }
 
@@ -35,7 +36,8 @@ type Card = {
     name?: string,
     color?: string,
     id?: string
-  }
+  },
+  responsibleUsers: []
 }
 
 type TransferContext = {
@@ -57,7 +59,7 @@ export function SortableColumn({column, y, data}: {column: Column, y: number, da
     transition,
   } = useSortable({id: column.id,
     transition: {
-      duration: 300, // milliseconds
+      duration: 300,
       easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
     }
   });

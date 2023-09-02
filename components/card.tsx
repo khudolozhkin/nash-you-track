@@ -6,6 +6,7 @@ import { TransferContext } from "@/context/transferCard"
 import { mutate } from 'swr'
 import { toast } from "react-hot-toast"
 import { ErrorToast, SuccessToast } from "./ui/toast"
+import Avatar from "./ui/avatar"
 
 
 type TransferContext = {
@@ -35,6 +36,13 @@ type Card = {
     color?: string,
     id?: string
   }
+  responsibleUsers: {
+    user: {
+        image: string;
+        name: string;
+        id: string;
+    };
+}[];
 }
 
 type Column = {
@@ -51,7 +59,14 @@ type Column = {
         name?: string,
         color?: string,
         id?: string
-      }
+      },
+      responsibleUsers: {
+        user: {
+            image: string;
+            name: string;
+            id: string;
+        };
+    }[];
   }[];
 }
 
@@ -137,7 +152,7 @@ export default function Card({card, column, data} : {card: Card, column: Column,
       mutate(`/api/dashboards/${pathname.split('/')[4]}`)
     }
   }
-  
+
   return (
     <div
     style={{touchAction: 'auto'}} draggable={true}
@@ -155,8 +170,19 @@ export default function Card({card, column, data} : {card: Card, column: Column,
       >
         <a draggable={false} className="card relative z-[5] top-[-6px] left-0 bottom-0 right-0 block h-[calc(100%+9px)] w-full"></a>
         <div className='relative z-[1] top-[-69px] pl-2 flex flex-col'>
-            <div style={{backgroundColor: (card!.Type?.color) ? card!.Type!.color : 'transparent'}} className="h-[1px] group-hover/card:h-[4px] transition-all w-[40px] rounded-b"></div>
+            <div style={{backgroundColor: (card!.Type?.color) ? card!.Type!.color : 'transparent'}} className="h-[2px] group-hover/card:h-[4px] transition-all w-[40px] rounded-b"></div>
             <p className="mt-1">{card.name}</p>
+            <div className="flex gap-1">
+              {card.responsibleUsers.length > 3 ? <>
+                <Avatar url={card.responsibleUsers[0].user.image} h={20} w={20}/>
+                <Avatar url={card.responsibleUsers[1].user.image} h={20} w={20}/>
+                <div className="flex items-center justify-center min-w-[20px] h-[20px] bg-general-background dark:bg-general-background-dark rounded-full">
+                  <p className="text-xs px-1">+{card.responsibleUsers.length - 2}</p>
+                </div>
+              </> : <>
+                {card.responsibleUsers.map((item) => <Avatar url={item.user.image} h={20} w={20} key={item.user.id}/>)}
+              </>}
+            </div>
         </div>
       </div>
     </div>

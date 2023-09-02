@@ -44,7 +44,12 @@ export async function GET(
                         name: true,
                         color: true
                       }
-                    }
+                    },
+                     responsibleUsers: {
+                      select: {
+                        user: true
+                      }
+                     }
                   }
                 }
               } 

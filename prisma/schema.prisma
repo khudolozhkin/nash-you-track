@@ -48,6 +48,7 @@ model User {
   sessions Session[]
   spaces SpaceUser[]
   invites Invite[]
+  responsibility ResponsibleUserForCard[]
 
 }
 
@@ -108,8 +109,6 @@ model SpaceUser {
   
   space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
   spaceId String
-
-  responsibility ResponsibleUserForCard[]
 
   @@unique([userId, spaceId])
   @@index([spaceId])
@@ -193,7 +192,7 @@ model CardType {
 }
 
 model ResponsibleUserForCard {
-  user SpaceUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
 
   card Card @relation(fields: [cardId], references: [id], onDelete: Cascade)

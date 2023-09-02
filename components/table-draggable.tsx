@@ -25,7 +25,8 @@ type Table = {
               name?: string,
               color?: string,
               id?: string
-            }
+            },
+            responsibleUsers: []
         }[];
     }[];
 }

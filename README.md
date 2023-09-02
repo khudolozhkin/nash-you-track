@@ -19,8 +19,8 @@ This is a project manager with shared spaces, tables and cards.
 - [x] Protected routes
 - [x] Dark theme
 - [x] Scheme of spaces and dashboards
-- [x] API for work with spaces and dashboards
+- [x] API for work with spaces, dashboards and cards
 - [x] Page for spaces
-- [x] Space settings and user invite
+- [x] Space settings and user invites
 - [x] Dashboard
 - [ ] Card

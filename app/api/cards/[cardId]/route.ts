@@ -38,6 +38,11 @@ export async function GET(
               }
             }
           }
+        },
+        responsibleUsers: {
+          select: {
+            user: true
+          }
         }
       }
     })

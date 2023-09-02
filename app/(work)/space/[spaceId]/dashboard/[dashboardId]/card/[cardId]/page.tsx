@@ -3,6 +3,7 @@
 import CardName from "@/components/card-name"
 import CardOperations from "@/components/card-operations"
 import CardType from "@/components/card-type"
+import CardUsers from "@/components/card-users"
 import { Editor } from "@/components/editor"
 import Modal from "@/components/ui/modal"
 import { notFound, usePathname } from "next/navigation"
@@ -25,6 +26,7 @@ export default function CardPage({ params }: { params: { cardId: string, spaceId
               <CardOperations cardId={params.cardId}/>
             </div>
             <CardType cardId={params.cardId} spaceId={params.spaceId} card={data}/>
+            <CardUsers cardId={params.cardId} spaceId={params.spaceId} card={data}/>
           </div>
           <Editor card={data} cardId={params.cardId}/>
         </div>
