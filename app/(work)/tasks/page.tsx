@@ -59,7 +59,7 @@ export default async function MyTasks() {
         {responsibleForCards.length > 0 ? <>
           {responsibleForCards.map((item) => 
           <div
-          className="w-[420px] min-w-[300px] p-3 dark:bg-brand-background-dark bg-brand-background rounded-md"
+          className="w-[calc(50%-30px)] min-w-[300px] p-3 dark:bg-brand-background-dark bg-brand-background rounded-md"
           key={item.card.id}>
             <Link 
              href={`/space/${item.card.column.table.dashboard.space.id}/dashboard/${item.card.column.table.dashboardId}/`}

@@ -59,6 +59,14 @@ module.exports = {
         from: { rotate: '0deg'},
         to: { rotate: '360deg'},
       },
+      pulse: {
+        '0%, 100%': {
+          opacity: '100%'
+        },
+        '50%': {
+          opacity: '25%'
+        }
+      },
       scale: {
         from: { scale: '0%', opacity: '0%' },
         to: { scale: '100%', opacity: '100%' },
@@ -87,6 +95,7 @@ module.exports = {
       scaleIn: 'scaleIn 300ms cubic-bezier(0.16, 1, 0.3, 1)',
       toasterIn: 'toasterIn 500ms cubic-bezier(0.16, 1, 0.3, 1)',
       toasterOut: 'toasterOut 500ms cubic-bezier(0.16, 1, 0.3, 1)',
+      pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
     },
     extend: {
       backdropBlur: {

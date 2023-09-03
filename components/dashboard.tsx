@@ -58,19 +58,20 @@ type Table = {
 const fetcher = (url) => fetch(url).then(res => res.json())
 
 export default function Dashboard({dashboardId, accessLevel}: {dashboardId: string, accessLevel: number}) {
-  const { data, error, isValidating} = useSWRImmutable(`/api/dashboards/${dashboardId}`, fetcher , { refreshInterval: 60000,  keepPreviousData: true })
+  const { data, isLoading} = useSWRImmutable(`/api/dashboards/${dashboardId}`, fetcher , { refreshInterval: 60000,  keepPreviousData: true })
+
+  if (isLoading) {
+    return (
+      <>
+      <DashboardRightClick dashboardId={dashboardId}>
+          <div style={{transform: 'translate(50px, 100px)'}} className='animate-pulse rounded-md bg-brand-background dark:bg-brand-background-dark w-[700px] h-[300px]'></div>
+          <div style={{transform: 'translate(350px, 200px)'}} className='animate-pulse rounded-md bg-brand-background dark:bg-brand-background-dark w-[600px] h-[900px]'></div>
+        </DashboardRightClick>
+      </>
+    )
+  }
 
   if (data) {
-    
-    // if (accessLevel < 4) {
-    //   return (
-    //     <div className="w-full h-full box-border overflow-auto">
-    //       {data.tables.map((table: Table, index) => (
-    //         <TableNonDraggable dashboardId={dashboardId} table={table} key={index}/> 
-    //       ))}
-    //     </div>
-    //   )
-    // }
     
     if (data.swrData != undefined) {
       return (
