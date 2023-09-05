@@ -21,9 +21,9 @@ export function MainNav({items, userId, children}: MainNavProps) {
   
   return (
     <div className="flex gap-6 md:gap-10">
-      <Link href='/' className="hidden items-center space-x-2 md:flex">
+      <Link href='/' className="items-center space-x-2 flex">
         <Icons.logo color="#632dc1"/>
-        <span className="hidden font-bold sm:inline-block">
+        <span className="font-bold inline-block">
           {siteConfig.name}
         </span>
       </Link>
