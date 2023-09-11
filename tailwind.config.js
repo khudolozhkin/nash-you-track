@@ -7,6 +7,14 @@ module.exports = {
   ],
   darkMode: ["class"],
   theme: {
+    screens: {
+      'sm': '640px',
+      'md': '768px',
+      'lg': '	1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+      '3xl': '2000px',
+    },
     boxShadow: {
       '3xl': '0px 0px 11px 3px rgb(67 18 125 / 33%)',
       '4xl': '0px 0px 11px 3px rgb(67 18 125)',
