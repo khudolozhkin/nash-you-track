@@ -5,6 +5,8 @@ import { useScroll } from "framer-motion";
 import Image from "next/image";
 import { useTheme } from 'next-themes'
 import { InView } from 'react-intersection-observer';
+import UserAuthButton from "./user-auth-button";
+import Link from "next/link";
 
 export default function Marketing() {
   const ref = useRef(null)
@@ -63,14 +65,17 @@ export default function Marketing() {
         </InView>
         <InView threshold={0.75} as="div" onChange={(inView) => (inView) ? setCurrentSection(4) : ''}>
             <section className="w-full h-[calc(100vh-56px)] flex items-center justify-center">
-              <div className="flex gap-4 flex-col">
-                <h1 className="px-8 text-primary dark:text-primary-dark text-3xl md:text-5xl font-semibold text-center">Код приложения доступен на GitHub</h1>
-                <h2 className="px-8 text-secondary dark:text-secondary-dark text-xl md:text-3xl text-center">Для начала работы</h2>
+              <div className="flex gap-4 flex-col justify-center items-center">
+                <h1 className="px-8 text-primary dark:text-primary-dark text-3xl md:text-5xl font-semibold text-center">Код приложения доступен на <Link className="underline" href={'https://github.com/Halatnbly/nash-you-track'}>GitHub</Link></h1>
+                <div className="flex">
+                  <h2 className="pr-2 text-secondary dark:text-secondary-dark text-xl md:text-3xl text-center">Для начала работы нужно</h2>
+                  <UserAuthButton />
+                </div>
               </div>
             </section>
         </InView>
 
-        <div className="absolute top-0 left-0 w-[calc(100vw-11px)] h-[calc(100vh+35px)] overflow-hidden">
+        <div className="absolute bottom-0 left-0 w-[calc(100vw-11px)] h-[calc(100vh+35px)] overflow-hidden">
             <Image
               style={{scale: '75%', display: `${(theme == undefined) ? 'block' : 'none'}`, transform: `translate(${(scrollState != undefined && scrollState < 0.49) ? '0' : `-${((scrollState*100)-50)*20}`}px)`}}
               src={`/create-${themeState}.png`}
@@ -97,7 +102,7 @@ export default function Marketing() {
             />
           </div>
 
-          <div className="fixed top-0 left-0 w-[calc(100vw-11px)] h-[calc(100vh+35px)] overflow-hidden">
+          <div className="fixed top-0 left-0 w-[calc(100vw-11px)] overflow-hidden">
             <Image
                 style={{transform: currentSection == 1 ? 'translateY(0px) translateX(-50%)' : 'translateY(100%) translateX(-50%)'}}
                 src={`/pres-table-${themeState}.png`}
