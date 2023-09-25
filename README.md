@@ -25,4 +25,4 @@ This is a project manager with shared spaces, tables and cards.
 - [x] Dashboard
 - [x] Card
 - [x] Tasks page
-- [ ] Marketing page
+- [x] Marketing page
