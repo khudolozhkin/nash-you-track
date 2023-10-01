@@ -37,7 +37,7 @@ export default function SpaceOperations({ spaceItem, dashboards }: { spaceItem: 
           <SpacePinOperation dashboards={dashboards} spaceItem={spaceItem}/>
         </DropdownMenuItem>
         
-          {(spaceItem.accessLevel > 1) ? <DropdownMenuItem><div className="flex"><Icons.settings size={20} className="mr-2"/><Link href={`/space/${spaceItem.spaceId}/settings`}>Настройки</Link></div></DropdownMenuItem> : (<></>)}
+          {(spaceItem.accessLevel >= 7) ? <DropdownMenuItem><div className="flex"><Icons.settings size={20} className="mr-2"/><Link href={`/space/${spaceItem.spaceId}/settings`}>Настройки</Link></div></DropdownMenuItem> : (<></>)}
         <DropdownMenuItem asChild>
           {(spaceItem.accessLevel >= 7) ? <><DeleteSpace name="Удалить" setActive={setActive} userId={spaceItem.userId} spaceId={spaceItem.spaceId} /></> : <div className="flex"><LeaveSpace spaceId={spaceItem.spaceId} userId={spaceItem.userId}/></div>}
         </DropdownMenuItem>
