@@ -27,7 +27,8 @@ import {
   MoreVertical,
   ArrowBigLeft,
   PlusSquare,
-  ClipboardX
+  ClipboardX,
+  FileWarning
 } from "lucide-react"
 
 import { LucideIcon } from "lucide-react"
@@ -35,6 +36,7 @@ import { LucideIcon } from "lucide-react"
 export type Icon = LucideIcon
 
 export const Icons = {
+  notFound: FileWarning,
   noTasks: ClipboardX,
   arrowLeft: ArrowBigLeft,
   options: MoreVertical,
