@@ -38,5 +38,5 @@ export default withAuth(
 )
 
 export const config = {
-  matcher: ['/', '/space', '/space/:path*', '/:path*']
+  matcher: ['/', '/space', '/space/:path*']
 }

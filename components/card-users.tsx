@@ -18,7 +18,7 @@ import CardUser from "./card-user"
 
 const fetcher = (url) => fetch(url).then(res => res.json())
 
-export default function CardUsers({cardId, card, spaceId}: {cardId: string, spaceId: string, card: Card}) {
+export default function CardUsers({cardId, card, spaceId}: {cardId: string, spaceId: string, card: any}) {
   const { data, error, isValidating} = useSWRImmutable(`/api/spaces/${spaceId}/members`, fetcher)
   const pathname = usePathname()
 
