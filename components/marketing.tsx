@@ -78,7 +78,7 @@ export default function Marketing() {
         <div className="absolute bottom-0 left-0 w-[calc(100vw-11px)] h-[calc(100vh+35px)] overflow-hidden">
             <Image
               style={{scale: '75%', display: `${(theme == undefined) ? 'block' : 'none'}`, transform: `translate(${(scrollState != undefined && scrollState < 0.49) ? '0' : `-${((scrollState*100)-50)*20}`}px)`}}
-              src={`/assets/create-${themeState}.png`}
+              src={`/assets/create.png`}
               width={530}
               height={420}
               alt="Create"
@@ -86,7 +86,7 @@ export default function Marketing() {
             />
             <Image
               style={{scale: '75%', display: `${(theme == undefined) ? 'block' : 'none'}`, transform: `translate(${(scrollState != undefined && scrollState < 0.49) ? '0' : `${((scrollState*100)-50)*20}`}px, ${(scrollState != undefined && scrollState < 0.49) ? '0' : `-${((scrollState*100)-50)*10}`}px)`}}
-              src={`/assets/users-${themeState}.png`}
+              src={`/assets/users.png`}
               width={615}
               height={310}
               alt="Users"
@@ -94,7 +94,7 @@ export default function Marketing() {
             />
             <Image
               style={{scale: '75%', transform: `translateX(${(scrollState != undefined && scrollState < 0.5) ? '0' : `${((scrollState*100)-50)*40}`}px)`}}
-              src={`/assets/table-${themeState}.png`}
+              src={`/assets/table.png`}
               width={1715}
               height={585}
               alt="Table"
@@ -105,7 +105,7 @@ export default function Marketing() {
           <div className="fixed top-0 left-0 w-[calc(100vw-11px)] overflow-hidden">
             <Image
                 style={{transform: currentSection == 1 ? 'translateY(0px) translateX(-50%)' : 'translateY(100%) translateX(-50%)'}}
-                src={`/assets/pres-table-${themeState}.png`}
+                src={`/assets/pres-table.png`}
                 width={1466}
                 height={446}
                 alt="Table"
@@ -113,7 +113,7 @@ export default function Marketing() {
               />
               <Image
                 style={{transform: currentSection == 2 ? 'translateY(0px) translateX(-50%)' : 'translateY(100%) translateX(-50%)'}}
-                src={`/assets/pres-card-${themeState}.png`}
+                src={`/assets/pres-card.png`}
                 width={1466}
                 height={446}
                 alt="Table"
@@ -121,7 +121,7 @@ export default function Marketing() {
               />
               <Image
                 style={{transform: currentSection == 3 ? 'translateY(0px) translateX(-50%)' : 'translateY(100%) translateX(-50%)'}}
-                src={`/assets/pres-users-${themeState}.png`}
+                src={`/assets/pres-users.png`}
                 width={1466}
                 height={446}
                 alt="Table"
