@@ -1,5 +1,7 @@
 # NashYouTrack
 
+[https://nyt.halatnbly.ru/](https://nyt.halatnbly.ru/)
+
 ## About this project
 
 This is a project manager with shared spaces, tables and cards.
