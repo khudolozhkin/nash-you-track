@@ -9,6 +9,7 @@ import { HelpToast } from "./ui/toast";
 import TableDraggable from '@/components/table-draggable'
 import { Key, useState } from 'react'
 import TransferCardProvider from '@/context/transferCard'
+import { SuccessToast } from "./ui/toast"
 
 type Tables = {
   spaceId: string;
@@ -82,7 +83,13 @@ export default function Dashboard({dashboardId, accessLevel}: {dashboardId: stri
         </DashboardRightClick>
       )
     }
-    
+
+    if (data.tables.length == 0) {
+      toast.custom((t) => (
+        <SuccessToast t={t} header="Для создания таблицы используйте ПКМ"/>
+      ))
+    }
+
     return (
       <TransferCardProvider>
         <DashboardRightClick dashboardId={dashboardId}>

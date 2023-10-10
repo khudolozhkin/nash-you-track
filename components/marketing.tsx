@@ -77,20 +77,20 @@ export default function Marketing() {
 
         <div className="absolute bottom-0 left-0 w-[calc(100vw-11px)] h-[calc(100vh+35px)] overflow-hidden">
             <Image
-              style={{scale: '75%', display: `${(theme == undefined) ? 'block' : 'none'}`, transform: `translate(${(scrollState != undefined && scrollState < 0.49) ? '0' : `-${((scrollState*100)-50)*20}`}px)`}}
+              style={{scale: '75%', transform: `translate(${(scrollState != undefined && scrollState < 0.49) ? '0' : `-${((scrollState*100)-50)*20}`}px)`}}
               src={`/assets/create.png`}
               width={530}
               height={420}
               alt="Create"
-              className="absolute left-[-6%] bottom-[1%] md:left-[0%] md:bottom-[-20px]"
+              className="absolute overflow-hidden left-[-6%] hidden xl:block bottom-[1%] md:left-[0%] md:bottom-[-20px]"
             />
             <Image
-              style={{scale: '75%', display: `${(theme == undefined) ? 'block' : 'none'}`, transform: `translate(${(scrollState != undefined && scrollState < 0.49) ? '0' : `${((scrollState*100)-50)*20}`}px, ${(scrollState != undefined && scrollState < 0.49) ? '0' : `-${((scrollState*100)-50)*10}`}px)`}}
+              style={{scale: '75%', transform: `translate(${(scrollState != undefined && scrollState < 0.49) ? '0' : `${((scrollState*100)-50)*20}`}px, ${(scrollState != undefined && scrollState < 0.49) ? '0' : `-${((scrollState*100)-50)*10}`}px)`}}
               src={`/assets/users.png`}
               width={615}
               height={310}
               alt="Users"
-              className="absolute right-[-9%] top-[4%] md:top-[0%] xl:right-[10%] scale-[80%]"
+              className="absolute overflow-hidden right-[-9%] hidden xl:block top-[4%] md:top-[0%] xl:right-[10%] scale-[80%]"
             />
             <Image
               style={{scale: '75%', transform: `translateX(${(scrollState != undefined && scrollState < 0.5) ? '0' : `${((scrollState*100)-50)*40}`}px)`}}
@@ -98,7 +98,7 @@ export default function Marketing() {
               width={1715}
               height={585}
               alt="Table"
-              className="absolute overflow-hidden hidden bottom-[-5%] right-[-24%] xl:block"
+              className="absolute overflow-hidden hidden xl:block bottom-[-5%] right-[-24%]"
             />
           </div>
 
