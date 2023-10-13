@@ -4,7 +4,7 @@ export function AlertOverlay({ children }: { children?: React.ReactNode }) {
   return (
     <AlertDialog.Overlay className="
     fixed
-    z-50
+    z-1111
     flex
     items-center
     justify-center
@@ -20,7 +20,7 @@ export function AlertOverlay({ children }: { children?: React.ReactNode }) {
     flex
     items-center   
     justify-center
-    "> {children} </AlertDialog.Overlay>
+    " style={{zIndex: 1111}}> {children} </AlertDialog.Overlay>
   )
 }
 
