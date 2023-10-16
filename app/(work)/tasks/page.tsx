@@ -4,6 +4,7 @@ import { getCurrentUser } from "@/lib/session"
 import Link from "next/link"
 import { redirect } from "next/navigation"
 import { Metadata } from "next"
+import ResponsibleForCard from "@/components/responsible-card"
 
 export const metadata: Metadata = {
   title: 'Задачи',
@@ -58,21 +59,8 @@ export default async function MyTasks() {
       <div className="pt-4 container flex flex-wrap max-w-5xl flex flex-1 gap-4 mt-4">
         {responsibleForCards.length > 0 ? <>
           {responsibleForCards.map((item) => 
-          <Link href={`/space/${item.card.column.table.dashboard.space.id}/dashboard/${item.card.column.table.dashboardId}/card/${item.card.id}`}
-          className="w-[calc(50%-30px)] min-w-[300px] p-3 dark:bg-brand-background-dark bg-brand-background rounded-md"
-          key={item.card.id}>
-            <div
-             className="hover:underline flex px-2 py-1 items-center text-secondary dark:text-secondary-dark">
-              <p className="truncate whitespace-nowrap">{item.card.column.table.dashboard.space.name}</p>
-              <Icons.arrow className="rotate-[-90deg] mx-1" size={15}/>
-              <p className="truncate whitespace-nowrap">{item.card.column.table.dashboard.name}</p>
-              <Icons.arrow className="rotate-[-90deg] mx-1" size={15}/>
-              <p className="truncate whitespace-nowrap">{item.card.column.table.name}</p>
-            </div>
-            <div className="flex whitespace-wrap items-center px-2 py-1 font-bold text-primary dark:text-primary-dark text-lg">
-              {item.card.column.name} | {item.card.name}
-            </div>
-          </Link>)}
+            <ResponsibleForCard key={item.card.id} item={item.card}/>
+          )}
         </> : <>
           <div className="flex min-h-[400px] w-full flex-col items-center justify-center rounded-md border border-border dark:border-border-dark p-8 text-center animate-in fade-in-50">
             <div className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-background dark:bg-brand-background-dark">
