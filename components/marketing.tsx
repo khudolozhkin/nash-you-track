@@ -76,7 +76,7 @@ export default function Marketing() {
         </InView>
 
         <div className="absolute bottom-0 left-0 w-[calc(100vw-11px)] h-[calc(100vh+35px)] overflow-hidden">
-            <Image
+            {/* <Image
               style={{scale: '75%', transform: `translate(${(scrollState != undefined && scrollState < 0.49) ? '0' : `-${((scrollState*100)-50)*20}`}px)`}}
               src={`/assets/create.png`}
               width={530}
@@ -99,7 +99,7 @@ export default function Marketing() {
               height={585}
               alt="Table"
               className="absolute overflow-hidden hidden xl:block bottom-[-5%] right-[-24%]"
-            />
+            /> */}
           </div>
 
           <div className="fixed top-0 left-0 w-[calc(100vw-11px)] overflow-hidden">
