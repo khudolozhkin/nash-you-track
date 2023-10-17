@@ -5,6 +5,7 @@ import { getCurrentUser } from "@/lib/session";
 import { userHasAccessToSpace } from "@/lib/user-access";
 import { notFound, redirect } from "next/navigation"
 import type { Metadata, ResolvingMetadata } from 'next'
+import SpaceBurgerMenu from "@/components/space-burger-menu";
 
 type Props = {
   params: { spaceId: string }
@@ -78,7 +79,10 @@ export default async function SpaceLayout({ children, params }: { children: Reac
   
   return (
     <>
-      <div className="static flex h-[calc(100vh-57px)]">
+      <SpaceBurgerMenu name={space?.name} accessLevel={accessLevel!.accessLevel} spaceId={params.spaceId} dashboards={space?.dashboards} >
+        {children}
+      </SpaceBurgerMenu>
+      {/* <div className="static flex h-[calc(100vh-57px)]">
         <div className="h-full overflow-y-auto overscroll-y-auto no-scrollbar overflow-hidden relative max-w-[300px] min-w-[250px] flex border-r border-border dark:border-border-dark px-2 py-2 flex-col">
           <div className="mx-4 flex justify-center">
             <h1 className="whitespace-nowrap truncate font-bold text-xl md:text-2xl text-primary dark:text-primary-dark">{space?.name}</h1>
@@ -87,7 +91,7 @@ export default async function SpaceLayout({ children, params }: { children: Reac
           {(accessLevel!.accessLevel >= 7) ? <SpaceSetting spaceId={params.spaceId}/> : <></>}
         </div>
         {children}
-      </div>
+      </div> */}
     </>
   )
 }

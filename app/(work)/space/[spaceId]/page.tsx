@@ -19,7 +19,7 @@ export default async function Space({ params }: { params: { spaceId: string } })
             <div className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-background dark:bg-brand-background-dark">
               <Icons.arrowLeft size={50} />
             </div>
-            <h1 className="mt-6 font-semibold text-xl md:text-2xl text-primary dark:text-primary-dark">Добро пожаловать в пространство {space?.name}</h1>
+            <h1 className="mt-6 break-words font-semibold text-xl md:text-2xl text-primary dark:text-primary-dark break-all">Добро пожаловать в пространство {space?.name}</h1>
             <p className="mb-4 text-lg font-light text-secondary dark:text-secondary-dark">Используйте меню слева для его настройки и продолжения работы</p>
           </div>
       </div> 

@@ -30,8 +30,8 @@ export default async function Dashboard({ params }: { params: { spaceId: string 
   }
 
   return (
-    <div className="flex justify-center w-full">
-     <div className="pt-4 container max-w-3xl">
+    <div className="flex sm:justify-center w-full overflow-auto">
+     <div className="pt-4 container sm:min-w-[500px] min-w-[calc(100vw)] max-w-3xl">
       <SpaceName name={spaceInfo!.name} description={spaceInfo!.description} spaceId={params.spaceId}/>
       <SpaceUsers spaceId={params.spaceId} />
       <SpaceInvites spaceId={params.spaceId} />

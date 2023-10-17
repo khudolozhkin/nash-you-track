@@ -28,7 +28,9 @@ import {
   ArrowBigLeft,
   PlusSquare,
   ClipboardX,
-  FileWarning
+  FileWarning,
+  ArrowLeftToLine,
+  ArrowRightToLine
 } from "lucide-react"
 
 import { LucideIcon } from "lucide-react"
@@ -36,6 +38,8 @@ import { LucideIcon } from "lucide-react"
 export type Icon = LucideIcon
 
 export const Icons = {
+  closeBurger: ArrowLeftToLine,
+  openBurger: ArrowRightToLine,
   notFound: FileWarning,
   noTasks: ClipboardX,
   arrowLeft: ArrowBigLeft,

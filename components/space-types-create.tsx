@@ -64,7 +64,7 @@ export default function SpaceTypesCreate({ spaceId }: {spaceId: string}) {
               <h2 className="font-semibold text-lg md:text-xl text-primary dark:text-primary-dark">Новый тип карточки</h2>
               <div className="pt-2 flex flex-col">
                 <label className="font-light pb-1">Название</label>
-                <input ref={name} maxLength={32} minLength={3} name="name" className="h-[30px] pl-2 rounded-md w-[300px]"/>
+                <input ref={name} maxLength={32} minLength={3} name="name" className="h-[30px] pl-2 rounded-md w-[250px]"/>
               </div>
               <div className="pt-2 flex">
                 <label className="font-light pb-1">Цвет:</label>
