@@ -44,7 +44,12 @@ export default async function DashboardPage({ params }: { params: { dashboardId:
       id: params.dashboardId
     },
     select: {
-      spaceId: true
+      spaceId: true,
+      tables: {
+        select: {
+          name: true
+        }
+      }
     }
   })
   if (dashboard == undefined) notFound()
@@ -64,7 +69,6 @@ export default async function DashboardPage({ params }: { params: { dashboardId:
       accessLevel: true
     }
   })
-
 
   return (
     <Dashboard accessLevel={spaceUser!.accessLevel} dashboardId={params.dashboardId}/>

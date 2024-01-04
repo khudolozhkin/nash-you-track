@@ -1,7 +1,7 @@
 'use client'
 
 import * as ContextMenu from '@radix-ui/react-context-menu'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Icons } from './icons'
 import TableCreate from '../table-create'
 import * as Dialog from '@radix-ui/react-dialog';

@@ -2,12 +2,12 @@
 
 import Table from '@/components/table-draggable'
 import DashboardRightClick from '@/components/ui/dashboard-right-click-menu'
-import useSWRImmutable, { mutate } from 'swr'
+import useSWRImmutable from 'swr'
 import TableNonDraggable from './table-not-draggable'
 import toast from 'react-hot-toast'
 import { HelpToast } from "./ui/toast";
 import TableDraggable from '@/components/table-draggable'
-import { Key, useState } from 'react'
+import { Key, useEffect } from 'react'
 import TransferCardProvider from '@/context/transferCard'
 import { SuccessToast } from "./ui/toast"
 
@@ -59,9 +59,21 @@ type Table = {
 const fetcher = (url) => fetch(url).then(res => res.json())
 
 export default function Dashboard({dashboardId, accessLevel}: {dashboardId: string, accessLevel: number}) {
-  const { data, isLoading} = useSWRImmutable(`/api/dashboards/${dashboardId}`, fetcher , { refreshInterval: 60000,  keepPreviousData: true })
+  const {data, isLoading} = useSWRImmutable(`/api/dashboards/${dashboardId}`, fetcher , { refreshInterval: 5000,  keepPreviousData: true })
+
+  useEffect ( ()=> { 
+    let helpFlag = localStorage.getItem(`${dashboardId}`)
+    if (helpFlag == null) {
+      localStorage.setItem(`${dashboardId}`, '[]')
+    } else {
+      toast.custom((t) => (
+        <SuccessToast t={t} header="Для создания таблицы используйте ПКМ"/>
+      ))
+    }
+  } , [])
 
   if (isLoading) {
+
     return (
       <>
       <DashboardRightClick dashboardId={dashboardId}>
@@ -73,7 +85,7 @@ export default function Dashboard({dashboardId, accessLevel}: {dashboardId: stri
   }
 
   if (data) {
-    
+
     if (data.swrData != undefined) {
       return (
         <DashboardRightClick dashboardId={dashboardId}>
@@ -84,12 +96,7 @@ export default function Dashboard({dashboardId, accessLevel}: {dashboardId: stri
       )
     }
 
-    if (data.tables.length == 0) {
-      toast.custom((t) => (
-        <SuccessToast t={t} header="Для создания таблицы используйте ПКМ"/>
-      ))
-    }
-
+    
     return (
       <TransferCardProvider>
         <DashboardRightClick dashboardId={dashboardId}>
