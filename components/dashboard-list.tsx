@@ -15,7 +15,6 @@ export default function DashboardList({dashboards, accessLevel, spaceId}: {dashb
   
   useEffect(() => {
     const interval = setInterval(router.refresh, 10000)
-
     return () => clearInterval(interval);
   }, [])
   
@@ -30,7 +29,7 @@ export default function DashboardList({dashboards, accessLevel, spaceId}: {dashb
           <div className="relative">
             <ul className="text-secondary transition-colors md:text-lg cursor-pointer font-medium px-0.5 dark:border-dark/50 pl-3 ml-2">
               {dashboards?.map((item: {id: string; name: string; createdAt: Date; spaceId: string;}, index) => (
-                <li key={index} onClick={() => {router.push(`/space/${spaceId}/dashboard/${item.id}`)}} className={`${(pathname == `/space/${spaceId}/dashboard/${item.id}`) ? ("text-primary dark:text-primary-dark") : ("")} whitespace-nowrap truncate transition-opacity transition-colors items-center group/item flex place-content-between hover:text-primary transition-colors dark:hover:text-primary-dark`}>
+                <li key={index} onClick={() => {router.push(`/space/${spaceId}/dashboard/${item.id}`)}} className={`${(pathname.slice(0, 68) == `/space/${spaceId}/dashboard/${item.id}`) ? ("text-primary dark:text-primary-dark") : ("")} whitespace-nowrap truncate transition-opacity transition-colors items-center group/item flex place-content-between hover:text-primary transition-colors dark:hover:text-primary-dark`}>
                   <p className="whitespace-nowrap truncate">
                     {item.name}
                   </p>

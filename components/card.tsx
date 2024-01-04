@@ -91,7 +91,13 @@ export default function Card({card, column, data} : {card: Card, column: Column,
   }
 
   function onDragStartHandler(e) {
-    e.target.lastChild.style.opacity = '10%'
+    let target
+    if (e.type == 'touchstart') {
+      target = e.target.parentElement
+    } else {
+      target = e.target.lastChild
+    }
+    target.style.opacity = '10%'
     transferContext.setTransferContext({targetCard: card.id, targetColumn: column.name})
   }
 
@@ -156,13 +162,13 @@ export default function Card({card, column, data} : {card: Card, column: Column,
 
   return (
     <div
-    style={{touchAction: 'auto'}} draggable={true}
-    onDragOver={(e) => onDragOverHandler(e)}
-    onDragLeave={(e) => {onDragLeaveHandler(e)}}
-    onDragStart={(e) => {onDragStartHandler(e)}}
-    onDragEnd={(e) => {onDragEndHandler(e, card, column)}}
-    onDrop={(e) => {onDropHandler(e, card, column)}}
-      onClick={() => {router.push(`${pathname}/card/${card.id}`)}}
+      style={{touchAction: 'auto'}} draggable={true}
+      onDragOver={(e) => onDragOverHandler(e)}
+      onDragLeave={(e) => {onDragLeaveHandler(e)}}
+      onDragStart={(e) => {onDragStartHandler(e)}}
+      onDragEnd={(e) => {onDragEndHandler(e, card, column)}}
+      onDrop={(e) => {onDropHandler(e, card, column)}}
+      onClick={() => {router.push(`${pathname}/card/${card.id}`)}} 
       className="card"
     >
       <div style={{opacity: '0%'}} className="transition-all bg-themed-color dark:bg-themed-color-dark mt-[3px] shadow-3xl dark:shadow-4xl rounded h-[2px] w-full"></div>
