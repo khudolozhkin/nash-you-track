@@ -78,7 +78,7 @@ export default function TableDraggable({table, dashboardId, swrData} : {swrData:
       onStop={onChangePosition}
       handle=".handle"
     >
-      <div className='w-[1px] h-[1px]'>
+      <div className='w-[1px] h-[1px] pr-[1000px]'>
         <Table swrData={swrData} x={leftState} y={topState} table={table}/>
       </div>
     </Draggable>

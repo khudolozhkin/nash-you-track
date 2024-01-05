@@ -1,7 +1,10 @@
+'use client'
+
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import { siteConfig } from '@/config/site'
 import { Toaster } from 'react-hot-toast'
+import { YandexMetricaProvider } from 'next-yandex-metrica';
 
 export const metadata = {
   title: siteConfig.name,
@@ -22,6 +25,10 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body>
+      <YandexMetricaProvider
+        tagID={12341234}
+        initParameters={{ clickmap: true, trackLinks: true, accurateTrackBounce: true }}
+      >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
           <Toaster
@@ -29,6 +36,7 @@ export default function RootLayout({
             toastOptions={{duration: 3000}}
           />
         </ThemeProvider>
+      </YandexMetricaProvider>
       </body>
     </html>
   )

@@ -169,6 +169,7 @@ model Card {
   createdAt DateTime @default(now())
   name String
   content Json?
+  deadline DateTime?
   sortOrder Decimal @default(100)
 
   Type CardType? @relation(fields: [typeId], references: [id])
