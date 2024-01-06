@@ -30,7 +30,7 @@ import {
   ClipboardX,
   FileWarning,
   ArrowLeftToLine,
-  ArrowRightToLine
+  ArrowRightToLine,
 } from "lucide-react"
 
 import { LucideIcon } from "lucide-react"

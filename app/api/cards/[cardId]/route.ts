@@ -20,6 +20,7 @@ export async function GET(
       select: {
         name: true,
         content: true,
+        deadline: true,
         Type: {
           select: {
             name: true,

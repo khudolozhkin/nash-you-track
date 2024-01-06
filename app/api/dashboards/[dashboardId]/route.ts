@@ -35,6 +35,7 @@ export async function GET(
                 cards: {
                   select: {
                     id: true,
+                    deadline: true,
                     name: true,
                     sortOrder: true,
                     columnId: true,

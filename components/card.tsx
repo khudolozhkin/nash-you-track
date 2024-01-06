@@ -31,6 +31,7 @@ type Card = {
   name: string;
   sortOrder: Number;
   columnId: string;
+  deadline: string;
   Type?: {
     name?: string,
     color?: string,
@@ -136,7 +137,7 @@ export default function Card({card, column, data} : {card: Card, column: Column,
         }
       }
     }
-    console.log(newSortOrder)
+    
     const dataBody = JSON.stringify({
       columnId: cardInfo.targetColumn,
       sortOrder: newSortOrder
@@ -159,7 +160,7 @@ export default function Card({card, column, data} : {card: Card, column: Column,
       mutate(`/api/dashboards/${pathname.split('/')[4]}`)
     }
   }
-
+  
   return (
     <div
       style={{touchAction: 'auto'}} draggable={true}
@@ -179,7 +180,7 @@ export default function Card({card, column, data} : {card: Card, column: Column,
         <div className='relative z-[1] top-[-69px] pl-2 flex flex-col'>
             <div style={{backgroundColor: (card!.Type?.color) ? card!.Type!.color : 'transparent'}} className="h-[2px] group-hover/card:h-[4px] transition-all w-[40px] rounded-b"></div>
             <p className="mt-1 truncate">{card.name}</p>
-            <div className="flex gap-1">
+            <div className="flex gap-1 items-center">
               {card.responsibleUsers.length > 3 ? <>
                 <Avatar url={card.responsibleUsers[0].user.image} h={20} w={20}/>
                 <Avatar url={card.responsibleUsers[1].user.image} h={20} w={20}/>
@@ -189,6 +190,9 @@ export default function Card({card, column, data} : {card: Card, column: Column,
               </> : <>
                 {card.responsibleUsers.map((item) => <Avatar url={item.user.image} h={20} w={20} key={item.user.id}/>)}
               </>}
+              {card.deadline != null ? <>
+                <p className="bg-brand-background opacity-[80%] dark:bg-brand-background-dark px-[5px] py-[2px] text-sm rounded-lg">{card.deadline.toString().slice(0, 10)}</p>
+              </> : <></>}
             </div>
         </div>
       </div>

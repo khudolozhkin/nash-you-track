@@ -1,6 +1,5 @@
 import CardTypeAdd from "./card-type-add"
 import useSWRImmutable, { mutate } from 'swr'
-import { usePathname } from "next/navigation"
 
 type Card = {
   name: string;

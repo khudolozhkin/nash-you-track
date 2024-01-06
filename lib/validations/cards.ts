@@ -11,6 +11,7 @@ export const updateCardSchema = z.object({
   name: z.string().min(3).max(32).optional(),
   sortOrder: z.number().optional(),
   columnId: z.string().optional(),
+  deadline: z.string().nullable().optional(),
   content: z.object({
     blocks: z.array(z.any()),
     time: z.number(),

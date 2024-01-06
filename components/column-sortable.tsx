@@ -32,6 +32,7 @@ type Card = {
   name: string;
   sortOrder: Number;
   columnId: string;
+  deadline:string;
   type?: {
     name?: string,
     color?: string,

@@ -10,12 +10,14 @@ import { notFound } from "next/navigation"
 import CardType from "@/components/card-type"
 import useSWRImmutable, { mutate } from 'swr'
 import CardUsers from "@/components/card-users"
+import CardDeadline from "@/components/card-deadline"
 
 
 const fetcher = (url) => fetch(url).then(res => res.json())
 
 export default function CardModal({ params }: { params: { cardId: string, spaceId: string, dashboardId: string } }) {
   const { data, error, isValidating} = useSWRImmutable(`/api/cards/${params.cardId}`, fetcher)
+  
   if (data) {
     
     return (
@@ -29,6 +31,7 @@ export default function CardModal({ params }: { params: { cardId: string, spaceI
             </div>
             <CardType cardId={params.cardId} spaceId={params.spaceId} card={data}/>
             <CardUsers cardId={params.cardId} spaceId={params.spaceId} card={data}/>
+            <CardDeadline cardId={params.cardId} spaceId={params.spaceId} card={data}/>
           </div>
           <Editor card={data} cardId={params.cardId}/>
         </div>
