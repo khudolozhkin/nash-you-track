@@ -31,6 +31,7 @@ import {
   FileWarning,
   ArrowLeftToLine,
   ArrowRightToLine,
+  CalendarClock
 } from "lucide-react"
 
 import { LucideIcon } from "lucide-react"
@@ -38,6 +39,7 @@ import { LucideIcon } from "lucide-react"
 export type Icon = LucideIcon
 
 export const Icons = {
+  deadline: CalendarClock,
   closeBurger: ArrowLeftToLine,
   openBurger: ArrowRightToLine,
   notFound: FileWarning,

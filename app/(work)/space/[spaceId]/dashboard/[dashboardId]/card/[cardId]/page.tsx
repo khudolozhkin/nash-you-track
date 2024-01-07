@@ -1,5 +1,6 @@
 'use client'
 
+import CardDeadline from "@/components/card-deadline"
 import CardName from "@/components/card-name"
 import CardOperations from "@/components/card-operations"
 import CardType from "@/components/card-type"
@@ -27,6 +28,7 @@ export default function CardPage({ params }: { params: { cardId: string, spaceId
             </div>
             <CardType cardId={params.cardId} spaceId={params.spaceId} card={data}/>
             <CardUsers cardId={params.cardId} spaceId={params.spaceId} card={data}/>
+            <CardDeadline cardId={params.cardId} spaceId={params.spaceId} card={data}/>
           </div>
           <Editor card={data} cardId={params.cardId}/>
         </div>

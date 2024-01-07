@@ -5,6 +5,7 @@ import DashboardList from "./dashboard-list"
 import SpaceSetting from "./space-settings"
 import { Icons } from "./ui/icons"
 import { useState } from "react"
+import SpaceDeadlines from "./space-deadlines"
 
 export default function SpaceBurgerMenu({name, accessLevel, spaceId, dashboards, children}: {children: React.ReactNode, name: string | undefined, accessLevel: number, spaceId: string, dashboards: Dashboard[] | undefined}) {
   const [active, setActive] = useState(true);
@@ -20,6 +21,7 @@ export default function SpaceBurgerMenu({name, accessLevel, spaceId, dashboards,
                   <Icons.closeBurger onClick={() => {setActive(false)}} className="cursor-pointer min-w-[24px] block xl:hidden" size={24}/>
                 </div>
                 <DashboardList accessLevel={accessLevel} spaceId={spaceId} dashboards={dashboards} />
+                <SpaceDeadlines spaceId={spaceId} />
                 {(accessLevel >= 7) ? <SpaceSetting spaceId={spaceId}/> : <></>}
               </> : <>
                 <div className="flex justify-center items-center gap-2">

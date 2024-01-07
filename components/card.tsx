@@ -76,6 +76,11 @@ export default function Card({card, column, data} : {card: Card, column: Column,
   const pathname = usePathname()
     // @ts-ignore
   const transferContext = useContext<TransferContext>(TransferContext)
+  let cardDeadline;
+
+  if (card.deadline != null) {
+    cardDeadline = card.deadline.toString().slice(0, 10).split('-')
+  }
   
   function onDragOverHandler(e) {
     e.preventDefault()
@@ -161,6 +166,27 @@ export default function Card({card, column, data} : {card: Card, column: Column,
     }
   }
   
+  const getColor = () => {
+    let cardDate = new Date(card.deadline)
+    let currentDate = new Date()
+
+    if (currentDate < cardDate) {
+      let dayPlus = new Date(24 * 3600 * 1000);
+      if (dayPlus < cardDate) {
+        console.log("Больше дня")
+        return "#a5a5a5a1"
+      }
+    } else {
+      if (currentDate.getDay() == cardDate.getDay()) {
+        console.log("Остался один день")
+        return "#D39D00"
+      } else {
+        console.log("Просрочено")
+        return "#b31f1f"
+      }
+    }
+  }
+
   return (
     <div
       style={{touchAction: 'auto'}} draggable={true}
@@ -169,7 +195,7 @@ export default function Card({card, column, data} : {card: Card, column: Column,
       onDragStart={(e) => {onDragStartHandler(e)}}
       onDragEnd={(e) => {onDragEndHandler(e, card, column)}}
       onDrop={(e) => {onDropHandler(e, card, column)}}
-      onClick={() => {router.push(`${pathname}/card/${card.id}`)}} 
+      onClick={() => {router.push(`${pathname}/card/${card.id}`); getColor()}} 
       className="card"
     >
       <div style={{opacity: '0%'}} className="transition-all bg-themed-color dark:bg-themed-color-dark mt-[3px] shadow-3xl dark:shadow-4xl rounded h-[2px] w-full"></div>
@@ -191,7 +217,7 @@ export default function Card({card, column, data} : {card: Card, column: Column,
                 {card.responsibleUsers.map((item) => <Avatar url={item.user.image} h={20} w={20} key={item.user.id}/>)}
               </>}
               {card.deadline != null ? <>
-                <p className="bg-brand-background opacity-[80%] dark:bg-brand-background-dark px-[5px] py-[2px] text-sm rounded-lg">{card.deadline.toString().slice(0, 10)}</p>
+                <p style={{backgroundColor: getColor(), color: 'white'}} className="font-semibold opacity-[100%] px-[5px] py-[1px] text-sm rounded-lg">{cardDeadline[2]}-{cardDeadline[1]}-{cardDeadline[0]}</p>
               </> : <></>}
             </div>
         </div>
