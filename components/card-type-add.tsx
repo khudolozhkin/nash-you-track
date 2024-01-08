@@ -73,7 +73,7 @@ export default function CardTypeAdd({types, cardId, card}: {types: CardType[], c
             <div style={{backgroundColor: card?.Type?.color}} className={`ml-1 mt-1 items-center font-medium text-lg pl-2 text-[white] w-fit flex items-center px-1 md:h-full font-base rounded-lg max-h-[28px]`}>
               <p className="opacity-[85%] mr-1">{card?.Type?.name}</p>
             </div> :
-            <Icons.add2 className="ml-2 mt-2" size={20}/>
+            <Icons.add className="ml-2 mt-2" size={20}/>
           }
         </DropdownMenuTrigger>
         <DropdownMenuContent align="center">

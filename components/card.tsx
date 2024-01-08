@@ -7,6 +7,7 @@ import { mutate } from 'swr'
 import { toast } from "react-hot-toast"
 import { ErrorToast, SuccessToast } from "./ui/toast"
 import Avatar from "./ui/avatar"
+import { getColor } from "@/lib/deadline"
 
 
 type TransferContext = {
@@ -166,26 +167,6 @@ export default function Card({card, column, data} : {card: Card, column: Column,
     }
   }
   
-  const getColor = () => {
-    let cardDate = new Date(card.deadline)
-    let currentDate = new Date()
-
-    if (currentDate < cardDate) {
-      let dayPlus = new Date(24 * 3600 * 1000);
-      if (dayPlus < cardDate) {
-        // console.log("Больше дня")
-        return "#a5a5a5a1"
-      }
-    } else {
-      if (currentDate.getDay() == cardDate.getDay()) {
-        // console.log("Остался один день")
-        return "#D39D00"
-      } else {
-        // console.log("Просрочено")
-        return "#b31f1f"
-      }
-    }
-  }
 
   return (
     <div
@@ -195,7 +176,7 @@ export default function Card({card, column, data} : {card: Card, column: Column,
       onDragStart={(e) => {onDragStartHandler(e)}}
       onDragEnd={(e) => {onDragEndHandler(e, card, column)}}
       onDrop={(e) => {onDropHandler(e, card, column)}}
-      onClick={() => {router.push(`${pathname}/card/${card.id}`); getColor()}} 
+      onClick={() => {router.push(`${pathname}/card/${card.id}`)}} 
       className="card"
     >
       <div style={{opacity: '0%'}} className="transition-all bg-themed-color dark:bg-themed-color-dark mt-[3px] shadow-3xl dark:shadow-4xl rounded h-[2px] w-full"></div>
@@ -217,7 +198,7 @@ export default function Card({card, column, data} : {card: Card, column: Column,
                 {card.responsibleUsers.map((item) => <Avatar url={item.user.image} h={20} w={20} key={item.user.id}/>)}
               </>}
               {card.deadline != null ? <>
-                <p style={{backgroundColor: getColor(), color: 'white'}} className="font-semibold opacity-[100%] px-[5px] py-[1px] text-sm rounded-lg">{cardDeadline[2]}-{cardDeadline[1]}-{cardDeadline[0]}</p>
+                <p style={{backgroundColor: getColor(card.deadline), color: 'white'}} className="font-semibold opacity-[100%] px-[5px] py-[1px] text-sm rounded-lg">{cardDeadline[2]}-{cardDeadline[1]}-{cardDeadline[0]}</p>
               </> : <></>}
             </div>
         </div>

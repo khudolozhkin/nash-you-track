@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast"
 import { ErrorToast, SuccessToast } from "./ui/toast"
 import { mutate } from 'swr'
 import { usePathname } from 'next/navigation'
+import { getColor } from '@/lib/deadline'
 
 
 export default function CardDeadline({spaceId, cardId, card}: {spaceId: string, cardId: string, card: any}) {
@@ -52,27 +53,7 @@ export default function CardDeadline({spaceId, cardId, card}: {spaceId: string, 
 
     setDateWasChanged(false)
   }
-  
-  const getColor = () => {
-    let cardDate = new Date(card.deadline)
-    let currentDate = new Date()
 
-    if (currentDate < cardDate) {
-      let dayPlus = new Date(24 * 3600 * 1000);
-      if (dayPlus < cardDate) {
-        console.log("Больше дня")
-        return ""
-      }
-    } else {
-      if (currentDate.getDay() == cardDate.getDay()) {
-        console.log("Остался один день")
-        return "#D39D00"
-      } else {
-        console.log("Просрочено")
-        return "#b31f1f"
-      }
-    }
-  }
 
   if (card.deadline == null) {
     
@@ -101,7 +82,7 @@ export default function CardDeadline({spaceId, cardId, card}: {spaceId: string, 
           <div className='ml-2 flex items-center gap-2 cursor-pointer'>
             <input
               className='px-1 rounded cursor-pointer'
-              style={{color: getColor()}}
+              style={{color: getColor(card.deadline)}}
               onChange={() => {setDateWasChanged(true)}}
               ref={dateInput} 
               type='date'
