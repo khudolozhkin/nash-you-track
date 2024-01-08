@@ -8,28 +8,31 @@ import { useState } from "react"
 import SpaceDeadlines from "./space-deadlines"
 
 export default function SpaceBurgerMenu({name, accessLevel, spaceId, dashboards, children}: {children: React.ReactNode, name: string | undefined, accessLevel: number, spaceId: string, dashboards: Dashboard[] | undefined}) {
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(false);
   
   return (
     <>
-      <div className="static flex h-[calc(100vh-57px)]">
-          <div style={{minWidth: (active) ? '250px' : '25px'}} className="h-full overflow-y-auto overscroll-y-auto no-scrollbar overflow-hidden relative max-w-[300px] flex border-r border-border dark:border-border-dark px-2 py-2 flex-col">
-            {
-              (active) ? <>
-                <div className="mx-4 flex justify-center items-center gap-2">
-                  <h1 className="whitespace-nowrap truncate font-bold text-xl md:text-2xl text-primary dark:text-primary-dark">{name}</h1>
-                  <Icons.closeBurger onClick={() => {setActive(false)}} className="cursor-pointer min-w-[24px] block xl:hidden" size={24}/>
-                </div>
-                <DashboardList accessLevel={accessLevel} spaceId={spaceId} dashboards={dashboards} />
-                <SpaceDeadlines spaceId={spaceId} />
-                {(accessLevel >= 7) ? <SpaceSetting spaceId={spaceId}/> : <></>}
-              </> : <>
-                <div className="flex justify-center items-center gap-2">
-                  <Icons.openBurger onClick={() => {setActive(true)}} className="cursor-pointer min-w-[24px] block xl:hidden" size={24}/>
-                </div>
-              </>
-            }
+      <div className="static flex h-[calc(100vh-57px)] flex-col sm:flex-row">
+          <div style={{minWidth: (active) ? '250px' : '25px'}} className="hidden sm:block h-full overflow-y-auto overscroll-y-auto no-scrollbar overflow-hidden relative max-w-[300px] flex border-r border-border dark:border-border-dark px-2 py-2 flex-col">
+            <div className="mx-4 flex justify-center items-center gap-2">
+              <h1 className="whitespace-nowrap truncate font-bold text-xl md:text-2xl text-primary dark:text-primary-dark">{name}</h1>
+            </div>
+            <DashboardList accessLevel={accessLevel} spaceId={spaceId} dashboards={dashboards} />
+            <SpaceDeadlines spaceId={spaceId} />
+            {(accessLevel >= 7) ? <SpaceSetting spaceId={spaceId}/> : <></>}
           </div>
+          <div className="block sm:hidden flex flex-row-reverse border-b border-border dark:border-border-dark"><Icons.burger onClick={() => {setActive(true)}} className="mr-[32px] my-2 cursor-pointer"/></div>
+          {active ? <>
+            <div className="bg-brand-background container dark:bg-brand-background-dark h-full w-full absolute top-0 left-0 z-[11111]">
+              <div className="mb-4 mt-8 flex justify-center items-center gap-2">
+                <h1 className="whitespace-nowrap truncate font-bold text-xl md:text-2xl text-primary dark:text-primary-dark">{name}</h1>
+                <Icons.close onClick={() => {setActive(false)}} className="cursor-pointer"/>
+              </div>
+              <DashboardList accessLevel={accessLevel} spaceId={spaceId} dashboards={dashboards} />
+              <SpaceDeadlines spaceId={spaceId} />
+              {(accessLevel >= 7) ? <SpaceSetting spaceId={spaceId}/> : <></>}
+            </div>
+          </> : <></>}
           {children}
         </div>
     </>

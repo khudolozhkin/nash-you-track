@@ -54,7 +54,7 @@ export default async function Dashboard({ params }: { params: { spaceId: string 
 
   return (
     <div className="flex sm:justify-center w-full overflow-auto">
-     <div className="pt-4 container sm:min-w-[500px] min-w-[calc(100vw)] max-w-3xl">
+     <div className="pt-4 container sm:min-w-[500px] min-w-[100%] max-w-3xl">
         {cards.length > 0 ? <>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <DeadlinesCards cards={cards}/>
