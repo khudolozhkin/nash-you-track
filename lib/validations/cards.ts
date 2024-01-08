@@ -23,6 +23,7 @@ export const updateCardSchema = z.object({
 export const createCardSchema = z.object({
   name: z.string().min(3).max(32),
   columnId: z.string(),
+  dashboardId: z.string()
 })
 
 export const createResponsibleUser = z.object({

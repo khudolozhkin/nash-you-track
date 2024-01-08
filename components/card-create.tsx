@@ -27,7 +27,9 @@ export default function CardCreate({columnId}: {columnId: string}) {
   async function createCard() {
     let data = JSON.stringify({
       name: input.current!.value,
-      columnId: columnId
+      columnId: columnId,
+      spaceId: pathname.split('/')[2],
+      dashboardId: pathname.split('/')[4],
     })
 
     const response = await fetch(`/api/cards/`, {

@@ -98,6 +98,7 @@ model Space {
   dashboards Dashboard[]
   invites Invite[]
   cardTypes CardType[]
+  cards Card[]
 }
 
 model SpaceUser {
@@ -137,6 +138,7 @@ model Dashboard {
   spaceId String
 
   tables Table[]
+  cards Card[]
 }
 
 model Table {
@@ -177,6 +179,12 @@ model Card {
 
   column Column @relation(fields: [columnId], references: [id], onDelete: Cascade)
   columnId String
+
+  space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+  spaceId String
+
+  dashboard Dashboard @relation(fields: [dashboardId], references: [id], onDelete: Cascade)
+  dashboardId String
 
   responsibleUsers ResponsibleUserForCard[]
 }

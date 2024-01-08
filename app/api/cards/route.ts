@@ -43,7 +43,7 @@ export async function POST(request: Request) {
     }
     
     const newCard = await db.card.create({
-      data: {name: body.name, columnId: body.columnId, sortOrder: sortOrder}
+      data: {name: body.name, columnId: body.columnId, sortOrder: sortOrder, spaceId: column.table.dashboard.spaceId, dashboardId: body.dashboardId}
     })
 
     return NextResponse.json(newCard);
