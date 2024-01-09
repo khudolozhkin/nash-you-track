@@ -28,3 +28,4 @@ This is a project manager with shared spaces, tables and cards.
 - [x] Card
 - [x] Tasks page
 - [x] Marketing page
+- [x] Deadlines for cards

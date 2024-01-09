@@ -32,10 +32,11 @@ export default function Marketing() {
   return (
       <>
         <InView threshold={0.75} as="div" onChange={(inView) => (inView) ? setCurrentSection(0) : ''}>
-            <section className="w-full h-[calc(100vh-56px)] flex items-center justify-center">
-              <div ref={ref} className="flex gap-4 flex-col">
-                <h1 className="px-8 text-primary dark:text-primary-dark text-3xl md:text-5xl font-semibold text-center">Приложение для управления процессами на NextJS 13</h1>
-                <h2 className="px-8 text-secondary dark:text-secondary-dark text-xl md:text-3xl text-center">Совместная работа с досками, таблицами и карточками</h2>
+            <section className="w-full h-[calc(100vh-56px)] flex 2xl:items-center justify-center 2xl:justify-center">
+              <div ref={ref} className="flex pt-[25%] lg:pt-[10%] 2xl:pt-[0] container gap-4 flex-col max-w-8xl ">
+                <h1 className="2xl:max-w-2xl px-8 text-primary dark:text-primary-dark text-3xl md:text-5xl font-semibold text-center 2xl:text-left">Приложение для управления процессами на NextJS 13</h1>
+                <h2 className="2xl:max-w-2xl px-8 text-secondary dark:text-secondary-dark text-xl md:text-3xl text-center 2xl:text-left">Совместная работа с досками, таблицами и карточками</h2>
+                <Image className="absolute w-auto ml-auto mr-auto max-h-[50%] 2xl:max-h-[100%] 2xl:left-auto left-0 bottom-0 right-0 3xl:right-[300px]" alt="mac-mockup" src={'/assets/mac-mockup.png'} width={1365} height={1028}/>
               </div>
             </section>
         </InView>

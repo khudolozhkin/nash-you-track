@@ -71,6 +71,6 @@ export default async function DashboardPage({ params }: { params: { dashboardId:
   })
 
   return (
-    <Dashboard accessLevel={spaceUser!.accessLevel} dashboardId={params.dashboardId}/>
+    <Dashboard tablesExist={dashboard.tables.length != 0} accessLevel={spaceUser!.accessLevel} dashboardId={params.dashboardId}/>
   )
 }

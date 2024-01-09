@@ -13,7 +13,7 @@ module.exports = {
       'lg': '	1024px',
       'xl': '1280px',
       '2xl': '1536px',
-      '3xl': '2000px',
+      '3xl': '2560px',
     },
     boxShadow: {
       '3xl': '0px 0px 11px 3px rgb(67 18 125 / 33%)',

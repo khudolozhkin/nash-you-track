@@ -58,17 +58,19 @@ type Table = {
 
 const fetcher = (url) => fetch(url).then(res => res.json())
 
-export default function Dashboard({dashboardId, accessLevel}: {dashboardId: string, accessLevel: number}) {
+export default function Dashboard({dashboardId, accessLevel, tablesExist}: {dashboardId: string, accessLevel: number, tablesExist: boolean}) {
   const {data, isLoading} = useSWRImmutable(`/api/dashboards/${dashboardId}`, fetcher , { refreshInterval: 5000,  keepPreviousData: true })
 
+
   useEffect ( ()=> { 
-    let helpFlag = localStorage.getItem(`${dashboardId}`)
-    if (helpFlag == null) {
-      localStorage.setItem(`${dashboardId}`, '[]')
-    } else {
-      toast.custom((t) => (
-        <SuccessToast t={t} header="Для создания таблицы используйте ПКМ"/>
-      ))
+    if (!tablesExist) {
+      let helpFlag = localStorage.getItem(`${dashboardId}`)
+      if (helpFlag == null) {
+        localStorage.setItem(`${dashboardId}`, '[]')
+        toast.custom((t) => (
+          <SuccessToast t={t} header="Для создания таблицы используйте ПКМ"/>
+        ))
+      }
     }
   } , [])
 
