@@ -6,17 +6,6 @@ import { siteConfig } from '@/config/site'
 import { Toaster } from 'react-hot-toast'
 import { YandexMetricaProvider } from 'next-yandex-metrica';
 
-export const metadata = {
-  title: siteConfig.name,
-  description: siteConfig.description,
-  authors: [
-    {
-      name: "Alexander Khudolozhkin",
-      url: "https://github.com/Halatnbly",
-    },
-  ],
-}
-
 export default function RootLayout({
   children
 }: {

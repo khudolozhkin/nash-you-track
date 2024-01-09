@@ -2,7 +2,19 @@ import { workConfig } from "@/config/work"
 import { MainNav } from "@/components/main-nav"
 import { UserAccountNav } from "@/components/account-nav"
 import { getCurrentUser } from "@/lib/session"
+import { Metadata } from "next"
+import { siteConfig } from "@/config/site"
 
+export const metadata: Metadata = {
+  title: siteConfig.name,
+  description: siteConfig.description,
+  authors: [
+    {
+      name: "Alexander Khudolozhkin",
+      url: "https://github.com/Halatnbly",
+    },
+  ],
+}
 
 export default async function WorkspaceLayout({
   children
