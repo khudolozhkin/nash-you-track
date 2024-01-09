@@ -23,7 +23,7 @@ export default function TaskFilter({spaceParams, spaces}: {spaceParams: string |
   
   
   return (
-    <div className="pt-4 flex container max-w-5xl">
+    <div className="flex pt-8 container max-w-5xl">
       <p className="text-lg font-medium">Пространства:</p>
       <DropdownMenu open={active} onOpenChange={() => {setActive(!active)}}>
         <DropdownMenuTrigger className="focus:outline-none md:h-full">

@@ -131,7 +131,7 @@ export default async function MyTasks({searchParams}: {searchParams?: { [key: st
     <div className="flex flex-col items-center justify-center">
         {responsibleForCards.length > 0 ? <>
         <TaskFilter spaces={userSpaces[0].spaces} spaceParams={space}/>
-          <div className="pt-4 container max-w-5xl flex flex-1 gap-4 mt-4 grid grid-cols-1 md:grid-cols-2 gap-2"> 
+          <div className="container max-w-5xl flex flex-1 gap-4 mt-4 grid grid-cols-1 md:grid-cols-2 gap-2"> 
           {responsibleForCards.map((item) => <>
               <ResponsibleForCard key={item.card.id} item={item.card}/>
           </>
@@ -139,7 +139,7 @@ export default async function MyTasks({searchParams}: {searchParams?: { [key: st
         </div>
         </> : <>
         <TaskFilter spaces={userSpaces[0].spaces} spaceParams={space}/>
-        <div className="pt-4 container max-w-5xl flex flex-1 gap-4 mt-4">  
+        <div className="container max-w-5xl flex flex-1 gap-4 mt-4">  
             <div className="flex min-h-[400px] w-full flex-col items-center justify-center rounded-md border border-border dark:border-border-dark p-8 text-center animate-in fade-in-50">
               <div className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-background dark:bg-brand-background-dark">
                 <Icons.noTasks size={50} />

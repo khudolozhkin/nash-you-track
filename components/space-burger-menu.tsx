@@ -13,7 +13,7 @@ export default function SpaceBurgerMenu({name, accessLevel, spaceId, dashboards,
   return (
     <>
       <div className="static flex h-[calc(100vh-57px)] flex-col sm:flex-row">
-          <div style={{minWidth: (active) ? '250px' : '25px'}} className="hidden sm:block h-full overflow-y-auto overscroll-y-auto no-scrollbar overflow-hidden relative max-w-[300px] flex border-r border-border dark:border-border-dark px-2 py-2 flex-col">
+          <div className="hidden sm:block h-full overflow-y-auto overscroll-y-auto no-scrollbar overflow-hidden relative min-w-[250px] max-w-[300px] flex border-r border-border dark:border-border-dark px-2 py-2 flex-col">
             <div className="mx-4 flex justify-center items-center gap-2">
               <h1 className="whitespace-nowrap truncate font-bold text-xl md:text-2xl text-primary dark:text-primary-dark">{name}</h1>
             </div>
